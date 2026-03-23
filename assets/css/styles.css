@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Brand Colors */
+    --primary-color: #F4B400;
+    --secondary-color: #1F7A63;
+    --accent-color: #1A1A1A;
+
+    /* Light Mode */
+    --bg-color: #F9FBF8;
+    --card-bg: #FFFFFF;
+    --text-color: #2A2A2A;
+    --border-color: rgba(31, 122, 99, 0.1);
+
+    /* Spacing */
+    --sp-8: 8px;
+    --sp-16: 16px;
+    --sp-24: 24px;
+    --sp-32: 32px;
+    --sp-48: 48px;
+    --sp-64: 64px;
+    --sp-100: 100px;
+    --sp-120: 120px;
+
+    --transition-speed: 0.3s;
+}
+
+[data-bs-theme="dark"] {
+    --bg-color: #0E1A17;
+    --card-bg: #162723;
+    --text-color: #E8F5F2;
+    --border-color: rgba(244, 180, 0, 0.1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+/* Typography Overrides */
+.brand-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+/* Navbar Styling */
+.navbar {
+    height: 80px;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color var(--transition-speed);
+    z-index: 1050;
+}
+
+.navbar-brand img {
+    height: 40px;
+    width: auto;
+}
+
+.nav-link {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: var(--text-color) !important;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+/* Button System */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--accent-color);
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 8px;
+}
+
+.btn-primary:hover {
+    background-color: #e6a700;
+    border-color: #e6a700;
+    color: var(--accent-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: #FFFFFF;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 8px;
+}
+
+.btn-secondary:hover {
+    background-color: #17614e;
+    border-color: #17614e;
+}
+
+/* Card System */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: var(--sp-24);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--transition-speed);
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(244, 180, 0, 0.1);
+    color: var(--primary-color);
+    border-radius: 12px;
+    margin-bottom: var(--sp-24);
+    margin-inline: auto;
+}
+
+/* Section Spacing Utilities */
+.py-64 {
+    padding-top: var(--sp-64);
+    padding-bottom: var(--sp-64);
+}
+
+.py-100 {
+    padding-top: var(--sp-100);
+    padding-bottom: var(--sp-100);
+}
+
+.py-120 {
+    padding-top: var(--sp-120);
+    padding-bottom: var(--sp-120);
+}
+
+/* Animation Utilities */
+.animate-on-scroll {
+    opacity: 0;
+    transition: all 0.8s ease-out;
+}
+
+.animate-up {
+    transform: translateY(30px);
+}
+
+.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Custom Animations per Page Requirements */
+/* Hive Build Animation (Home) */
+@keyframes hiveBuild {
+    0% {
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.hive-cell {
+    animation: hiveBuild 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Organic Wave (Home-2) */
+.organic-wave {
+    background-image: url("data:image/svg+xml,%3Csvg width='1440' height='320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z' fill='%231F7A63' fill-opacity='0.1'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+/* Footer */
+footer {
+    background-color: var(--accent-color);
+    color: #FFFFFF;
+    padding: var(--sp-64) 0 var(--sp-32);
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+footer a:hover {
+    color: var(--primary-color);
+}
+
+/* Theme Toggle */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+
+/* Responsive Overrides */
+@media (max-width: 640px) {
+    .navbar {
+        height: 70px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Dashboard Sidebar */
+#sidebar {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--card-bg);
+    border-right: 1px solid var(--border-color);
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.main-content {
+    margin-left: 280px;
+    transition: all 0.3s;
+}
+
+@media (max-width: 1024px) {
+    #sidebar {
+        left: -280px;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    #sidebar.active {
+        left: 0;
+    }
+}

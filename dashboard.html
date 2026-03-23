@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Urban Hive Member Dashboard: Tracks orders, courses, and progress.">
+    <title>Dashboard | Urban Hive</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        /* Unique Page Animation: Panel Transitions */
+        .dashboard-panel {
+            display: none;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.4s ease;
+        }
+
+        .dashboard-panel.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Sidebar Custom Styles */
+        #sidebar {
+            background-color: var(--card-bg);
+            border-right: 1px solid var(--border-color);
+            padding: var(--sp-24);
+            display: flex;
+            flex-direction: column;
+            gap: var(--sp-8);
+        }
+
+        .dashboard-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .dashboard-nav-item i {
+            font-size: 1.25rem;
+        }
+
+        .dashboard-nav-item:hover,
+        .dashboard-nav-item.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .main-content {
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            padding: var(--sp-32);
+        }
+
+        .stat-card-small {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 24px;
+        }
+
+        .video-thumbnail {
+            position: relative;
+            cursor: pointer;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            background-image: url('assets/img/education.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .video-thumbnail .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(244, 180, 0, 0.9);
+            color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .video-thumbnail:hover .play-btn {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .tracking-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .progress {
+            height: 8px;
+            background-color: rgba(31, 122, 99, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background-color: var(--secondary-color);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside id="sidebar">
+        <div class="mb-5 d-flex align-items-center justify-content-between">
+            <a href="index.html" class="d-flex align-items-center text-decoration-none">
+                <i class="bi bi-hexagon-fill fs-3 text-secondary me-2"></i>
+                <span class="brand-name text-secondary">URBAN HIVE</span>
+            </a>
+            <button class="theme-toggle-btn d-lg-none" id="sidebarClose"><i class="bi bi-x fs-2"></i></button>
+        </div>
+
+        <nav class="flex-grow-1">
+            <a href="#" class="dashboard-nav-item active" data-panel="overview-panel">
+                <i class="bi bi-grid-1x2"></i> Overview
+            </a>
+            <a href="#" class="dashboard-nav-item" data-panel="orders-panel">
+                <i class="bi bi-box-seam"></i> My Orders
+            </a>
+            <a href="#" class="dashboard-nav-item" data-panel="courses-panel">
+                <i class="bi bi-journal-bookmark"></i> My Courses
+            </a>
+            <a href="#" class="dashboard-nav-item" data-panel="downloads-panel">
+                <i class="bi bi-download"></i> Downloads
+            </a>
+            <hr class="my-4 opacity-10">
+            <a href="#" class="dashboard-nav-item" data-panel="profile-panel">
+                <i class="bi bi-person-circle"></i> Profile
+            </a>
+            <a href="#" class="dashboard-nav-item" data-panel="messages-panel">
+                <i class="bi bi-chat-dots"></i> Messages
+                <span class="badge rounded-pill bg-primary text-dark ms-auto">2</span>
+            </a>
+            <hr class="my-4 opacity-10">
+            <p class="small text-muted text-uppercase fw-bold mb-3">Apiary Website</p>
+            <a href="index.html" class="dashboard-nav-item"><i class="bi bi-house"></i> Home</a>
+            <a href="home-2.html" class="dashboard-nav-item"><i class="bi bi-globe"></i> Impact</a>
+            <a href="services.html" class="dashboard-nav-item"><i class="bi bi-shop"></i> Shop</a>
+            <a href="pricing.html" class="dashboard-nav-item"><i class="bi bi-mortarboard"></i> Courses</a>
+            <a href="booking.html" class="dashboard-nav-item"><i class="bi bi-calendar-event"></i> Booking</a>
+            <a href="gallery.html" class="dashboard-nav-item"><i class="bi bi-images"></i> Gallery</a>
+            <a href="blog.html" class="dashboard-nav-item"><i class="bi bi-card-text"></i> Blog</a>
+        </nav>
+
+        <div class="mt-auto">
+            <button class="theme-toggle-btn w-100 justify-content-start gap-3 mb-3">
+                <i class="bi bi-moon-fill"></i> Toggle Theme
+            </button>
+            <a href="login.html" class="btn btn-outline-danger w-100 rounded-pill">Sign Out</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Nav -->
+        <header class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <button class="btn btn-outline-secondary d-lg-none me-3" id="sidebarToggle"><i
+                        class="bi bi-list"></i></button>
+                <h2 class="mb-0 fw-bold">Welcome back, Alex!</h2>
+                <p class="text-muted small">Your urban apiary is looking healthy today.</p>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <div class="dropdown d-none d-md-block">
+                    <button class="btn btn-outline-secondary rounded-pill px-4 dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown">
+                        Website Menu
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                        <li><a class="dropdown-item" href="index.html">Home</a></li>
+                        <li><a class="dropdown-item" href="home-2.html">Impact</a></li>
+                        <li><a class="dropdown-item" href="services.html">Shop</a></li>
+                        <li><a class="dropdown-item" href="pricing.html">Courses</a></li>
+                        <li><a class="dropdown-item" href="booking.html">Booking</a></li>
+                        <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                        <li><a class="dropdown-item" href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="input-group d-none d-lg-flex border rounded-pill px-2">
+                    <span class="input-group-text bg-transparent border-0"><i class="bi bi-search"></i></span>
+                    <input type="text" class="form-control border-0 bg-transparent" placeholder="Global Search...">
+                </div>
+                <img src="assets/img/hero.png" width="45" height="45" class="rounded-circle border" alt="User Avatar">
+            </div>
+        </header>
+
+        <!-- Overview Panel -->
+        <div id="overview-panel" class="dashboard-panel active">
+            <div class="row g-4 mb-5">
+                <div class="col-md-3">
+                    <div class="stat-card-small">
+                        <small class="text-muted text-uppercase fw-bold ls-1 d-block mb-1">Learning Progress</small>
+                        <h3 class="mb-3">64%</h3>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 0%" aria-valuenow="64"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card-small">
+                        <small class="text-muted text-uppercase fw-bold ls-1 d-block mb-1">Total Bees Hosted</small>
+                        <h3 class="mb-0">12,450</h3>
+                        <small class="text-success"><i class="bi bi-arrow-up-short"></i> 12% increase</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card-small">
+                        <small class="text-muted text-uppercase fw-bold ls-1 d-block mb-1">Honey Harvested</small>
+                        <h3 class="mb-0">8.2 lbs</h3>
+                        <small class="text-muted">Current Season</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card-small">
+                        <small class="text-muted text-uppercase fw-bold ls-1 d-block mb-1">Support Tickets</small>
+                        <h3 class="mb-0">0 Open</h3>
+                        <small class="text-muted">All expert advice resolved</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="card p-4">
+                        <h5 class="mb-4">Recent Course Activity</h5>
+                        <div class="video-thumbnail mb-4 shadow-lg">
+                            <div class="play-btn"><i class="bi bi-play-fill"></i></div>
+                        </div>
+                        <h5 class="mb-1">Lesson 4: Managing Summer Varroa Mites</h5>
+                        <p class="text-muted">12:45 mins • Level 2 Certification Path</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card p-4 h-100">
+                        <h5 class="mb-4">Active Shipments</h5>
+                        <div class="p-3 border rounded-3 mb-3" style="background: rgba(244,180,0,0.05);">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="fw-bold"><span class="tracking-dot"></span>Artisan Cedar Hive</span>
+                                <span class="badge bg-secondary">In Transit</span>
+                            </div>
+                            <small class="text-muted d-block mb-1">Order #UH-82910</small>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-primary" style="width: 75%"></div>
+                            </div>
+                            <small class="fw-bold">Arriving Thursday</small>
+                        </div>
+                        <div class="p-3 border rounded-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="fw-bold text-muted"><span
+                                        class="tracking-dot bg-secondary shadow-none"></span>Hive Tool Set</span>
+                                <span class="badge bg-light text-muted border">Delivered</span>
+                            </div>
+                            <small class="text-muted">Mar 10, 2026</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Panel -->
+        <div id="orders-panel" class="dashboard-panel">
+            <div class="card p-4">
+                <h5 class="mb-4">My Order History</h5>
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Product</th>
+                                <th>Status</th>
+                                <th>Total</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#UH-82910</td>
+                                <td>Artisan Cedar Hive</td>
+                                <td><span class="badge bg-warning text-dark">Shipped</span></td>
+                                <td>$349.00</td>
+                                <td>Mar 20, 2026</td>
+                            </tr>
+                            <tr>
+                                <td>#UH-81105</td>
+                                <td>Ultra-Vent Suit Pro</td>
+                                <td><span class="badge bg-success">Delivered</span></td>
+                                <td>$149.00</td>
+                                <td>Mar 15, 2026</td>
+                            </tr>
+                            <tr>
+                                <td>#UH-80021</td>
+                                <td>Beekeeping Tool Set</td>
+                                <td><span class="badge bg-success">Delivered</span></td>
+                                <td>$54.00</td>
+                                <td>Mar 10, 2026</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Courses Panel -->
+        <div id="courses-panel" class="dashboard-panel">
+            <h5 class="mb-4">Continue Learning</h5>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card overflow-hidden">
+                        <img src="assets/img/education.png" class="card-img-top" alt="Course 1">
+                        <div class="card-body">
+                            <h5>Urban Beekeeping Fundamentals</h5>
+                            <p class="small text-muted">Complete Level 1 certification guides.</p>
+                            <div class="progress mt-3">
+                                <div class="progress-bar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card overflow-hidden">
+                        <div style="aspect-ratio: 16/9; background: #eee;"></div>
+                        <div class="card-body">
+                            <h5>Intermediate Hive Management</h5>
+                            <p class="small text-muted">Managing multiple hives in high-density areas.</p>
+                            <div class="progress mt-3">
+                                <div class="progress-bar" style="width: 25%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+</body>
+
+</html>

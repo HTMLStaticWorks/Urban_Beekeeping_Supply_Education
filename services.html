@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Shop the best Urban Beekeeping supplies, hive kits, and protective gear at Urban Hive.">
+    <title>Shop Supplies | Urban Hive</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        /* Unique Page Animation: Hover Glow (Eco Highlight) */
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(244, 180, 0, 0.1), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-color);
+            box-shadow: 0 12px 32px rgba(244, 180, 0, 0.15);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .category-filter {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+        }
+
+        .filter-btn {
+            white-space: nowrap;
+            padding: 10px 24px;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        .product-img {
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 20px;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="bi bi-hexagon-fill fs-3 text-secondary me-2"></i>
+                <span class="brand-name text-secondary">URBAN HIVE</span>
+            </a>
+            <div class="d-flex align-items-center order-lg-3">
+                <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
+                    <i class="bi bi-moon-fill"></i>
+                </button>
+                <div class="position-relative me-3">
+                    <i class="bi bi-cart3 fs-4"></i>
+                    <span
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary text-dark"
+                        style="font-size: 0.6rem;">0</span>
+                </div>
+                <a href="login.html" class="btn btn-primary d-none d-md-block">My Account</a>
+                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title brand-name text-secondary">URBAN HIVE</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="home-2.html">Impact</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="services.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pricing.html">Courses</a></li>
+                        <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link" href="login.html">Login</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link" href="register.html">Signup</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="py-64" style="background-color: var(--secondary-color); color: white;">
+        <div class="container">
+            <h1 class="display-4 text-center mb-0">The Apiary Shop</h1>
+            <p class="text-center mt-3 opacity-75">Curated gear for the modern urban beekeeper.</p>
+        </div>
+    </header>
+
+    <!-- Shop Content -->
+    <main class="py-64">
+        <div class="container">
+            <!-- Filter Bar -->
+            <div class="row mb-5 align-items-center">
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <div class="category-filter">
+                        <button class="filter-btn active">All Products</button>
+                        <button class="filter-btn">Hive Kits</button>
+                        <button class="filter-btn">Protective Gear</button>
+                        <button class="filter-btn">Apiary Tools</button>
+                        <button class="filter-btn">Starter Packs</button>
+                        <button class="filter-btn">Wellness</button>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group border rounded-pill overflow-hidden ps-2"
+                        style="background: var(--card-bg);">
+                        <span class="input-group-text bg-transparent border-0"><i class="bi bi-search"></i></span>
+                        <input type="text" class="form-control border-0 bg-transparent" placeholder="Search gear...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="row g-4">
+                <!-- Product 1 -->
+                <div class="col-sm-6 col-lg-4 col-xl-3 animate-on-scroll">
+                    <div class="product-card p-3">
+                        <a href="service-details.html" class="text-decoration-none">
+                            <img src="assets/img/product3.png" alt="Artisan Hive" class="product-img w-100 mb-3">
+                        </a>
+                        <div class="mb-2">
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <span class="small text-muted ms-2">(48 Reviews)</span>
+                        </div>
+                        <h5 class="mb-1"><a href="service-details.html" class="text-decoration-none text-reset">Artisan
+                                Cedar Hive</a></h5>
+                        <p class="small text-muted mb-3 flex-grow-1">Premium cedarwood, weather-resistant finish.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <span class="fw-bold fs-5 text-secondary">$349.00</span>
+                            <button class="btn btn-secondary btn-sm rounded-circle p-2" aria-label="Add to cart"><i
+                                    class="bi bi-plus fs-5"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="col-sm-6 col-lg-4 col-xl-3 animate-on-scroll">
+                    <div class="product-card p-3">
+                        <img src="assets/img/product2.png" alt="Beekeeping Suit" class="product-img w-100 mb-3">
+                        <div class="mb-2">
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star-half text-primary"></i>
+                            <span class="small text-muted ms-2">(124 Reviews)</span>
+                        </div>
+                        <h5 class="mb-1">Ultra-Vent Suit Pro</h5>
+                        <p class="small text-muted mb-3 flex-grow-1">Triple-layer mesh for maximum city ventilation.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <span class="fw-bold fs-5 text-secondary">$149.00</span>
+                            <button class="btn btn-secondary btn-sm rounded-circle p-2"><i
+                                    class="bi bi-plus fs-5"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="col-sm-6 col-lg-4 col-xl-3 animate-on-scroll">
+                    <div class="product-card p-3">
+                        <img src="assets/img/product1.png" alt="Honey Jar" class="product-img w-100 mb-3">
+                        <div class="mb-2">
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <span class="small text-muted ms-2">(2.3k Reviews)</span>
+                        </div>
+                        <h5 class="mb-1">NYC Rooftop Honey</h5>
+                        <p class="small text-muted mb-3 flex-grow-1">Raw, unfiltered harvest from Manhattan hives.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <span class="fw-bold fs-5 text-secondary">$28.00</span>
+                            <button class="btn btn-secondary btn-sm rounded-circle p-2"><i
+                                    class="bi bi-plus fs-5"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="col-sm-6 col-lg-4 col-xl-3 animate-on-scroll">
+                    <div class="product-card p-3">
+                        <div class="product-img w-100 mb-3 d-flex align-items-center justify-content-center"
+                            style="background: rgba(31,122,99,0.05);">
+                            <i class="bi bi-tools display-2 text-secondary opacity-25"></i>
+                        </div>
+                        <div class="mb-2">
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star-fill text-primary"></i>
+                            <i class="bi bi-star text-primary"></i>
+                        </div>
+                        <h5 class="mb-1">Stainless Smoker Kit</h5>
+                        <p class="small text-muted mb-3 flex-grow-1">Heat-shielded pro smoker with starter fuel.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold fs-5 text-secondary">$54.00</span>
+                            <button class="btn btn-secondary btn-sm rounded-circle p-2"><i
+                                    class="bi bi-plus fs-5"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <a class="d-flex align-items-center mb-4 text-decoration-none" href="index.html">
+                        <i class="bi bi-hexagon-fill fs-3 text-primary me-2"></i>
+                        <span class="brand-name text-white">URBAN HIVE</span>
+                    </a>
+                    <p class="text-white-50">Providing professional tools for your sustainable city life.</p>
+                </div>
+                <div class="col-md-2 col-6 text-md-end ms-auto">
+                    <h6 class="text-white mb-4">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Shop</a></li>
+                        <li><a href="pricing.html">Courses</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-5 opacity-25">
+            <p class="text-white-50 text-center small">© 2026 Urban Hive. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

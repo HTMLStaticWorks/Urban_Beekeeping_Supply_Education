@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Urban Hive: Sustainable Beekeeping for Modern Cities. Premium supplies, education, and hive setup assistance.">
+    <title>Urban Hive | Sustainable Beekeeping for Modern Cities</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        /* Unique Page Animation: Hive Build (Cells forming) */
+        .hero-section {
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('assets/img/hero.png');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: #FFFFFF;
+            overflow: hidden;
+        }
+
+        .hive-container {
+            position: absolute;
+            right: 0px;
+            top: 20%;
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 10px;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .hive-cell {
+            width: 100px;
+            height: 115px;
+            background-color: var(--primary-color);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            animation: hiveBuild 1.2s forwards ease-out;
+            opacity: 0;
+            transform: scale(0.1);
+        }
+
+        .hive-cell:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .hive-cell:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .hive-cell:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .hive-cell:nth-child(5) {
+            animation-delay: 0.8s;
+        }
+
+        .hive-cell:nth-child(6) {
+            animation-delay: 1.0s;
+        }
+
+        @keyframes hiveBuild {
+            from {
+                opacity: 0;
+                transform: scale(0.1) rotate(60deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            max-width: 800px;
+            line-height: 1.1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="bi bi-hexagon-fill fs-3 text-secondary me-2"></i>
+                <span class="brand-name text-secondary">URBAN HIVE</span>
+            </a>
+
+            <div class="d-flex align-items-center order-lg-3">
+                <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
+                    <i class="bi bi-moon-fill"></i>
+                </button>
+                <a href="login.html" class="btn btn-primary d-none d-md-block">Get Started</a>
+                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title brand-name text-secondary">URBAN HIVE</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="home-2.html">Impact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="pricing.html">Courses</a></li>
+                        <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link" href="login.html">Login</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link" href="register.html">Signup</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hive-container d-none d-xl-grid">
+            <div class="hive-cell"></div>
+            <div class="hive-cell"></div>
+            <div class="hive-cell"></div>
+            <div class="hive-cell"></div>
+            <div class="hive-cell"></div>
+            <div class="hive-cell"></div>
+        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-10">
+                    <h1 class="hero-title mb-4 animate-on-scroll">Sustainable Beekeeping for Modern Cities</h1>
+                    <p class="lead mb-5 animate-on-scroll" style="max-width: 600px;">Transform your rooftop into a
+                        thriving ecosystem. We provide premium urban-ready hive kits, professional gear, and world-class
+                        education for the modern beekeeper.</p>
+                    <div class="d-flex flex-wrap gap-3 animate-on-scroll">
+                        <a href="services.html" class="btn btn-primary btn-lg px-5">Shop Gear</a>
+                        <a href="pricing.html" class="btn btn-secondary btn-lg px-5">Start Learning</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="py-100">
+        <div class="container">
+            <div class="row align-items-end mb-5">
+                <div class="col-md-6">
+                    <h2 class="animate-on-scroll">The Beekeeper's Essentials</h2>
+                    <p class="mb-0 animate-on-scroll text-muted">Curated gear designed for urban environments.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="services.html" class="text-secondary fw-bold text-decoration-none animate-on-scroll">View
+                        All Products <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="card p-0 overflow-hidden">
+                        <img src="assets/img/product1.png" class="card-img-top" alt="Honey Premium Jar">
+                        <div class="card-body p-4">
+                            <span class="badge bg-secondary mb-2">Sustainable</span>
+                            <h5>Urban Gold: Premium Honey</h5>
+                            <p class="text-muted">A distinct city flora blend.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="fw-bold fs-5">$24.99</span>
+                                <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-cart"></i> Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="card p-0 overflow-hidden">
+                        <img src="assets/img/product2.png" class="card-img-top" alt="Beekeeping Suit">
+                        <div class="card-body p-4">
+                            <span class="badge bg-secondary mb-2">Essential</span>
+                            <h5>Urban Pro Suit & Gloves</h5>
+                            <p class="text-muted">Maximum protection, city ventilation.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="fw-bold fs-5">$189.00</span>
+                                <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-cart"></i> Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="card p-0 overflow-hidden">
+                        <div
+                            style="aspect-ratio: 4/3; background: #eef2ed; display: flex; align-items:center; justify-content:center;">
+                            <i class="bi bi-box-seam display-1 text-secondary opacity-25"></i>
+                        </div>
+                        <div class="card-body p-4">
+                            <span class="badge bg-primary text-dark mb-2">Top Rated</span>
+                            <h5>The CityHive™ Smart Kit</h5>
+                            <p class="text-muted">IoT enabled hive for urban rooftops.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="fw-bold fs-5">$549.00</span>
+                                <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-cart"></i> Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Urban Beekeeping -->
+    <section class="py-100" style="background-color: var(--card-bg);">
+        <div class="container">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <h2 class="animate-on-scroll">Why Urban Beekeeping?</h2>
+                    <p class="text-muted animate-on-scroll">Join the movement that's transforming concrete jungles into
+                        green sanctuaries.</p>
+                </div>
+            </div>
+            <div class="row g-4 text-center">
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="card h-100">
+                        <div class="card-icon"><i class="bi bi-globe-americas"></i></div>
+                        <h4>Save the Pollinators</h4>
+                        <p class="text-muted">Help combat the global bee population decline by providing safe habitats
+                            in the heart of our cities.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="card h-100">
+                        <div class="card-icon"><i class="bi bi-flower1"></i></div>
+                        <h4>Boost City Biodiversity</h4>
+                        <p class="text-muted">Urban bees increase local flower and vegetable yields, making our cities
+                            greener and more productive.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 animate-on-scroll">
+                    <div class="card h-100">
+                        <div class="card-icon"><i class="bi bi-heart-pulse-fill"></i></div>
+                        <h4>Sustainable Living</h4>
+                        <p class="text-muted">Source your own organic honey and wax while connecting with nature in a
+                            meaningful way.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Path -->
+    <section class="py-100">
+        <div class="container">
+            <h2 class="mb-5 animate-on-scroll">Your Journey Starts Here</h2>
+            <div class="row g-0 rounded-4 overflow-hidden animate-on-scroll">
+                <div class="col-md-3">
+                    <div class="p-4 h-100 border-end" style="background-color: var(--card-bg);">
+                        <span class="h6 text-primary">01</span>
+                        <h5>Beginner</h5>
+                        <p class="small text-muted">Introduction to bee species, biology, and urban legalities.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="p-4 h-100 border-end" style="background-color: rgba(31,122,99,0.05);">
+                        <span class="h6 text-primary">02</span>
+                        <h5>Intermediate</h5>
+                        <p class="small text-muted">Hive management techniques and pest control basics.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="p-4 h-100 border-end" style="background-color: var(--card-bg);">
+                        <span class="h6 text-primary">03</span>
+                        <h5>Advanced</h5>
+                        <p class="small text-muted">Honey harvesting, queen rearing, and wintering strategies.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="p-4 h-100" style="background-color: rgba(31,122,99,0.05);">
+                        <span class="h6 text-primary">04</span>
+                        <h5>Expert</h5>
+                        <p class="small text-muted">Commercial scale urban setups and professional consulting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <a class="d-flex align-items-center mb-4 text-decoration-none" href="index.html">
+                        <i class="bi bi-hexagon-fill fs-3 text-primary me-2"></i>
+                        <span class="brand-name text-white">URBAN HIVE</span>
+                    </a>
+                    <p class="text-white-50">Sustainable beekeeping solutions for modern city dwellers. Empowering a new
+                        generation of urban apiarists.</p>
+                    <div class="mb-4">
+                        <a href="#" class="me-3"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-twitter-x fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6">
+                    <h6 class="text-white mb-4">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Shop</a></li>
+                        <li><a href="pricing.html">Courses</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-6">
+                    <h6 class="text-white mb-4">Shop Categories</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Hive Kits</a></li>
+                        <li><a href="#">Protective Gear</a></li>
+                        <li><a href="#">Tools</a></li>
+                        <li><a href="#">Starter Kits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="text-white mb-4">Newsletter</h6>
+                    <p class="text-white-50">Stay updated on city beekeeping tips.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email address">
+                        <button class="btn btn-primary" type="button"><i class="bi bi-send"></i></button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-5 opacity-25">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="text-white-50 mb-0">© 2026 Urban Hive. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <button id="back-to-top" class="btn btn-outline-primary rounded-circle"><i
+                            class="bi bi-arrow-up"></i></button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
