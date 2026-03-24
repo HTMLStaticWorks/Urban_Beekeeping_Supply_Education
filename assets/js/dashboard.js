@@ -5,10 +5,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainContent = document.querySelector('.main-content');
 
     if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            sidebar.classList.add('active');
         });
     }
+
+    const closeBtn = document.getElementById('sidebarClose');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+        });
+    }
+
+    // Close sidebar on click outside
+    document.addEventListener('click', (e) => {
+        if (sidebar && sidebar.classList.contains('active') && !sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+            sidebar.classList.remove('active');
+        }
+    });
 
     // Modal/Tab Logic for Dashboard
     const navItems = document.querySelectorAll('.dashboard-nav-item');

@@ -32,8 +32,14 @@
             padding: var(--sp-48);
             border: 1px solid var(--border-color);
             background: var(--card-bg);
-            transition: all 0.3s;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-20px);
+            border-color: var(--primary-color);
+            box-shadow: 0 30px 60px rgba(255, 255, 0, 0.15);
         }
 
         .pricing-card.featured {
@@ -41,6 +47,11 @@
             transform: scale(1.05);
             z-index: 2;
             box-shadow: 0 16px 48px rgba(244, 180, 0, 0.1);
+        }
+
+        .pricing-card.featured:hover {
+            transform: translateY(-20px) scale(1.1);
+            box-shadow: 0 30px 60px rgba(255, 255, 0, 0.25);
         }
 
         .pricing-card h2 {
@@ -66,15 +77,321 @@
             color: var(--secondary-color) !important;
         }
 
-        .pricing-hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/img/education.png');
-            background-size: cover;
-            background-position: center;
-            height: 400px;
+        /* COURSE CUBE HERO (SHOWBOX STYLE) */
+        .course-hero-cube-section {
+            background: #000000;
+            min-height: 80vh;
             display: flex;
             align-items: center;
-            color: white;
-            border-radius: 0 0 50px 50px;
+            overflow: hidden;
+            position: relative;
+            padding: 80px 0;
+            margin-bottom: 50px;
+            border-radius: 0 0 60px 60px;
+        }
+
+        .signup-section {
+            padding: 2rem;
+            z-index: 10;
+        }
+
+        .main-heading {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            color: #FFFF00;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .body-text {
+            font-size: 1.1rem;
+            color: #E8F5F2;
+            opacity: 0.9;
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+        }
+
+        .signup-button {
+            background-color: transparent;
+            border: 2px solid #FFFF00;
+            border-radius: 50px;
+            color: #FFFF00;
+            font-size: 1.1rem;
+            padding: 15px 40px;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            z-index: 1;
+        }
+
+        .signup-button:hover {
+            color: #0E1A17;
+        }
+
+        .signup-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #FFFF00;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            z-index: -1;
+            transform-origin: right;
+        }
+
+        .signup-button:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .cube__section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cube {
+            width: 280px;
+            height: 280px;
+            perspective: 800px;
+        }
+
+        .cube__container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: translateZ(-140px);
+            animation: rotationBox 20s linear infinite;
+        }
+
+        .cube__face {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border: 2px solid rgba(255, 255, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .cube__face--front {
+            transform: rotateY(0deg) translateZ(140px);
+        }
+
+        .cube__face--back {
+            transform: rotateY(180deg) translateZ(140px);
+        }
+
+        .cube__face--left {
+            transform: rotateY(-90deg) translateZ(140px);
+        }
+
+        .cube__face--right {
+            transform: rotateY(90deg) translateZ(140px);
+        }
+
+        .cube__face--top {
+            transform: rotateX(90deg) translateZ(140px);
+        }
+
+        .cube__face--bottom {
+            transform: rotateX(-90deg) translateZ(140px);
+        }
+
+        .video__container {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(20%) saturate(150%) hue-rotate(-20deg);
+            /* Emerald tint */
+        }
+
+        @keyframes rotationBox {
+            0% {
+                transform: translateZ(-140px) rotate3d(0, 0, 0, 0deg);
+            }
+
+            100% {
+                transform: translateZ(-140px) rotate3d(1, 1, 1, 360deg);
+            }
+        }
+
+        @media (max-width: 991px) {
+            .course-hero-cube-section {
+                min-height: auto;
+                text-align: center;
+                border-radius: 0;
+            }
+
+            .signup-section {
+                margin-bottom: 60px;
+            }
+
+            .body-text {
+                margin-inline: auto;
+            }
+
+            .cube {
+                width: 220px;
+                height: 220px;
+            }
+
+            .cube__face {
+                width: 220px;
+                height: 220px;
+            }
+
+            .cube__face--front {
+                transform: rotateY(0deg) translateZ(110px);
+            }
+
+            .cube__face--back {
+                transform: rotateY(180deg) translateZ(110px);
+            }
+
+            .cube__face--left {
+                transform: rotateY(-90deg) translateZ(110px);
+            }
+
+            .cube__face--right {
+                transform: rotateY(90deg) translateZ(110px);
+            }
+
+            .cube__face--top {
+                transform: rotateX(90deg) translateZ(110px);
+            }
+
+            .cube__face--bottom {
+                transform: rotateX(-90deg) translateZ(110px);
+            }
+
+            .cube__container {
+                transform: translateZ(-110px);
+            }
+
+            @keyframes rotationBox {
+                0% {
+                    transform: translateZ(-110px) rotate3d(0, 0, 0, 0deg);
+                }
+
+                100% {
+                    transform: translateZ(-110px) rotate3d(1, 1, 1, 360deg);
+                }
+            }
+        }
+
+        /* LIGHT MODE OVERRIDES FOR HERO */
+        [data-bs-theme="light"] .course-hero-cube-section {
+            background: #FFFF00 !important;
+        }
+
+        [data-bs-theme="light"] .course-hero-cube-section .main-heading {
+            color: #0E1A17 !important;
+        }
+
+        [data-bs-theme="light"] .course-hero-cube-section .body-text {
+            color: rgba(14, 26, 23, 0.8) !important;
+        }
+
+        [data-bs-theme="light"] .course-hero-cube-section .signup-button {
+            border-color: #0E1A17 !important;
+            color: #0E1A17 !important;
+        }
+
+        [data-bs-theme="light"] .course-hero-cube-section .signup-button:hover {
+            color: #FFFF00 !important;
+        }
+
+        [data-bs-theme="light"] .course-hero-cube-section .signup-button::before {
+            background: #0E1A17 !important;
+        }
+
+        [data-bs-theme="light"] .course-hero-cube-section .cube__face {
+            border-color: rgba(14, 26, 23, 0.2) !important;
+        }
+
+        /* THE NEURAL APIARY SECTION */
+        .neural-apiary-section {
+            padding: 120px 0;
+            background: linear-gradient(to right, rgba(255, 255, 0, 0.03), transparent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-bs-theme="dark"] .neural-apiary-section {
+            background: linear-gradient(to right, rgba(31, 122, 99, 0.05), #000);
+        }
+
+        .neural-path {
+            position: relative;
+            padding-left: 100px;
+            border-left: 2px dashed rgba(31, 122, 99, 0.3);
+            margin-left: 50px;
+        }
+
+        .neural-node {
+            position: relative;
+            margin-bottom: 80px;
+            padding: 30px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            transition: all 0.5s;
+            cursor: pointer;
+            width: fit-content;
+            max-width: 500px;
+        }
+
+        .neural-node::before {
+            content: "";
+            position: absolute;
+            left: -115px;
+            top: 50%;
+            width: 30px;
+            height: 30px;
+            background: #1F7A63;
+            border: 4px solid var(--bg-color);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 20px rgba(31, 122, 99, 0.5);
+            transition: all 0.5s;
+        }
+
+        [data-bs-theme="dark"] .neural-node::before {
+            background: #FFFF00;
+            box-shadow: 0 0 20px rgba(255, 255, 1, 0.5);
+        }
+
+        .neural-node:hover {
+            transform: translateX(20px);
+            border-color: var(--primary-color);
+            background: rgba(255, 255, 0, 0.05);
+        }
+
+        .neural-node:hover::before {
+            transform: translateY(-50%) scale(1.5);
+            background: #FFFF00;
+        }
+
+        .node-stage {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        [data-bs-theme="dark"] .node-stage {
+            color: #FFFF00;
         }
     </style>
 </head>
@@ -88,11 +405,6 @@
                 <i class="bi bi-hexagon-fill fs-3 text-secondary me-2"></i>
                 <span class="brand-name text-secondary">URBAN HIVE</span>
             </a>
-            <div class="d-flex align-items-center order-lg-3">
-                <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
-                    <i class="bi bi-moon-fill"></i>
-                </button>
-            </div>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title brand-name text-secondary">URBAN HIVE</h5>
@@ -105,7 +417,6 @@
                         <li class="nav-item"><a class="nav-link" href="services.html">Shop</a></li>
                         <li class="nav-item"><a class="nav-link active" href="pricing.html">Courses</a></li>
                         <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
                         <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="login.html">Login</a></li>
@@ -113,14 +424,86 @@
                     </ul>
                 </div>
             </div>
+            <div class="d-flex align-items-center order-lg-3">
+                <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
+                    <i class="bi bi-moon-fill"></i>
+                </button>
+                <a href="login.html" class="btn btn-primary d-none d-md-block">Get Started</a>
+                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- Pricing Hero -->
-    <section class="pricing-hero">
-        <div class="container text-center">
-            <h1 class="display-3 fw-bold">Urban Apiary Academy</h1>
-            <p class="lead">Master beekeeping from the comfort of your home.</p>
+    <!-- Pricing Hero (Cube Showbox Style) -->
+    <section class="course-hero-cube-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 signup-section">
+                    <div class="signup-box">
+                        <h1 class="main-heading">
+                            Master the <br>Urban Apiary.
+                        </h1>
+                        <p class="body-text">
+                            Gain exclusive access to immersive 3D curriculum, expert live-streams, and the global
+                            network of professional urban apiarists.
+                        </p>
+                        <button class="signup-button">
+                            Enroll in Academy
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6 cube__section">
+                    <div class="cube">
+                        <div class="cube__container">
+                            <div class="cube__face cube__face--front">
+                                <video class="video__container" autoplay muted loop playsinline>
+                                    <source
+                                        src="https://storage.coverr.co/videos/KP78n9EWQAje1fm6Xr02N6zm7V01xxNRNK?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjExNDMyN0NEOTRCMUFCMTFERTE3IiwiaWF0IjoxNTg4MDIwODIzfQ._d_wNMzyykNR9_7lkgCpidj0JI4vCGuxfDKyEEfStO0"
+                                        type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="cube__face cube__face--back">
+                                <video class="video__container" autoplay muted loop playsinline>
+                                    <source
+                                        src="https://storage.coverr.co/videos/KefsniMdijw4at9fT02iUufbPceUuJJG2?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjExNDMyN0NEOTRCMUFCMTFERTE3IiwiaWF0IjoxNTg4MDIwNjcxfQ.3kzxKS0a6bQ2dCcKpTxeZS2IpVfUekVpMFrBzpBwA2M"
+                                        type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="cube__face cube__face--left">
+                                <video class="video__container" autoplay muted loop playsinline>
+                                    <source
+                                        src="https://storage.coverr.co/videos/34w86e7pqJzbji1yJ4gmfSanA01bjPyH7?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjExNDMyN0NEOTRCMUFCMTFERTE3IiwiaWF0IjoxNTg4MDIwNzYxfQ.xUJhNmkTYbzdHfVJsvVrtB4RFbn0cwaA7DRg9rEvMyU"
+                                        type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="cube__face cube__face--right">
+                                <video class="video__container" autoplay muted loop playsinline>
+                                    <source
+                                        src="https://storage.coverr.co/videos/8GSSdF02KLFPJQgkILrDCkRfHHuouBMVA?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjExNDMyN0NEOTRCMUFCMTFERTE3IiwiaWF0IjoxNTg4MDIxMDMzfQ.Wk1guDwsEY_-Y1K8vo5FkU3GhutfkMA8PPxj4Afv5_w"
+                                        type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="cube__face cube__face--top">
+                                <video class="video__container" autoplay muted loop playsinline>
+                                    <source
+                                        src="https://storage.coverr.co/videos/EZvZIdsvOkc00V02BDw3ZnH4VdoJK01qSsS?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjExNDMyN0NEOTRCMUFCMTFERTE3IiwiaWF0IjoxNTg4MDIxMTE4fQ.u6UFXCGSK755PtJtWoDAuFkasaQ7Tb2SbIXEGhFr4iw"
+                                        type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="cube__face cube__face--bottom">
+                                <video class="video__container" autoplay muted loop playsinline>
+                                    <source
+                                        src="https://storage.coverr.co/videos/Vcve11Kp8bptZ00n1nsBEOh02qF5fgShYW?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjExNDMyN0NEOTRCMUFCMTFERTE3IiwiaWF0IjoxNTg4MDIwNDgwfQ.eI4Ak0fYiUzCRoLs2VdJZLea9e-zrjzJJ6RN1OFSim4"
+                                        type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -196,6 +579,45 @@
         </div>
     </section>
 
+    <!-- UNIQUE SECTION: THE NEURAL APIARY -->
+    <section class="neural-apiary-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <h2 class="display-3 fw-bold mb-4">The Neural <br>Apiary Path.</h2>
+                    <p class="lead opacity-75 mb-5">Our curriculum follows a nonlinear cognitive journey. Track your
+                        evolution from a curious observer to a master hive architect through three vital stages of
+                        expansion.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="neural-path">
+                        <!-- Node 1 -->
+                        <div class="neural-node">
+                            <span class="node-stage">Stage 01</span>
+                            <h4>The Pheromone Whisperer</h4>
+                            <p>Understand the biological chemical language of the colony. Master the art of scent-based
+                                hive diagnosis.</p>
+                        </div>
+                        <!-- Node 2 -->
+                        <div class="neural-node">
+                            <span class="node-stage">Stage 02</span>
+                            <h4>Structural Resonance</h4>
+                            <p>Learn to build hives that harmonize with urban vibration and acoustic frequencies for
+                                maximum yield.</p>
+                        </div>
+                        <!-- Node 3 -->
+                        <div class="neural-node">
+                            <span class="node-stage">Stage 03</span>
+                            <h4>Apiary Sovereign</h4>
+                            <p>Command multiple rooftop networks through our synchronized dashboard and collective AI
+                                guidance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQ -->
     <section class="py-64" style="background-color: var(--card-bg);">
         <div class="container pb-64">
@@ -239,8 +661,59 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container text-center">
-            <p class="text-white-50 small mb-0">© 2026 Urban Hive. World class urban apiculture education.</p>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <a class="d-flex align-items-center mb-4 text-decoration-none" href="index.html">
+                        <i class="bi bi-hexagon-fill fs-3 text-primary me-2"></i>
+                        <span class="brand-name text-white">URBAN HIVE</span>
+                    </a>
+                    <p class="text-white-50">Sustainable beekeeping solutions for modern city dwellers.
+                        Empowering a new
+                        generation of urban apiarists.</p>
+                    <div class="mb-4">
+                        <a href="#" class="me-3"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-twitter-x fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6">
+                    <h6 class="text-white mb-4">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Shop</a></li>
+                        <li><a href="pricing.html">Courses</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-6">
+                    <h6 class="text-white mb-4">Shop Categories</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Hive Kits</a></li>
+                        <li><a href="#">Protective Gear</a></li>
+                        <li><a href="#">Tools</a></li>
+                        <li><a href="#">Starter Kits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="text-white mb-4">Newsletter</h6>
+                    <p class="text-white-50">Stay updated on city beekeeping tips.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email address">
+                        <button class="btn btn-primary" type="button"><i class="bi bi-send"></i></button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-5 opacity-25">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="text-white-50 mb-0">Â© 2026 Urban Hive. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <button id="back-to-top" class="btn btn-outline-primary rounded-circle"><i
+                            class="bi bi-arrow-up"></i></button>
+                </div>
+            </div>
         </div>
     </footer>
 

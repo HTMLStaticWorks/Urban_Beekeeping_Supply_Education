@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900" rel="stylesheet">
     <style>
         /* Unique Page Animation: Stagger slide-up */
         .stagger-item {
@@ -97,6 +98,318 @@
             border-color: var(--secondary-color);
             box-shadow: 0 0 0 4px rgba(31, 122, 99, 0.1);
         }
+
+        /* Custom Animated Hero CSS */
+        #custom-hero {
+            background-color: #000000;
+            overflow: hidden;
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0 0 50px 50px;
+            margin-bottom: -50px;
+        }
+
+        #content {
+            text-align: center;
+            color: #ffffff;
+            z-index: 10;
+            position: relative;
+            animation: floatingContent 3s alternate ease-in-out infinite;
+        }
+
+        @keyframes floatingContent {
+            0% {
+                transform: translateY(16px);
+            }
+
+            100% {
+                transform: translateY(-16px);
+            }
+        }
+
+        #content h1 {
+            font-family: 'Rubik', sans-serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 0.15em;
+            margin-bottom: 0px;
+            text-shadow: 0 0px 15px rgba(255, 255, 255, 0.25), 0 0px 32px rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+        }
+
+        #content h3 {
+            font-family: 'Rubik', sans-serif;
+            color: #FFFF00;
+            /* Primary Yellow */
+            font-weight: 300;
+            margin-bottom: 2rem;
+            text-shadow: 0 6px 15px rgba(255, 255, 255, 0.2), 0 8px 32px rgba(255, 255, 255, 0.1);
+        }
+
+        #cv {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+        }
+
+        .btn-hero {
+            font-family: 'Rubik', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #FFFF00;
+            text-transform: uppercase;
+            border: 3px solid #FFFF00;
+            padding: 12px 32px;
+            transition: all 0.3s ease;
+            background: transparent;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
+        }
+
+        .btn-hero:hover {
+            cursor: pointer;
+            color: #000000;
+            background-color: #FFFF00;
+            transform: scale(0.95);
+        }
+
+        /* Light Mode Hero Overrides */
+        [data-bs-theme="light"] #custom-hero {
+            background-color: #FFFF00;
+        }
+
+        [data-bs-theme="light"] #content h1 {
+            color: #1A1A1A;
+            text-shadow: 0 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-bs-theme="light"] #content h3 {
+            color: #1F7A63;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        [data-bs-theme="light"] .btn-hero {
+            color: #1F7A63;
+            border-color: #1F7A63;
+        }
+
+        [data-bs-theme="light"] .btn-hero:hover {
+            color: #FFFFFF;
+            background-color: #1F7A63;
+            border-color: #1F7A63;
+        }
+
+        /* APIARY RADAR SECTION */
+        .radar-box {
+            background: #080C0A;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50px;
+            margin: 80px 0;
+            border: 1px solid rgba(255, 255, 0, 0.1);
+        }
+
+        .radar-circle {
+            width: clamp(280px, 50vw, 450px);
+            height: clamp(280px, 50vw, 450px);
+            border: 1px solid rgba(255, 255, 0, 0.15);
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .radar-circle::before,
+        .radar-circle::after {
+            content: '';
+            position: absolute;
+            border: 1px solid rgba(255, 255, 0, 0.05);
+            border-radius: 50%;
+        }
+
+        .radar-circle::before {
+            width: 70%;
+            height: 70%;
+        }
+
+        .radar-circle::after {
+            width: 40%;
+            height: 40%;
+        }
+
+        .radar-scanner {
+            position: absolute;
+            width: 50%;
+            height: 100px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 0, 0.2));
+            top: calc(50% - 100px);
+            left: 50%;
+            transform-origin: left bottom;
+            animation: radarRotate 6s linear infinite;
+            clip-path: polygon(0 100%, 100% 0, 100% 100%);
+        }
+
+        @keyframes radarRotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .radar-node {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #FFFF00;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #FFFF00;
+            animation: nodePulse 2.5s infinite alternate ease-in-out;
+            z-index: 5;
+        }
+
+        @keyframes nodePulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.4;
+                box-shadow: 0 0 5px #FFFF00;
+            }
+
+            100% {
+                transform: scale(1.4);
+                opacity: 1;
+                box-shadow: 0 0 25px #FFFF00;
+            }
+        }
+
+        /* URBAN MAP SECTION */
+        .map-section-premium {
+            padding: 100px 0;
+            background: var(--bg-color);
+            position: relative;
+        }
+
+        .map-container-inner {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            background: rgba(31, 122, 99, 0.03);
+            border-radius: 40px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.05);
+        }
+
+        .map-background-hex {
+            position: absolute;
+            inset: 0;
+            opacity: 0.05;
+            background-image: radial-gradient(var(--secondary-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .map-pin {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: var(--secondary-color);
+            border: 3px solid #FFFF00;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: pinFloat 4s infinite ease-in-out;
+            box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .map-pin:hover {
+            transform: rotate(-45deg) scale(1.3) translateY(-10px);
+            background: #FFFF00;
+            border-color: var(--secondary-color);
+            z-index: 100;
+        }
+
+        .map-pin::after {
+            content: attr(data-city);
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            white-space: nowrap;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .map-pin:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) rotate(45deg) translateY(-5px);
+        }
+
+        @keyframes pinFloat {
+
+            0%,
+            100% {
+                transform: rotate(-45deg) translate(0, 0);
+            }
+
+            50% {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+        }
+
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to bottom, transparent, #FFFF00, transparent);
+            top: -10%;
+            left: 0;
+            opacity: 0.2;
+            animation: scanMove 8s linear infinite;
+        }
+
+        @keyframes scanMove {
+            from {
+                top: -10%;
+            }
+
+            to {
+                top: 110%;
+            }
+        }
+
+        .map-container-inner iframe {
+            transition: filter 0.5s ease;
+        }
+
+        [data-bs-theme="dark"] .map-container-inner iframe {
+            filter: grayscale(1) invert(0.9) contrast(1.2);
+        }
+
+        [data-bs-theme="light"] .map-container-inner iframe {
+            filter: grayscale(0.2) contrast(1.1);
+        }
     </style>
 </head>
 
@@ -109,22 +422,6 @@
                 <i class="bi bi-hexagon-fill fs-3 text-secondary me-2"></i>
                 <span class="brand-name text-secondary">URBAN HIVE</span>
             </a>
-            <div class="d-flex align-items-center order-lg-3">
-                <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
-                    <i class="bi bi-moon-fill"></i>
-                </button>
-                <div class="dropdown d-none d-md-block">
-                    <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">Book Expert</button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Hive Setup</a></li>
-                        <li><a class="dropdown-item" href="#">Personal Audit</a></li>
-                    </ul>
-                </div>
-                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title brand-name text-secondary">URBAN HIVE</h5>
@@ -137,7 +434,6 @@
                         <li class="nav-item"><a class="nav-link" href="services.html">Shop</a></li>
                         <li class="nav-item"><a class="nav-link" href="pricing.html">Courses</a></li>
                         <li class="nav-item"><a class="nav-link active" href="booking.html">Booking</a></li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
                         <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="login.html">Login</a></li>
@@ -145,19 +441,76 @@
                     </ul>
                 </div>
             </div>
+            <div class="d-flex align-items-center order-lg-3">
+                <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
+                    <i class="bi bi-moon-fill"></i>
+                </button>
+                <a href="login.html" class="btn btn-primary d-none d-md-block">Get Started</a>
+                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
     <!-- Booking Hero -->
-    <section class="booking-hero">
-        <div class="container text-center">
-            <h1 class="display-4 fw-bold">Expert Consultation</h1>
-            <p class="lead">Professional advice for your urban apiary journey.</p>
+    <section id="custom-hero">
+        <div class="container">
+            <div id="content" style="visibility: visible">
+                <h1 class="flicker">ELITE APIARY</h1>
+                <h3 class="flicker">Bespoke consultations for the modern city keeper.</h3>
+                <a href="#booking-form" class="btn btn-hero flicker">Book a Session</a>
+            </div>
+            <canvas id="cv"></canvas>
+        </div>
+    </section>
+
+    <!-- Apiary Radar Section -->
+    <section class="container mt-5">
+        <div class="radar-box stagger-item">
+            <div class="row align-items-center g-5 px-4 px-md-5">
+                <div class="col-lg-6 text-center text-lg-start">
+                    <span class="badge bg-primary text-dark mb-3">LIVE NETWORK</span>
+                    <h2 class="display-4 fw-bold text-white mb-4">Ecosystem Radar</h2>
+                    <p class="lead text-white-50 mb-5">Our proprietary mesh network monitors thousands of urban hives in
+                        real-time. Synchronize your custom setup with the city's natural rhythm.</p>
+                    <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-4">
+                        <div class="text-center">
+                            <h4 class="text-primary mb-0">8.4k</h4>
+                            <small class="text-white-50 opacity-50 text-uppercase" style="font-size: 0.7rem;">Active
+                                Nodes</small>
+                        </div>
+                        <div class="vr bg-white opacity-25"></div>
+                        <div class="text-center">
+                            <h4 class="text-primary mb-0">98%</h4>
+                            <small class="text-white-50 opacity-50 text-uppercase" style="font-size: 0.7rem;">Health
+                                Index</small>
+                        </div>
+                        <div class="vr bg-white opacity-25"></div>
+                        <div class="text-center">
+                            <h4 class="text-primary mb-0">2.4ms</h4>
+                            <small class="text-white-50 opacity-50 text-uppercase" style="font-size: 0.7rem;">Sync
+                                Latency</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="radar-circle">
+                        <div class="radar-scanner"></div>
+                        <div class="radar-node" style="top: 20%; left: 30%; animation-delay: 0.5s;"></div>
+                        <div class="radar-node" style="top: 60%; left: 20%; animation-delay: 1.2s;"></div>
+                        <div class="radar-node" style="top: 40%; left: 75%; animation-delay: 0.2s;"></div>
+                        <div class="radar-node" style="top: 80%; left: 55%; animation-delay: 1.8s;"></div>
+                        <div class="radar-node" style="top: 15%; left: 65%; animation-delay: 0.9s;"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Booking Form Section -->
-    <section class="py-64">
+    <section class="py-64" id="booking-form">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
@@ -231,6 +584,35 @@
         </div>
     </section>
 
+    <!-- Urban Sanctuary Map Section -->
+    <section class="map-section-premium pb-120">
+        <div class="container text-center">
+            <div class="row mb-5 justify-content-center">
+                <div class="col-lg-8 stagger-item">
+                    <span class="badge bg-secondary mb-3">GLOBAL ACCESS</span>
+                    <h2 class="display-3 fw-bold mb-4">Urban Sanctuary Map</h2>
+                    <p class="lead opacity-75">Identify premium apiary locations and expert hubs across the globe. Our
+                        experts are strategically positioned in the heart of major metropolitan greenery.</p>
+                </div>
+            </div>
+            <div class="map-container-inner stagger-item">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.25280821877!2d-74.11976373946229!3d40.69740344223377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sus!4v1711248450123!5m2!1sen!2sus"
+                    width="100%" height="100%" style="border:0; position: absolute; inset: 0;" allowfullscreen=""
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <div class="scan-line" style="z-index: 2; pointer-events: none;"></div>
+
+                <!-- Pins centered on specific NY locations -->
+                <div class="map-pin" style="top: 42%; left: 48%; z-index: 3;" data-city="Manhattan Hive Hub"></div>
+                <div class="map-pin" style="top: 55%; left: 52%; z-index: 3; animation-delay: 0.5s;"
+                    data-city="Brooklyn Sanctuary"></div>
+                <div class="map-pin" style="top: 35%; left: 40%; z-index: 3; animation-delay: 1.2s;"
+                    data-city="Jersey City Apiary"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -240,34 +622,165 @@
                         <i class="bi bi-hexagon-fill fs-3 text-primary me-2"></i>
                         <span class="brand-name text-white">URBAN HIVE</span>
                     </a>
-                    <p class="text-white-50">Empowering city dwellers with professional apiculture knowledge.</p>
+                    <p class="text-white-50">Sustainable beekeeping solutions for modern city dwellers.
+                        Empowering a new
+                        generation of urban apiarists.</p>
+                    <div class="mb-4">
+                        <a href="#" class="me-3"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-twitter-x fs-5"></i></a>
+                    </div>
                 </div>
                 <div class="col-md-2 col-6">
-                    <h6 class="text-white mb-4">Support</h6>
+                    <h6 class="text-white mb-4">Quick Links</h6>
                     <ul class="list-unstyled">
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Safety Guides</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Shop</a></li>
+                        <li><a href="pricing.html">Courses</a></li>
+                        <li><a href="blog.html">Blog</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3 col-6 text-md-end">
-                    <h6 class="text-white mb-4">Follow Us</h6>
-                    <a href="#" class="btn btn-outline-light rounded-circle me-2"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="btn btn-outline-light rounded-circle me-2"><i class="bi bi-twitter-x"></i></a>
+                <div class="col-md-3 col-6">
+                    <h6 class="text-white mb-4">Shop Categories</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Hive Kits</a></li>
+                        <li><a href="#">Protective Gear</a></li>
+                        <li><a href="#">Tools</a></li>
+                        <li><a href="#">Starter Kits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="text-white mb-4">Newsletter</h6>
+                    <p class="text-white-50">Stay updated on city beekeeping tips.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email address">
+                        <button class="btn btn-primary" type="button"><i class="bi bi-send"></i></button>
+                    </div>
                 </div>
             </div>
             <hr class="my-5 opacity-25">
-            <p class="text-white-50 text-center small">© 2026 Urban Hive. All rights reserved.</p>
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="text-white-50 mb-0">Â© 2026 Urban Hive. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <button id="back-to-top" class="btn btn-outline-primary rounded-circle"><i
+                            class="bi bi-arrow-up"></i></button>
+                </div>
+            </div>
         </div>
     </footer>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
+        var ww, wh, canvas, rate;
+        rate = 15;
+        var particles = [];
+        var shapes = [];
+        var maxShapes = 80;
+        var maxParticles = 150;
+
+        $(document).ready(function () {
+            var canvasElement = document.getElementById("cv");
+            if (!canvasElement) return;
+            canvas = canvasElement.getContext("2d");
+
+            function resizeCanvas() {
+                ww = $(window).width();
+                wh = $("#custom-hero").height() || 500;
+                $("#cv").attr("height", wh).attr("width", ww);
+            }
+
+            resizeCanvas();
+            $(window).resize(resizeCanvas);
+
+            setInterval(function () {
+                if (particles.length < maxParticles) populate(1);
+                if (shapes.length < maxShapes) populateShapes(1);
+            }, 200);
+
+            setInterval(animate, rate);
+            setFlickers();
+        });
+
+        function setFlickers() {
+            $('.flicker').each(function () {
+                var obj = this;
+                function flicker() {
+                    $(obj).animate({ 'opacity': (Math.random() * 0.3) + 0.7 }, Math.random() * 200, function () {
+                        $(obj).animate({ 'opacity': 1.0 }, Math.random() * 200, flicker);
+                    });
+                }
+                flicker();
+            });
+        }
+
+        function Particle(ctx) {
+            this.ctx = ctx;
+            this.x = 0;
+            this.y = Math.random() * wh;
+            this.a = (Math.random() - 0.5) * 0.5;
+            this.v = 2 + Math.random() * 3;
+            this.color = Math.random() > 0.5 ? "#FFFF00" : "#1F7A63";
+            this.radius = Math.random() * 3;
+            this.move = function () {
+                this.x += this.v * 2;
+                this.y += Math.sin(this.a) * this.v;
+            };
+            this.render = function () {
+                this.ctx.beginPath();
+                this.ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+                this.ctx.fillStyle = this.color;
+                this.ctx.fill();
+            };
+        }
+
+        function Shape(ctx) {
+            this.ctx = ctx;
+            this.x = ww + 100;
+            this.y = Math.random() * wh;
+            this.size = 50 + Math.random() * 100;
+            this.v = 1 + Math.random() * 2;
+            this.lAlpha = Math.random() * 0.2;
+            this.coords = [];
+            for (var i = 0; i < 4; i++) {
+                this.coords.push({ x: Math.random() * this.size, y: Math.random() * this.size });
+            }
+            this.move = function () { this.x -= this.v; };
+            this.render = function () {
+                this.ctx.beginPath();
+                this.ctx.moveTo(this.x + this.coords[0].x, this.y + this.coords[0].y);
+                for (var i = 1; i < this.coords.length; i++) this.ctx.lineTo(this.x + this.coords[i].x, this.y + this.coords[i].y);
+                this.ctx.closePath();
+                this.ctx.strokeStyle = "rgba(12, 12, 12, " + this.lAlpha + ")";
+                this.ctx.stroke();
+            };
+        }
+
+        function animate() {
+            var isLight = document.documentElement.getAttribute('data-bs-theme') === 'light';
+            canvas.fillStyle = isLight ? "#FFFF00" : "#0E1A17";
+            canvas.fillRect(0, 0, ww, wh);
+            particles = particles.filter(function (p) {
+                p.move();
+                if (p.x < ww) { p.render(); return true; }
+                return false;
+            });
+            shapes = shapes.filter(function (s) {
+                s.move();
+                if (s.x > -200) { s.render(); return true; }
+                return false;
+            });
+        }
+
+        function populate(n) { for (var i = 0; i < n; i++) particles.push(new Particle(canvas)); }
+        function populateShapes(n) { for (var i = 0; i < n; i++) shapes.push(new Shape(canvas)); }
+
         function animateStagger() {
-            const items = document.querySelectorAll('.stagger-item');
-            items.forEach(item => item.classList.add('animate'));
+            document.querySelectorAll('.stagger-item').forEach(item => item.classList.add('animate'));
         }
         function selectSlot(el) {
             document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('active'));

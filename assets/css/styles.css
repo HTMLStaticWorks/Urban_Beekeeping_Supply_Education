@@ -2,7 +2,7 @@
 
 :root {
     /* Brand Colors */
-    --primary-color: #F4B400;
+    --primary-color: #FFFF00;
     --secondary-color: #1F7A63;
     --accent-color: #1A1A1A;
 
@@ -29,7 +29,7 @@
     --bg-color: #0E1A17;
     --card-bg: #162723;
     --text-color: #E8F5F2;
-    --border-color: rgba(244, 180, 0, 0.1);
+    --border-color: rgba(255, 255, 0, 0.1);
 }
 
 body {
@@ -133,7 +133,7 @@ h6 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(244, 180, 0, 0.1);
+    background-color: rgba(255, 255, 0, 0.1);
     color: var(--primary-color);
     border-radius: 12px;
     margin-bottom: var(--sp-24);
@@ -174,12 +174,6 @@ h6 {
 /* Custom Animations per Page Requirements */
 /* Hive Build Animation (Home) */
 @keyframes hiveBuild {
-    0% {
-        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        opacity: 0;
-        transform: scale(0.5);
-    }
-
     100% {
         clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
         opacity: 1;
@@ -190,6 +184,118 @@ h6 {
 .hive-cell {
     animation: hiveBuild 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
+/* Unique Bee Animation for Featured Section */
+.buzzing-bee-container {
+    position: absolute;
+    top: -50px;
+    right: 5%;
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+}
+
+.buzzing-bee {
+    position: relative;
+    width: 24px;
+    height: 16px;
+    background: #FFD700;
+    border-radius: 12px;
+    background-image: linear-gradient(to right, #FFD700 0%, #FFD700 25%, #222 25%, #222 45%, #FFD700 45%, #FFD700 70%, #222 70%, #222 100%);
+    animation: buzzingBee 4s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+.buzzing-bee::before,
+.buzzing-bee::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    width: 12px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: wingsFlap 0.05s linear infinite alternate;
+}
+
+.buzzing-bee::before {
+    left: 0;
+    transform-origin: right bottom;
+}
+
+.buzzing-bee::after {
+    right: 0;
+    transform-origin: left bottom;
+}
+
+@keyframes wingsFlap {
+    0% {
+        transform: scaleY(1);
+    }
+
+    100% {
+        transform: scaleY(2);
+    }
+}
+
+@keyframes buzzingBee {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(30px, -20px) rotate(10deg);
+    }
+
+    50% {
+        transform: translate(50px, 10px) rotate(-10deg);
+    }
+
+    75% {
+        transform: translate(20px, 20px) rotate(5deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+/* Text Enhancements */
+.bg-primary-subtle {
+    background-color: rgba(255, 255, 0, 0.1) !important;
+}
+
+.badge {
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    animation: badgePulse 2s infinite alternate;
+}
+
+@keyframes badgePulse {
+    from {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(255, 255, 0, 0);
+    }
+
+    to {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(255, 255, 0, 0.2);
+    }
+}
+
+.section-icon-bg {
+    position: absolute;
+    left: -40px;
+    top: -30px;
+    font-size: 10rem;
+    color: var(--primary-color);
+    opacity: 0.05;
+    z-index: -1;
+    transform: rotate(-15deg);
+    pointer-events: none;
+}
+
 
 /* Organic Wave (Home-2) */
 .organic-wave {
@@ -225,6 +331,37 @@ footer a:hover {
     padding: 8px;
     display: flex;
     align-items: center;
+}
+
+/* Back to Top Button */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1000;
+    background-color: var(--secondary-color);
+    border: none;
+    color: white;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#back-to-top:hover {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 20px rgba(255, 255, 0, 0.3);
 }
 
 /* Responsive Overrides */

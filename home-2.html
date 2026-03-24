@@ -12,40 +12,84 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- p5.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
     <style>
-        /* Unique Page Animation: Organic wave flow */
-        .wave-hero {
+        /* Interactive Particle Hero Styles */
+        #p5-hero-container {
             position: relative;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 120px 0 180px;
+            width: 100%;
+            height: 80vh;
+            background: #FFFF00;
+            /* Primary Yellow for Light Mode */
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .wave-animation {
+        [data-bs-theme="dark"] #p5-hero-container {
+            background: #000;
+        }
+
+        #p5-canvas-wrapper {
             position: absolute;
-            bottom: -2px;
+            top: 0;
             left: 0;
             width: 100%;
-            height: 150px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23F9FBF8' fill-opacity='1' d='M0,192L48,176C96,160,192,128,288,106.7C384,85,480,75,576,101.3C672,128,768,192,864,213.3C960,235,1056,213,1152,181.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
-            background-size: cover;
-            animation: moveWave 10s infinite linear alternate-reverse;
+            height: 100%;
         }
 
-        [data-bs-theme="dark"] .wave-animation {
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%230E1A17' fill-opacity='1' d='M0,192L48,176C96,160,192,128,288,106.7C384,85,480,75,576,101.3C672,128,768,192,864,213.3C960,235,1056,213,1152,181.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
-            background-size: cover;
+        .hero-overlay-content {
+            position: relative;
+            z-index: 10;
+            color: #000000;
+            /* Black text for Primary Yellow BG */
+            pointer-events: none;
+            /* Allow hover to pass to canvas */
         }
 
-        @keyframes moveWave {
-            0% {
-                transform: scaleX(1);
-            }
+        [data-bs-theme="dark"] .hero-overlay-content {
+            color: #FFFFFF;
+        }
 
-            100% {
-                transform: scaleX(1.1);
-            }
+        .hero-overlay-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-bs-theme="dark"] .hero-overlay-content h1 {
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-overlay-content p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .hint {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        .hint p {
+            font-family: 'Poppins', sans-serif;
+            color: rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        [data-bs-theme="dark"] .hint p {
+            color: rgba(255, 255, 255, 0.3);
         }
 
         .stat-card {
@@ -123,6 +167,420 @@
                 left: 10px !important;
             }
         }
+
+        /* PREMIUM VISION SECTION */
+        .vision-section-premium {
+            background-color: #000000;
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            padding: 180px 0;
+        }
+
+        .vision-img-frame {
+            position: relative;
+            z-index: 10;
+            transform: perspective(1500px) rotateY(-20deg) rotateX(5deg);
+            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .vision-img-frame:hover {
+            transform: perspective(1500px) rotateY(0deg) rotateX(0deg) scale(1.05);
+        }
+
+        .vision-img-frame img {
+            border: 2px solid #FFFF00;
+            box-shadow: -50px 50px 100px rgba(0, 0, 0, 0.8);
+            border-radius: 60px;
+            filter: grayscale(0.2);
+        }
+
+        .vision-img-frame:hover img {
+            filter: grayscale(0);
+        }
+
+        .vision-pillar {
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-top: 4px solid #FFFF00;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(20px);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+        }
+
+        .vision-pillar:hover {
+            background: #FFFF00;
+            color: #000000 !important;
+            transform: translateY(-15px);
+        }
+
+        .vision-pillar:hover * {
+            color: #000000 !important;
+        }
+
+        .vision-pillar i {
+            font-size: 2.5rem;
+            color: #FFFF00;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .vision-pillar h4 {
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .vision-pillar p {
+            font-weight: 500;
+            opacity: 0.7;
+            margin: 0;
+        }
+
+        /* Large Background Text: UNIQUE ANIMATION */
+        .bg-vision-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 35vw;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            -webkit-text-stroke: 1px rgba(255, 255, 0, 0.05);
+            z-index: 1;
+            pointer-events: none;
+            letter-spacing: -40px;
+            text-transform: uppercase;
+        }
+
+        [data-bs-theme="light"] .vision-section-premium {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        [data-bs-theme="light"] .vision-pillar {
+            background: rgba(0, 0, 0, 0.03);
+            border-top-color: #000000;
+        }
+
+        [data-bs-theme="light"] .vision-pillar i {
+            color: #000000;
+        }
+
+        [data-bs-theme="light"] .bg-vision-text {
+            color: rgba(0, 0, 0, 0.02);
+            -webkit-text-stroke: 1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* ACTIVE CITY HUBS SECTION */
+        .city-hub-section {
+            padding: 15rem 0;
+            background: var(--bg-color);
+            position: relative;
+        }
+
+        .city-hub-card {
+            position: relative;
+            height: 450px;
+            border-radius: 40px;
+            overflow: hidden;
+            background: #000;
+            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            margin-bottom: 30px;
+        }
+
+        .city-hub-card:hover {
+            transform: translateY(-30px);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+        }
+
+        .city-hub-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            filter: grayscale(1);
+            transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .city-hub-card:hover img {
+            opacity: 0.7;
+            filter: grayscale(0);
+            transform: scale(1.15);
+        }
+
+        .city-hub-content {
+            position: absolute;
+            inset: 0;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            z-index: 10;
+        }
+
+        .city-hub-content h3 {
+            color: #FFFF00;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin: 0;
+            transform: translateY(20px);
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .city-hub-content p {
+            color: #FFFFFF;
+            font-weight: 500;
+            margin-top: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1) 0.1s;
+        }
+
+        .city-hub-card:hover .city-hub-content h3,
+        .city-hub-card:hover .city-hub-content p {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .city-badge {
+            position: absolute;
+            top: 3rem;
+            right: 3rem;
+            width: 60px;
+            height: 60px;
+            background: #FFFF00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: #000;
+            z-index: 15;
+            transform: scale(0);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .city-hub-card:hover .city-badge {
+            transform: scale(1);
+        }
+
+        /* MASTERY TIMELINE PREMIUM */
+        .mastery-timeline-premium {
+            padding: 180px 0;
+            background: #000000;
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mastery-timeline-premium h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            color: #FFFF00;
+            margin-bottom: 5rem;
+        }
+
+        .hex-step-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        .hex-step {
+            width: 350px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.03);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3.5rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 0, 0.2);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .hex-step:hover {
+            background: #FFFF00;
+            color: #000000 !important;
+            transform: scale(1.1) rotate(5deg);
+            z-index: 10;
+        }
+
+        .hex-step:hover * {
+            color: #000000 !important;
+        }
+
+        .hex-step span {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #FFFF00;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .hex-step h4 {
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hex-step p {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* Light Mode Switch */
+        [data-bs-theme="light"] .mastery-timeline-premium {
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        [data-bs-theme="light"] .mastery-timeline-premium h2 {
+            color: #000000;
+        }
+
+        [data-bs-theme="light"] .hex-step {
+            background: rgba(0, 0, 0, 0.03);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-bs-theme="light"] .hex-step span {
+            color: #000000;
+        }
+
+        /* BIO-DYNAMIC RADAR SECTION */
+        .radar-section {
+            padding: 180px 0;
+            background: #080C0A;
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .radar-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .radar-pulse {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid #FFFF00;
+            opacity: 0;
+            animation: radarPulse 4s infinite;
+        }
+
+        .radar-pulse:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .radar-pulse:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        @keyframes radarPulse {
+            0% {
+                transform: scale(0.5);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .radar-center {
+            width: 100px;
+            height: 100px;
+            background: #FFFF00;
+            border-radius: 50%;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 50px #FFFF00;
+        }
+
+        .radar-center i {
+            color: #000;
+            font-size: 2.5rem;
+        }
+
+        /* ALCHEMY OF THE HIVE */
+        .alchemy-section {
+            padding: 15rem 0;
+            background: var(--bg-color);
+        }
+
+        .alchemy-card {
+            background: var(--card-bg);
+            border-radius: 40px;
+            padding: 4rem;
+            height: 100%;
+            border: 1px solid var(--border-color);
+            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alchemy-card:hover {
+            border-color: #FFFF00;
+            transform: translateY(-20px);
+        }
+
+        .alchemy-card img {
+            position: absolute;
+            top: -20%;
+            right: -20%;
+            width: 300px;
+            opacity: 0.05;
+            transition: all 0.8s;
+        }
+
+        .alchemy-card:hover img {
+            transform: scale(1.2) rotate(10deg);
+            opacity: 0.15;
+        }
+
+        .alchemy-tag {
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #FFFF00;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .mastery-timeline-premium h2 span {
+            display: block;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #FFFF00;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
     </style>
 </head>
 
@@ -135,16 +593,6 @@
                 <i class="bi bi-hexagon-fill fs-3 text-secondary me-2"></i>
                 <span class="brand-name text-secondary">URBAN HIVE</span>
             </a>
-            <div class="d-flex align-items-center order-lg-3">
-                <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
-                    <i class="bi bi-moon-fill"></i>
-                </button>
-                <a href="login.html" class="btn btn-primary d-none d-md-block">Get Started</a>
-                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title brand-name text-secondary">URBAN HIVE</h5>
@@ -157,7 +605,6 @@
                         <li class="nav-item"><a class="nav-link" href="services.html">Shop</a></li>
                         <li class="nav-item"><a class="nav-link" href="pricing.html">Courses</a></li>
                         <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
                         <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="login.html">Login</a></li>
@@ -165,21 +612,30 @@
                     </ul>
                 </div>
             </div>
+            <div class="d-flex align-items-center order-lg-3">
+                <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
+                    <i class="bi bi-moon-fill"></i>
+                </button>
+                <a href="login.html" class="btn btn-primary d-none d-md-block">Get Started</a>
+                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- Wave Hero -->
-    <section class="wave-hero">
-        <div class="container text-center">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <h1 class="display-3 mb-4 animate-on-scroll">Beekeeping with Modern Impact</h1>
-                    <p class="lead animate-on-scroll">We're on a mission to bring sustainability to every rooftop. See
-                        how we're changing the urban landscape one hive at a time.</p>
-                </div>
-            </div>
+    <!-- Interactive Particle Hero -->
+    <section id="p5-hero-container">
+        <div id="p5-canvas-wrapper"></div>
+        <div class="container text-center hero-overlay-content">
+            <h1 class="animate-on-scroll">Sustainable <br>Swarm Impact</h1>
+            <p class="animate-on-scroll mt-3">Visualizing the energy of the urban beekeeping movement. Join us in
+                shaping a greener, buzzing future.</p>
         </div>
-        <div class="wave-animation"></div>
+        <div class="hint">
+            <p>Click & Move your mouse around...</p>
+        </div>
     </section>
 
     <!-- Urban Impact Stats -->
@@ -214,104 +670,247 @@
         </div>
     </section>
 
-    <!-- Sustainability Focus -->
-    <section class="py-64" style="background-color: var(--card-bg);">
+    <!-- PREMIUM VISION SECTION -->
+    <section class="vision-section-premium">
+        <div class="bg-vision-text">VISION</div>
         <div class="container">
             <div class="row align-items-center g-5">
-                <div class="col-lg-6 animate-on-scroll">
-                    <img src="assets/img/sustainability.png" alt="Sustainability Garden"
-                        class="img-fluid rounded-4 shadow-lg">
+                <div class="col-lg-5">
+                    <div class="vision-img-frame animate-on-scroll">
+                        <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c3VzdGFpbmFiaWxpdHl8ZW58MHx8MHx8fDA%3D"
+                            alt="Sustainability" class="img-fluid">
+                    </div>
                 </div>
-                <div class="col-lg-6 animate-on-scroll">
-                    <span class="text-primary fw-bold mb-2 d-block">OUR VISION</span>
-                    <h2>Creating Greener Cities</h2>
-                    <p class="text-muted">Urban beekeeping is more than just honey. It's about restoring natural cycles
-                        in our concrete environments. Our approach combines traditional apiary wisdom with modern
-                        data-driven tools to ensure the health of our colonies and the prosperity of our urban gardens.
-                    </p>
-                    <ul class="list-unstyled">
-                        <li class="mb-3"><i class="bi bi-check-circle-fill text-secondary me-2"></i> 100% Recycled hive
-                            materials</li>
-                        <li class="mb-3"><i class="bi bi-check-circle-fill text-secondary me-2"></i> Pesticide-free city
-                            corridors</li>
-                        <li class="mb-3"><i class="bi bi-check-circle-fill text-secondary me-2"></i> Community-driven
-                            pollination programs</li>
-                    </ul>
+                <div class="col-lg-7">
+                    <div class="ps-lg-5">
+                        <span class="badge bg-primary text-dark mb-4 py-2 px-4 rounded-pill animate-on-scroll">OUR
+                            STRATEGY</span>
+                        <h2 class="display-4 fw-bold mb-5 animate-on-scroll">Architecting a <br><span
+                                class="text-primary">Metropolitan Rebirth</span></h2>
+
+                        <div class="vision-pillar animate-on-scroll">
+                            <i class="bi bi-cpu-fill"></i>
+                            <h4>Bio-Architectural Harmony</h4>
+                            <p>We don't just place hives; we integrate them into the city's nervous system using smart
+                                IoT monitoring and architectural sync.</p>
+                        </div>
+
+                        <div class="vision-pillar animate-on-scroll">
+                            <i class="bi bi-recycle"></i>
+                            <h4>Resilient City Cycles</h4>
+                            <p>Our vision is a closed-loop urban ecosystem where every rooftop contributes to the
+                                biodiversity of the entire district.</p>
+                        </div>
+
+                        <div class="vision-pillar animate-on-scroll">
+                            <i class="bi bi-award-fill"></i>
+                            <h4>The Golden Tier Standard</h4>
+                            <p>Setting the global benchmark for ethical urban honey production, ensuring purity from
+                                petal to palate.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Coverage (Cities) -->
-    <section class="py-100">
+    <!-- Active City Hubs -->
+    <section class="city-hub-section">
         <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="animate-on-scroll">Active City Hubs</h2>
-                <p class="text-muted animate-on-scroll">Find a local community near you.</p>
+            <div class="row mb-5 text-center justify-content-center">
+                <div class="col-lg-8">
+                    <span class="badge bg-primary text-dark mb-3 py-2 px-4 rounded-pill">GLOBAL NETWORK</span>
+                    <h2 class="display-3 fw-bold mb-4">Our Metropolitan Roots</h2>
+                    <p class="lead opacity-75">Spreading sustainability across the world's most iconic cityscapes.</p>
+                </div>
             </div>
-            <div class="row g-3">
-                <div class="col-6 col-md-3 animate-on-scroll">
-                    <div class="p-4 border rounded-3 text-center">New York City</div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 animate-on-scroll">
+                    <div class="city-hub-card">
+                        <div class="city-badge">NYC</div>
+                        <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&auto=format&fit=crop"
+                            alt="New York">
+                        <div class="city-hub-content">
+                            <h3>Manhattan</h3>
+                            <p>85 Rooftop Colonies • 1.2M Bees Managed</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-6 col-md-3 animate-on-scroll">
-                    <div class="p-4 border rounded-3 text-center">London</div>
+                <div class="col-lg-4 col-md-6 animate-on-scroll">
+                    <div class="city-hub-card">
+                        <div class="city-badge">LDN</div>
+                        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&auto=format&fit=crop"
+                            alt="London">
+                        <div class="city-hub-content">
+                            <h3>London</h3>
+                            <p>120 Corporate Hives • 2.5K Lbs Honey / Season</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-6 col-md-3 animate-on-scroll">
-                    <div class="p-4 border rounded-3 text-center">Tokyo</div>
+                <div class="col-lg-4 col-md-6 animate-on-scroll">
+                    <div class="city-hub-card">
+                        <div class="city-badge">TKY</div>
+                        <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&auto=format&fit=crop"
+                            alt="Tokyo">
+                        <div class="city-hub-content">
+                            <h3>Shibuya</h3>
+                            <p>50 Zen Garden Apiaries • Precision IoT Monitoring</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-6 col-md-3 animate-on-scroll">
-                    <div class="p-4 border rounded-3 text-center">Berlin</div>
+                <div class="col-lg-4 col-md-6 animate-on-scroll">
+                    <div class="city-hub-card">
+                        <div class="city-badge">BER</div>
+                        <img src="https://images.unsplash.com/photo-1528728329032-2972f65dfb3f?w=600&auto=format&fit=crop"
+                            alt="Berlin">
+                        <div class="city-hub-content">
+                            <h3>Berlin Central</h3>
+                            <p>Urban Reforestation Programs • Community Led</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-6 col-md-3 animate-on-scroll">
-                    <div class="p-4 border rounded-3 text-center">Chicago</div>
+                <div class="col-lg-4 col-md-6 animate-on-scroll">
+                    <div class="city-hub-card">
+                        <div class="city-badge">PAR</div>
+                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&auto=format&fit=crop"
+                            alt="Paris">
+                        <div class="city-hub-content">
+                            <h3>Paris</h3>
+                            <p>Rooftop Terrace Pollination • Artisanal Quality</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-6 col-md-3 animate-on-scroll">
-                    <div class="p-4 border rounded-3 text-center">Melbourne</div>
-                </div>
-                <div class="col-6 col-md-3 animate-on-scroll">
-                    <div class="p-4 border rounded-3 text-center">Paris</div>
-                </div>
-                <div class="col-6 col-md-3 animate-on-scroll">
-                    <div class="p-4 border rounded-3 text-center">Singapore</div>
+                <div class="col-lg-4 col-md-6 animate-on-scroll">
+                    <div class="city-hub-card">
+                        <div class="city-badge">SIN</div>
+                        <img src="https://images.unsplash.com/photo-1525625230556-8e8adca12a1e?w=600&auto=format&fit=crop"
+                            alt="Singapore">
+                        <div class="city-hub-content">
+                            <h3>Singapore</h3>
+                            <p>Vertical Garden Hives • Zero-Impact Architecture</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Timeline (Start your hive) -->
-    <section class="py-64" style="background-color: var(--card-bg);">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="animate-on-scroll">Your Path to Mastery</h2>
-                <p class="text-muted animate-on-scroll">Become a certified Urban Beekeeper in 12 months.</p>
+    <!-- Your Path to Mastery (Premium Hex-Steps) -->
+    <section class="mastery-timeline-premium">
+        <div class="container text-center">
+            <h2 class="animate-on-scroll"><span>The Curriculum</span>Your Path to Mastery</h2>
+            <div class="hex-step-wrap">
+                <div class="hex-step animate-on-scroll">
+                    <span>01</span>
+                    <h4>Core Education</h4>
+                    <p>Fundamentals of bio-architecture and colony infrastructure.</p>
+                </div>
+                <div class="hex-step animate-on-scroll" style="transition-delay: 0.1s;">
+                    <span>02</span>
+                    <h4>City Installation</h4>
+                    <p>Strategic deployment of your CityHive™ within urban landscapes.</p>
+                </div>
+                <div class="hex-step animate-on-scroll" style="transition-delay: 0.2s;">
+                    <span>03</span>
+                    <h4>IoT Management</h4>
+                    <p>Real-time health monitoring and acoustic brood optimization.</p>
+                </div>
+                <div class="hex-step animate-on-scroll" style="transition-delay: 0.3s;">
+                    <span>04</span>
+                    <h4>Elite Harvest</h4>
+                    <p>Advanced ethereally pure extraction and floral profiling.</p>
+                </div>
             </div>
-            <div class="timeline animate-on-scroll">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="card">
-                        <h5>Month 1: Education</h5>
-                        <p class="mb-0 text-muted">Complete Level 1: Fundamentals of Urban Beekeeping.</p>
+        </div>
+    </section>
+
+    <!-- NEW UNIQUE SECTION 1: BIO-DYNAMIC RADAR -->
+    <section class="radar-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="radar-container animate-on-scroll">
+                        <div class="radar-pulse"></div>
+                        <div class="radar-pulse"></div>
+                        <div class="radar-pulse"></div>
+                        <div class="radar-center">
+                            <i class="bi bi-broadcast"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="card">
-                        <h5>Month 3: Setup</h5>
-                        <p class="mb-0 text-muted">Install your CityHive™ kit on your designated location.</p>
+                <div class="col-lg-6">
+                    <div class="ps-lg-5">
+                        <span class="badge bg-primary text-dark mb-4 py-2 px-4 rounded-pill animate-on-scroll">LIVE
+                            IMPACT</span>
+                        <h2 class="display-3 fw-bold mb-4 animate-on-scroll">The Urban <br><span
+                                class="text-primary">Pollination Radar</span></h2>
+                        <p class="lead opacity-75 mb-5 animate-on-scroll">Our proprietary tracking system monitors the
+                            real-time ecological footprint of your colony. Each CityHive™ contributes to a growing wave
+                            of
+                            biodiversity, measurable up to a 5-mile radius.</p>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-4 d-flex align-items-center animate-on-scroll">
+                                <div class="icon-circle bg-primary text-dark me-3"><i class="bi bi-geo-alt-fill"></i>
+                                </div>
+                                <span class="fw-bold">Active Radius Scanning</span>
+                            </li>
+                            <li class="mb-4 d-flex align-items-center animate-on-scroll">
+                                <div class="icon-circle bg-primary text-dark me-3"><i class="bi bi-flower2"></i></div>
+                                <span class="fw-bold">Botanical Yield Mapping</span>
+                            </li>
+                            <li class="d-flex align-items-center animate-on-scroll">
+                                <div class="icon-circle bg-primary text-dark me-3"><i class="bi bi-graph-up-arrow"></i>
+                                </div>
+                                <span class="fw-bold">Ecosystem ROI Data</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="card">
-                        <h5>Month 6: Management</h5>
-                        <p class="mb-0 text-muted">First season inspection and parasite management course.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW UNIQUE SECTION 2: ALCHEMY OF THE HIVE -->
+    <section class="alchemy-section">
+        <div class="container">
+            <div class="row mb-5 text-center justify-content-center">
+                <div class="col-lg-8">
+                    <span class="badge bg-primary text-dark mb-3 py-2 px-4 rounded-pill">MOLECULAR PURITY</span>
+                    <h2 class="display-3 fw-bold mb-4">The Alchemy of the Hive</h2>
+                    <p class="lead opacity-75">Discover the extraordinary chemical compounds produced within your urban
+                        sanctuary.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 animate-on-scroll">
+                    <div class="alchemy-card">
+                        <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&auto=format&fit=crop"
+                            alt="Propolis">
+                        <span class="alchemy-tag">IMMUNITY</span>
+                        <h4>Urban Propolis</h4>
+                        <p>A natural antiseptic used by bees to seal their hive. In urban environments, this resin takes
+                            on a unique mineral profile from local city flora.</p>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="card">
-                        <h5>Month 12: Harvest</h5>
-                        <p class="mb-0 text-muted">Gather your first batch of urban honey and wax.</p>
+                <div class="col-lg-4 animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="alchemy-card">
+                        <img src="https://img.freepik.com/free-photo/healthy-young-asian-runner-woman-warm-up-body-stretching-before-exercise_7861-1084.jpg?semt=ais_hybrid&w=740&q=80"
+                            alt="Royal Jelly">
+                        <span class="alchemy-tag">VITALITY</span>
+                        <h4>Royal Nectar</h4>
+                        <p>The exclusive diet of the Queen. Our extraction process preserves the active biological
+                            markers
+                            unique to your specific metropolitan district.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 animate-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="alchemy-card">
+                        <img src="https://images.unsplash.com/photo-1558583055-d7ac00b1adca?w=400&auto=format&fit=crop"
+                            alt="Pollen">
+                        <span class="alchemy-tag">ENERGY</span>
+                        <h4>Micro-Pollen</h4>
+                        <p>The energy source of the colony. Collected from skyscraper rooftop gardens, providing a
+                            distilled essence of the city's seasonal biodiversity.</p>
                     </div>
                 </div>
             </div>
@@ -327,7 +926,14 @@
                         <i class="bi bi-hexagon-fill fs-3 text-primary me-2"></i>
                         <span class="brand-name text-white">URBAN HIVE</span>
                     </a>
-                    <p class="text-white-50">Sustainable beekeeping solutions for modern city dwellers.</p>
+                    <p class="text-white-50">Sustainable beekeeping solutions for modern city dwellers.
+                        Empowering a new
+                        generation of urban apiarists.</p>
+                    <div class="mb-4">
+                        <a href="#" class="me-3"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-twitter-x fs-5"></i></a>
+                    </div>
                 </div>
                 <div class="col-md-2 col-6">
                     <h6 class="text-white mb-4">Quick Links</h6>
@@ -335,6 +941,7 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Shop</a></li>
                         <li><a href="pricing.html">Courses</a></li>
+                        <li><a href="blog.html">Blog</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-6">
@@ -342,20 +949,23 @@
                     <ul class="list-unstyled">
                         <li><a href="#">Hive Kits</a></li>
                         <li><a href="#">Protective Gear</a></li>
+                        <li><a href="#">Tools</a></li>
+                        <li><a href="#">Starter Kits</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3">
                     <h6 class="text-white mb-4">Newsletter</h6>
+                    <p class="text-white-50">Stay updated on city beekeeping tips.</p>
                     <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" class="form-control" placeholder="Email address">
                         <button class="btn btn-primary" type="button"><i class="bi bi-send"></i></button>
                     </div>
                 </div>
             </div>
             <hr class="my-5 opacity-25">
             <div class="row align-items-center">
-                <div class="col-md-6">
-                    <p class="text-white-50 mb-0">© 2026 Urban Hive. All rights reserved.</p>
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="text-white-50 mb-0">Â© 2026 Urban Hive. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
                     <button id="back-to-top" class="btn btn-outline-primary rounded-circle"><i
@@ -368,6 +978,124 @@
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <!-- Interactive Particle Script -->
+    <script>
+        var ps = [];
+        var time, ptime = 0;
+        var offset;
+        var origin;
+        var bg = 0;
+
+        function setup() {
+            let canvas = createCanvas(windowWidth, windowHeight * 0.8);
+            canvas.parent('p5-canvas-wrapper');
+            ps = new ParticleSystem();
+            background(255, 255, 0);
+            offset = createVector(random(1000), random(1000));
+            origin = createVector(width / 2, height / 2);
+        }
+
+        function draw() {
+            let isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+
+            if (bg % 2 == 0) {
+                if (isDark) background(14, 26, 23); // Dark theme BG
+                else background(255, 255, 0); // Primary Yellow BG
+            } else {
+                if (isDark) background(0, 0, 0, 40);
+                else background(255, 255, 0, 40); // Yellow trail BG
+            }
+
+            if (mouseX == pmouseX && mouseY == pmouseY && millis() - ptime > 800) {
+                var step = createVector(noise(offset.x) - .5, noise(offset.y) - .5);
+                step.mult(10);
+                var pos = p5.Vector.add(origin, step);
+                if (pos.x > width) pos.x -= width;
+                if (pos.x < 0) pos.x += width;
+                if (pos.y > height) pos.y -= height;
+                if (pos.y < 0) pos.y += height;
+                ps.addParticle(pos, origin);
+                origin = pos;
+                offset.x += .01;
+                offset.y += .01;
+            }
+            ps.run();
+        }
+
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight * 0.8);
+        }
+
+        function mouseClicked() {
+            bg++;
+        }
+
+        function mouseMoved() {
+            var pos = createVector(mouseX, mouseY);
+            var ppos = createVector(pmouseX, pmouseY);
+            ps.addParticle(pos, ppos);
+            ptime = millis();
+            origin = createVector(width / 2, height / 2);
+        }
+
+        var Particle = function (pos, ppos) {
+            let isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+            let colors = isDark ? ['#FFFF00', '#FFFFFF', '#1F7A63'] : ['#000000', '#1F7A63', '#333333'];
+
+            this.pos = pos.copy();
+            this.col = random(colors);
+            this.size = random(8, 40);
+            this.fill = random([0, 1]);
+            this.velocity = createVector(0, 0);
+            this.acceleration = p5.Vector.sub(ppos, pos);
+            this.acceleration.mult(.02);
+            this.offset = createVector(random(0, 1000), random(0, 1000));
+
+            this.update = function () {
+                this.velocity.add(this.acceleration);
+                this.pos.add(this.velocity);
+                this.pos.add(createVector(10 * (noise(this.offset.x) - .5), 10 * (noise(this.offset.y) - .5)));
+                this.offset.x = this.offset.x + 0.01;
+                this.offset.y = this.offset.y + 0.01;
+                this.size = this.size * .96;
+                this.acceleration.mult(0);
+                if (this.velocity.mag() > 1) this.velocity.mult(.95);
+            }
+
+            this.isDead = function () {
+                return (this.size < 1.5);
+            }
+
+            this.render = function () {
+                if (this.fill == 1) {
+                    noStroke();
+                    fill(this.col)
+                } else {
+                    noFill();
+                    stroke(this.col);
+                    strokeWeight(2);
+                }
+                ellipse(this.pos.x, this.pos.y, this.size, this.size);
+            }
+        }
+
+        var ParticleSystem = function () {
+            this.particles = [];
+            this.addParticle = function (pos, ppos) {
+                this.particles.push(new Particle(pos, ppos));
+            };
+            this.run = function () {
+                for (var i = this.particles.length - 1; i >= 0; i--) {
+                    var p = this.particles[i];
+                    p.update();
+                    p.render();
+                    if (p.isDead()) {
+                        this.particles.splice(i, 1);
+                    }
+                }
+            };
+        }
+    </script>
 </body>
 
 </html>

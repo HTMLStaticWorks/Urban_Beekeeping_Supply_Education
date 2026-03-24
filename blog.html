@@ -95,6 +95,207 @@
             border-color: var(--primary-color);
             color: var(--accent-color);
         }
+
+        /* 3D Text Animation CSS */
+        .animation-container {
+            background: #0E1A17;
+            /* Dark Green */
+            padding: 120px 0;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+            border-radius: 0 0 50px 50px;
+            margin-bottom: 50px;
+        }
+
+        .foo {
+            position: relative;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .letter {
+            display: inline-block;
+            font-weight: 900;
+            font-size: clamp(2rem, 8vw, 6rem);
+            position: relative;
+            color: #fff;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            z-index: 1;
+            text-shadow: 1px 2px 1px #1F7A63, -1px -1px 1px #000;
+            text-transform: uppercase;
+        }
+
+        .letter .char1,
+        .letter .char2 {
+            position: absolute;
+            transform-origin: 0 250%;
+            top: 0;
+            left: 0;
+            text-shadow: none;
+        }
+
+        .letter .char1 {
+            color: #0E1A17;
+            transform: scale(1, 1) rotateX(0deg);
+            animation: cover-ani 2s linear infinite both;
+            z-index: 3;
+        }
+
+        .letter .char2 {
+            color: rgba(255, 255, 0, 0.15);
+            z-index: 2;
+            transform: scale(1, 1) rotateX(-50deg);
+            animation: shadow-ani 2s linear infinite both;
+            opacity: 0;
+        }
+
+        @keyframes cover-ani {
+            0% {
+                transform: scale(1, 1) rotateX(0deg) skew(0deg, 0deg);
+            }
+
+            25% {
+                color: #1F7A63;
+            }
+
+            50% {
+                transform: scale(1, 1) rotateX(-50deg) skew(8deg, 0deg);
+                color: #155343;
+            }
+
+            75% {
+                color: #0E1A17;
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1, 1) rotateX(-180deg) skew(0deg, 0deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes shadow-ani {
+            0% {
+                transform: scale(1, 1) rotateX(0deg) skew(0deg, 0deg);
+            }
+
+            50% {
+                transform: scale(1.08, 1) rotateX(-80deg) skew(-30deg, 0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1, 1) rotateX(-180deg) skew(0deg, 0deg);
+                opacity: 0;
+            }
+        }
+
+        /* Light Mode Hero Overrides */
+        [data-bs-theme="light"] .animation-container {
+            background-color: var(--primary-color);
+        }
+
+        [data-bs-theme="light"] .letter {
+            color: var(--accent-color);
+            text-shadow: 1px 2px 1px var(--secondary-color), -1px -1px 1px #FFFFFF;
+        }
+
+        [data-bs-theme="light"] .letter .char1 {
+            color: var(--primary-color);
+        }
+
+        [data-bs-theme="light"] .animation-container .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: #FFFFFF;
+        }
+
+        /* HONEYDEW MOMENTUM SECTION */
+        .nectar-stats {
+            padding: 80px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-card-premium {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 32px;
+            padding: 40px;
+            height: 100%;
+            transition: transform 0.3s;
+        }
+
+        .stat-card-premium:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+        }
+
+        .honey-bar-container {
+            height: 10px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .honey-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+            width: 0;
+            transition: width 2s ease-out;
+            border-radius: 5px;
+        }
+
+        .active-flow .honey-bar-fill {
+            width: var(--percent);
+        }
+
+        /* SWARM SECTION */
+        .swarm-section {
+            background: #0E1A17;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50px 50px 0 0;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .bee-icon-float {
+            position: absolute;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            opacity: 0.15;
+            animation: beeMove 6s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes beeMove {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(30px, -40px) rotate(15deg);
+            }
+
+            100% {
+                transform: translate(-20px, 20px) rotate(-10deg);
+            }
+        }
+
+        .swarm-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 5;
+        }
     </style>
 </head>
 
@@ -107,15 +308,6 @@
                 <i class="bi bi-hexagon-fill fs-3 text-secondary me-2"></i>
                 <span class="brand-name text-secondary">URBAN HIVE</span>
             </a>
-            <div class="d-flex align-items-center order-lg-3">
-                <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
-                    <i class="bi bi-moon-fill"></i>
-                </button>
-                <div class="input-group d-none d-lg-flex border rounded-pill overflow-hidden" style="max-width: 250px;">
-                    <span class="input-group-text bg-transparent border-0"><i class="bi bi-search"></i></span>
-                    <input type="text" class="form-control border-0 bg-transparent" placeholder="Search blog...">
-                </div>
-            </div>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title brand-name text-secondary">URBAN HIVE</h5>
@@ -128,7 +320,6 @@
                         <li class="nav-item"><a class="nav-link" href="services.html">Shop</a></li>
                         <li class="nav-item"><a class="nav-link" href="pricing.html">Courses</a></li>
                         <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
                         <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="login.html">Login</a></li>
@@ -136,38 +327,70 @@
                     </ul>
                 </div>
             </div>
+            <div class="d-flex align-items-center order-lg-3">
+                <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
+                    <i class="bi bi-moon-fill"></i>
+                </button>
+                <a href="login.html" class="btn btn-primary d-none d-md-block">Get Started</a>
+                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- Blog Header & Featured -->
-    <header class="py-64">
+    <!-- Blog Header & Animation Section -->
+    <header class="animation-container">
         <div class="container">
-            <h1 class="display-4 mb-5">Insightful Pollination</h1>
-            <div class="featured-post p-5 mb-5 shadow-lg animate-on-scroll">
-                <div class="row align-items-center w-100 z-1">
-                    <div class="col-lg-6">
-                        <span class="badge bg-primary text-dark mb-3">FEATURED GUIDE</span>
-                        <h2 class="display-6 fw-bold">Urban Hive Wintering Strategy: 2026 Guide</h2>
-                        <p class="lead mb-4 opcaity-75">Prepare your colony for the harsh city winter with our expert
-                            cold-weather management techniques and modern heating solutions.</p>
-                        <div class="d-flex align-items-center gap-3">
-                            <img src="assets/img/hero.png" width="40" height="40"
-                                class="rounded-circle border border-white" alt="Author">
-                            <div class="lh-1">
-                                <span class="fw-bold d-block">Dr. Sarah Miller</span>
-                                <small class="opacity-50">Master Apiarist</small>
-                            </div>
-                            <a href="#" class="btn btn-primary ms-auto">Read Full Guide</a>
-                        </div>
-                    </div>
-                </div>
-                <img src="assets/img/blog1.png" alt="Bee Macro">
+            <div class="foo">URBAN HIVE</div>
+            <div class="foo">POLLINATION BLOG</div>
+            <div class="mt-4">
+                <a href="#blog-grid" class="btn btn-primary rounded-pill px-4">DISCOVER OUR GUIDES</a>
             </div>
         </div>
     </header>
 
+    <!-- Honeydew Momentum Section -->
+    <section class="nectar-stats">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4 stagger-item">
+                    <div class="stat-card-premium active-flow">
+                        <span class="text-secondary fw-bold">DOWNTOWN FLOW</span>
+                        <h3 class="display-6 mt-2">84%</h3>
+                        <p class="text-muted small">Peak spring nectar production in central park zones.</p>
+                        <div class="honey-bar-container">
+                            <div class="honey-bar-fill" style="--percent: 84%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 stagger-item">
+                    <div class="stat-card-premium active-flow">
+                        <span class="text-secondary fw-bold">SUBURB REACH</span>
+                        <h3 class="display-6 mt-2">62%</h3>
+                        <p class="text-muted small">Sustainable forage availability in residential rooftop areas.</p>
+                        <div class="honey-bar-container">
+                            <div class="honey-bar-fill" style="--percent: 62%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 stagger-item">
+                    <div class="stat-card-premium active-flow">
+                        <span class="text-secondary fw-bold">COLONY GROWTH</span>
+                        <h3 class="display-6 mt-2">91%</h3>
+                        <p class="text-muted small">New hive success rate using our smart monitoring suite.</p>
+                        <div class="honey-bar-container">
+                            <div class="honey-bar-fill" style="--percent: 91%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Blog Grid -->
-    <section class="pb-64">
+    <section class="pb-64" id="blog-grid">
         <div class="container">
             <!-- Filter Categories -->
             <div class="d-flex flex-wrap gap-2 mb-5">
@@ -244,17 +467,139 @@
         </div>
     </section>
 
+    <!-- Join the Swarm Section -->
+    <section class="swarm-section">
+        <!-- Floating Bees -->
+        <i class="bi bi-hexagon-fill bee-icon-float" style="top: 10%; left: 5%; animation-delay: 0s;"></i>
+        <i class="bi bi-hexagon-fill bee-icon-float" style="top: 80%; left: 15%; animation-delay: 1.5s;"></i>
+        <i class="bi bi-hexagon-fill bee-icon-float" style="top: 40%; left: 85%; animation-delay: 3s;"></i>
+        <i class="bi bi-hexagon-fill bee-icon-float" style="top: 20%; left: 70%; animation-delay: 0.5s;"></i>
+        <i class="bi bi-hexagon-fill bee-icon-float" style="top: 70%; left: 90%; animation-delay: 2.2s;"></i>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="swarm-card text-center stagger-item">
+                        <span class="badge bg-primary text-dark mb-4">COMMUNITY NEWSLETTER</span>
+                        <h2 class="display-4 fw-bold mb-4">Join the Urban Swarm</h2>
+                        <p class="lead opacity-75 mb-5">Get weekly dispatches from the front lines of urban apiculture.
+                            Tips, local laws, and emergency hive-rescue alerts.</p>
+                        <form class="row g-3 justify-content-center"
+                            onsubmit="event.preventDefault(); alert('Welcome to the Colony!');">
+                            <div class="col-md-6">
+                                <input type="email"
+                                    class="form-control form-control-lg bg-transparent border-white text-white border-opacity-25"
+                                    placeholder="Enter your email...">
+                            </div>
+                            <div class="col-md-auto">
+                                <button type="submit" class="btn btn-primary btn-lg px-5">Join Now</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
-        <div class="container text-center">
-            <p class="text-white-50 small mb-0">© 2026 Urban Hive. Empowering voices in urban apiculture.</p>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <a class="d-flex align-items-center mb-4 text-decoration-none" href="index.html">
+                        <i class="bi bi-hexagon-fill fs-3 text-primary me-2"></i>
+                        <span class="brand-name text-white">URBAN HIVE</span>
+                    </a>
+                    <p class="text-white-50">Sustainable beekeeping solutions for modern city dwellers.
+                        Empowering a new
+                        generation of urban apiarists.</p>
+                    <div class="mb-4">
+                        <a href="#" class="me-3"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-twitter-x fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6">
+                    <h6 class="text-white mb-4">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Shop</a></li>
+                        <li><a href="pricing.html">Courses</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-6">
+                    <h6 class="text-white mb-4">Shop Categories</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Hive Kits</a></li>
+                        <li><a href="#">Protective Gear</a></li>
+                        <li><a href="#">Tools</a></li>
+                        <li><a href="#">Starter Kits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="text-white mb-4">Newsletter</h6>
+                    <p class="text-white-50">Stay updated on city beekeeping tips.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email address">
+                        <button class="btn btn-primary" type="button"><i class="bi bi-send"></i></button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-5 opacity-25">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="text-white-50 mb-0">Â© 2026 Urban Hive. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <button id="back-to-top" class="btn btn-outline-primary rounded-circle"><i
+                            class="bi bi-arrow-up"></i></button>
+                </div>
+            </div>
         </div>
     </footer>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
+        $(document).ready(function () {
+            var supports3DTransforms = document.body.style['webkitPerspective'] !== undefined || document.body.style['MozPerspective'] !== undefined;
+
+            function linkify(selector, char_crossfade) {
+                var cc = (char_crossfade != null) ? char_crossfade : "150";
+                var ad = 0;
+
+                if (supports3DTransforms) {
+                    $.each(selector, function () {
+                        var nodes = $(this);
+                        var text = $.trim(nodes.text());
+                        var char_count = text.length;
+                        nodes.empty();
+                        for (var i = 0; i < char_count; i++) {
+                            var node = text[i];
+                            if (node != " ") {
+                                nodes.append('<span class="letter" data-letter="' + node + '">' +
+                                    '<span class="char2" style="animation-delay:' + ((i * cc) + ad) + 'ms;">' + node + '</span>' +
+                                    node +
+                                    '<span class="char1" style="animation-delay:' + ((i * cc) + ad) + 'ms;">' + node + '</span>' +
+                                    '</span>');
+                            } else {
+                                nodes.append('<span class="letter">&nbsp;</span>');
+                            }
+                        }
+                        ad += (char_count * char_crossfade);
+                    });
+                } else {
+                    selector.addClass("letter");
+                }
+            }
+            linkify($(".foo"), 200);
+
+            animateBlog();
+        });
+
         function animateBlog() {
             const items = document.querySelectorAll('.blog-item');
             items.forEach((item, index) => {

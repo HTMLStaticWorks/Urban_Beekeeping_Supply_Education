@@ -84,6 +84,349 @@
         .product-card:hover .product-img {
             transform: scale(1.05);
         }
+
+        /* MOSAICA 3D HERO */
+        .shop-hero {
+            position: relative;
+            background: #000000;
+            overflow: hidden;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+        }
+
+        [data-bs-theme="light"] .shop-hero {
+            background-color: #FFFF00 !important;
+            color: #000000;
+        }
+
+        .mosaica-title {
+            z-index: 100;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            text-align: center;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .mosaica-title h1 {
+            color: #FFFFFF;
+            font-weight: 900;
+            font-size: clamp(3rem, 10vw, 7rem);
+            margin: 0;
+            line-height: 0.9;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        [data-bs-theme="light"] .mosaica-title h1 {
+            color: #1F7A63;
+        }
+
+        .mosaica-title h3 {
+            font-weight: 200;
+            font-size: 1.2rem;
+            color: #FFFF00;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        [data-bs-theme="light"] .mosaica-title h3 {
+            color: #1F7A63;
+            font-weight: 800;
+        }
+
+        .mosaica-container {
+            position: absolute;
+            width: 0;
+            height: 0;
+            left: 50%;
+            top: 50%;
+            perspective: 1000px;
+            transform-origin: center center;
+            cursor: move;
+        }
+
+        .mosaica-plane {
+            position: absolute;
+            display: block;
+            width: 900px;
+            height: 700px;
+            border: 0;
+            margin: -350px 0 0 -450px;
+            transform-style: preserve-3d;
+        }
+
+        .mosaica-plane:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: rgba(255, 255, 255, 0.05);
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            transform: translateZ(-1px);
+        }
+
+        [data-bs-theme="light"] .mosaica-plane:before {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .mosaica-items {
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .mosaica-item {
+            background-color: #FFFF00;
+            position: absolute;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        [data-bs-theme="light"] .mosaica-item {
+            background-color: #000000;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes mosaicaAnimate {
+            0% {
+                transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(1, 1, 1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate3d(0px, 0px, 1500px) rotateX(180deg) rotateY(360deg) rotateZ(180deg) scale3d(0, 0, 0);
+                opacity: 0;
+            }
+        }
+
+        .mosaica-item.animate {
+            animation: mosaicaAnimate 4s forwards cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Navbar adjustment for this page hero */
+        [data-bs-theme="light"] .navbar {
+            background-color: #FFFF00 !important;
+            border-bottom: none !important;
+        }
+
+        [data-bs-theme="light"] .nav-link,
+        [data-bs-theme="light"] .brand-name {
+            color: #000000 !important;
+        }
+
+        /* PRECISION GEAR SECTION (SYMMETRICAL) */
+        .precision-gear-section {
+            padding: 100px 0;
+            background: var(--bg-color);
+            position: relative;
+            z-index: 10;
+        }
+
+        .precision-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* Balanced 4 columns */
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 1200px) {
+            .precision-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .precision-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .precision-panel {
+            position: relative;
+            background: var(--card-bg);
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            aspect-ratio: 4 / 5;
+            /* Taller for vertical alignment */
+            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .precision-panel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: all 0.8s;
+        }
+
+        .precision-panel:hover {
+            transform: translateY(-15px);
+            border-color: #FFFF00;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .precision-panel:hover img {
+            transform: scale(1.1);
+        }
+
+        .precision-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2.5rem 1.5rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            z-index: 5;
+            color: #FFFFFF;
+        }
+
+        .precision-overlay h4 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+            color: #FFFF00;
+        }
+
+        .precision-overlay p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .precision-panel:nth-child(even) {
+            margin-top: 0;
+            /* Remove staggering */
+        }
+
+        /* MOLECULAR FINGERPRINT SECTION */
+        .molecular-lab-section {
+            padding: 120px 0;
+            background: #000000;
+            color: #FFFFFF;
+            overflow: hidden;
+            position: relative;
+        }
+
+        [data-bs-theme="light"] .molecular-lab-section {
+            background-color: #f8f9fa;
+            color: #000000;
+        }
+
+        .fingerprint-scanner {
+            position: relative;
+            border-radius: 40px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 0, 0.2);
+            height: 500px;
+        }
+
+        .scanner-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #FFFF00;
+            box-shadow: 0 0 20px #FFFF00;
+            z-index: 10;
+            animation: scanning 4s infinite linear;
+        }
+
+        @keyframes scanning {
+            0% {
+                top: 0;
+            }
+
+            50% {
+                top: 100%;
+            }
+
+            100% {
+                top: 0;
+            }
+        }
+
+        .lab-data-tag {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.7);
+            border-left: 3px solid #FFFF00;
+            padding: 10px 15px;
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #FFFF00;
+            pointer-events: none;
+            backdrop-filter: blur(5px);
+        }
+
+        /* CIRCULAR LIFECYCLE SECTION */
+        .gear-lifecycle-section {
+            padding: 120px 0;
+            background: var(--bg-color);
+        }
+
+        .lifecycle-circle {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 2px dashed #1F7A63;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.6s;
+            cursor: pointer;
+        }
+
+        .lifecycle-circle:hover {
+            transform: rotate(45deg) scale(1.1);
+            border-style: solid;
+            background: rgba(31, 122, 99, 0.05);
+        }
+
+        .lifecycle-inner {
+            text-align: center;
+            transform: rotate(-45deg);
+            /* Counter-rotate to keep text level */
+            transition: all 0.6s;
+        }
+
+        .lifecycle-circle:hover .lifecycle-inner {
+            transform: rotate(-45deg) scale(0.9);
+        }
+
+        .lifecycle-icon {
+            font-size: 3rem;
+            color: #1F7A63;
+            margin-bottom: 15px;
+        }
+
+        .lifecycle-badge {
+            position: absolute;
+            top: -15px;
+            right: 0;
+            background: #FFFF00;
+            color: #000000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.7rem;
+            transform: rotate(15deg);
+        }
+
+        [data-bs-theme="light"] .precision-gear-section h2 span {
+            color: #1F7A63;
+        }
     </style>
 </head>
 
@@ -96,22 +439,6 @@
                 <i class="bi bi-hexagon-fill fs-3 text-secondary me-2"></i>
                 <span class="brand-name text-secondary">URBAN HIVE</span>
             </a>
-            <div class="d-flex align-items-center order-lg-3">
-                <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
-                    <i class="bi bi-moon-fill"></i>
-                </button>
-                <div class="position-relative me-3">
-                    <i class="bi bi-cart3 fs-4"></i>
-                    <span
-                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary text-dark"
-                        style="font-size: 0.6rem;">0</span>
-                </div>
-                <a href="login.html" class="btn btn-primary d-none d-md-block">My Account</a>
-                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title brand-name text-secondary">URBAN HIVE</h5>
@@ -124,7 +451,6 @@
                         <li class="nav-item"><a class="nav-link active" href="services.html">Shop</a></li>
                         <li class="nav-item"><a class="nav-link" href="pricing.html">Courses</a></li>
                         <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
                         <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="login.html">Login</a></li>
@@ -132,16 +458,212 @@
                     </ul>
                 </div>
             </div>
+            <div class="d-flex align-items-center order-lg-3">
+                <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
+                    <i class="bi bi-moon-fill"></i>
+                </button>
+                <a href="login.html" class="btn btn-primary d-none d-md-block">Get Started</a>
+                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <header class="py-64" style="background-color: var(--secondary-color); color: white;">
-        <div class="container">
-            <h1 class="display-4 text-center mb-0">The Apiary Shop</h1>
-            <p class="text-center mt-3 opacity-75">Curated gear for the modern urban beekeeper.</p>
+    <!-- 3D Mosaica Hero Section -->
+    <header class="shop-hero">
+        <div class="mosaica-title">
+            <h3>Elite Equipment</h3>
+            <h1>THE APIARY <br> <span class="text-primary">SUPPLY SHOP</span></h1>
+        </div>
+        <div class="mosaica-container">
+            <div id="mosaica-plane1" class="mosaica-plane">
+                <div class="mosaica-items">
+                    <div class="mosaica-item"
+                        style="top: 0px; left: 0px; width: 250px; height: 150px; animation-delay: 1.04s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 0px; left: 250px; width: 150px; height: 100px; animation-delay: 2.56s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 0px; left: 400px; width: 100px; height: 150px; animation-delay: 2.36s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 0px; left: 500px; width: 150px; height: 100px; animation-delay: 0.64s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 0px; left: 650px; width: 100px; height: 150px; animation-delay: 1.28s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 0px; left: 750px; width: 50px; height: 50px; animation-delay: 0.88s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 0px; left: 800px; width: 100px; height: 50px; animation-delay: 0.44s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 50px; left: 750px; width: 150px; height: 100px; animation-delay: 0.76s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 100px; left: 250px; width: 150px; height: 100px; animation-delay: 1.4s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 100px; left: 500px; width: 150px; height: 100px; animation-delay: 0.56s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 150px; left: 0px; width: 100px; height: 100px; animation-delay: 2.12s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 150px; left: 100px; width: 100px; height: 100px; animation-delay: 0.36s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 150px; left: 200px; width: 50px; height: 50px; animation-delay: 2.44s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 150px; left: 400px; width: 100px; height: 150px; animation-delay: 2.32s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 150px; left: 650px; width: 100px; height: 150px; animation-delay: 1.8s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 150px; left: 750px; width: 150px; height: 100px; animation-delay: 1.08s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 200px; left: 200px; width: 50px; height: 50px; animation-delay: 0.08s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 200px; left: 250px; width: 50px; height: 50px; animation-delay: 0s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 200px; left: 300px; width: 100px; height: 100px; animation-delay: 1.48s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 200px; left: 500px; width: 100px; height: 100px; animation-delay: 1.64s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 200px; left: 600px; width: 50px; height: 50px; animation-delay: 0.48s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 250px; left: 0px; width: 50px; height: 100px; animation-delay: 0.68s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 250px; left: 50px; width: 100px; height: 150px; animation-delay: 2.16s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 250px; left: 150px; width: 100px; height: 150px; animation-delay: 2.48s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 250px; left: 250px; width: 50px; height: 50px; animation-delay: 0.52s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 250px; left: 600px; width: 50px; height: 50px; animation-delay: 2s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 250px; left: 750px; width: 150px; height: 100px; animation-delay: 1.16s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 300px; left: 250px; width: 150px; height: 150px; animation-delay: 0.24s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 300px; left: 400px; width: 50px; height: 50px; animation-delay: 2.6s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 300px; left: 450px; width: 50px; height: 100px; animation-delay: 2.2s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 300px; left: 500px; width: 150px; height: 100px; animation-delay: 1s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 300px; left: 650px; width: 100px; height: 150px; animation-delay: 1.96s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 350px; left: 0px; width: 50px; height: 50px; animation-delay: 1.76s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 350px; left: 400px; width: 50px; height: 100px; animation-delay: 0.28s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 350px; left: 750px; width: 150px; height: 100px; animation-delay: 2.04s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 400px; left: 0px; width: 100px; height: 50px; animation-delay: 0.12s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 400px; left: 100px; width: 150px; height: 100px; animation-delay: 1.72s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 400px; left: 450px; width: 100px; height: 50px; animation-delay: 2.28s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 400px; left: 550px; width: 100px; height: 50px; animation-delay: 1.32s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 450px; left: 0px; width: 100px; height: 100px; animation-delay: 1.92s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 450px; left: 250px; width: 100px; height: 100px; animation-delay: 1.52s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 450px; left: 350px; width: 100px; height: 100px; animation-delay: 0.72s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 450px; left: 450px; width: 100px; height: 100px; animation-delay: 0.16s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 450px; left: 550px; width: 100px; height: 100px; animation-delay: 0.32s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 450px; left: 650px; width: 150px; height: 100px; animation-delay: 0.84s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 450px; left: 800px; width: 50px; height: 50px; animation-delay: 0.8s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 450px; left: 850px; width: 50px; height: 100px; animation-delay: 2.24s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 500px; left: 100px; width: 50px; height: 50px; animation-delay: 1.2s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 500px; left: 150px; width: 50px; height: 50px; animation-delay: 0.92s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 500px; left: 200px; width: 50px; height: 50px; animation-delay: 1.6s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 500px; left: 800px; width: 50px; height: 50px; animation-delay: 0.04s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 550px; left: 0px; width: 50px; height: 50px; animation-delay: 1.44s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 550px; left: 50px; width: 100px; height: 50px; animation-delay: 1.24s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 550px; left: 150px; width: 150px; height: 100px; animation-delay: 1.88s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 550px; left: 300px; width: 100px; height: 150px; animation-delay: 0.4s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 550px; left: 400px; width: 50px; height: 50px; animation-delay: 0.2s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 550px; left: 450px; width: 150px; height: 150px; animation-delay: 1.12s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 550px; left: 600px; width: 150px; height: 100px; animation-delay: 1.56s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 550px; left: 750px; width: 150px; height: 150px; animation-delay: 1.36s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 600px; left: 0px; width: 150px; height: 100px; animation-delay: 2.4s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 600px; left: 400px; width: 50px; height: 100px; animation-delay: 0.6s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 650px; left: 150px; width: 50px; height: 50px; animation-delay: 1.84s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 650px; left: 200px; width: 50px; height: 50px; animation-delay: 2.52s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 650px; left: 250px; width: 50px; height: 50px; animation-delay: 1.68s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 650px; left: 600px; width: 50px; height: 50px; animation-delay: 0.96s;"> </div>
+                    <div class="mosaica-item"
+                        style="top: 650px; left: 650px; width: 100px; height: 50px; animation-delay: 2.08s;"> </div>
+                </div>
+            </div>
         </div>
     </header>
+
+    <!-- UNIQUE SECTION: PRECISION APIARY GEAR -->
+    <section class="precision-gear-section">
+        <div class="container">
+            <div class="row mb-3 text-center justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="display-3 fw-bold mb-1 animate-on-scroll"><span>Elite Kit</span>Precision Apiary Gear
+                    </h2>
+                    <p class="lead opacity-75 animate-on-scroll">Engineering a better future for bees with gear
+                        designed for durability, ergonomics, and urban aesthetics.</p>
+                </div>
+            </div>
+            <div class="precision-grid mt-5">
+                <div class="precision-panel animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1587334274328-64186a80aeee?w=800&auto=format&fit=crop"
+                        alt="Pro Gear">
+                    <div class="precision-overlay">
+                        <h4>Ultra-Vent Suits</h4>
+                        <p>Advanced breathable mesh technology for metropolitan summers.</p>
+                    </div>
+                </div>
+                <div class="precision-panel animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1587334271810-74697960fc67?w=800&auto=format&fit=crop"
+                        alt="High Tech Hive">
+                    <div class="precision-overlay">
+                        <h4>CityHive™ Architecture</h4>
+                        <p>Modular cedar-wood systems designed for rooftop efficiency.</p>
+                    </div>
+                </div>
+                <div class="precision-panel animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1558583055-d7ac00b1adca?w=800&auto=format&fit=crop"
+                        alt="Extraction Tools">
+                    <div class="precision-overlay">
+                        <h4>Molecular Extractors</h4>
+                        <p>Surgical precision tools for pure honey separation.</p>
+                    </div>
+                </div>
+                <div class="precision-panel animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?w=800&auto=format&fit=crop"
+                        alt="IoT Monitoring">
+                    <div class="precision-overlay">
+                        <h4>Dynamic Sensors</h4>
+                        <p>Real-time hive health monitoring at your fingertips.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Shop Content -->
     <main class="py-64">
@@ -172,8 +694,9 @@
                 <!-- Product 1 -->
                 <div class="col-sm-6 col-lg-4 col-xl-3 animate-on-scroll">
                     <div class="product-card p-3">
-                        <a href="service-details.html" class="text-decoration-none">
-                            <img src="assets/img/product3.png" alt="Artisan Hive" class="product-img w-100 mb-3">
+                        <a href="#" class="text-decoration-none">
+                            <img src="https://images.unsplash.com/photo-1507666405821-4291163013b0?w=500&auto=format&fit=crop"
+                                alt="Artisan Hive" class="product-img w-100 mb-3">
                         </a>
                         <div class="mb-2">
                             <i class="bi bi-star-fill text-primary"></i>
@@ -183,7 +706,7 @@
                             <i class="bi bi-star-fill text-primary"></i>
                             <span class="small text-muted ms-2">(48 Reviews)</span>
                         </div>
-                        <h5 class="mb-1"><a href="service-details.html" class="text-decoration-none text-reset">Artisan
+                        <h5 class="mb-1"><a href="#" class="text-decoration-none text-reset">Artisan
                                 Cedar Hive</a></h5>
                         <p class="small text-muted mb-3 flex-grow-1">Premium cedarwood, weather-resistant finish.</p>
                         <div class="d-flex justify-content-between align-items-center mt-auto">
@@ -196,7 +719,8 @@
                 <!-- Product 2 -->
                 <div class="col-sm-6 col-lg-4 col-xl-3 animate-on-scroll">
                     <div class="product-card p-3">
-                        <img src="assets/img/product2.png" alt="Beekeeping Suit" class="product-img w-100 mb-3">
+                        <img src="https://images.unsplash.com/photo-1587334274328-64186a80aeee?w=500&auto=format&fit=crop"
+                            alt="Beekeeping Suit" class="product-img w-100 mb-3">
                         <div class="mb-2">
                             <i class="bi bi-star-fill text-primary"></i>
                             <i class="bi bi-star-fill text-primary"></i>
@@ -217,7 +741,8 @@
                 <!-- Product 3 -->
                 <div class="col-sm-6 col-lg-4 col-xl-3 animate-on-scroll">
                     <div class="product-card p-3">
-                        <img src="assets/img/product1.png" alt="Honey Jar" class="product-img w-100 mb-3">
+                        <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=500&auto=format&fit=crop"
+                            alt="Honey Jar" class="product-img w-100 mb-3">
                         <div class="mb-2">
                             <i class="bi bi-star-fill text-primary"></i>
                             <i class="bi bi-star-fill text-primary"></i>
@@ -262,6 +787,84 @@
         </div>
     </main>
 
+    <!-- UNIQUE SECTION: THE MOLECULAR FINGERPRINT -->
+    <section class="molecular-lab-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <h2 class="display-4 fw-bold mb-4">The Molecular Fingerprint</h2>
+                    <p class="lead opacity-75">Every batch of honey and every piece of gear in our shop undergoes
+                        rigorous spectral analysis. We don't just sell products; we sell certified purity.</p>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-3 d-flex align-items-center"><i
+                                class="bi bi-patch-check-fill text-primary me-3"></i> DNA Pollen Traceability</li>
+                        <li class="mb-3 d-flex align-items-center"><i
+                                class="bi bi-patch-check-fill text-primary me-3"></i> Heavy Metal & Pesticide
+                            Zero-Clearance</li>
+                        <li class="mb-3 d-flex align-items-center"><i
+                                class="bi bi-patch-check-fill text-primary me-3"></i> Botanical Authenticity Guaranteed
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <div class="fingerprint-scanner">
+                        <img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=800&auto=format&fit=crop"
+                            class="w-100 h-100 object-fit-cover" alt="Lab Scan">
+                        <div class="scanner-line"></div>
+                        <div class="lab-data-tag" style="top: 20%; left: 10%;">ISO-9001:CERTIFIED</div>
+                        <div class="lab-data-tag" style="top: 50%; right: 10%;">POLLEN:MANUKA_PROFILE</div>
+                        <div class="lab-data-tag" style="bottom: 20%; left: 30%;">PURITY:99.9%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UNIQUE SECTION: THE GEAR LIFECYCLE -->
+    <section class="gear-lifecycle-section">
+        <div class="container text-center">
+            <div class="row mb-5 justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="display-3 fw-bold mb-3">The Gear Lifecycle</h2>
+                    <p class="lead">Built for the city, designed for eternity. Our gear follows a recursive loop of
+                        sustainability.</p>
+                </div>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-6">
+                    <div class="lifecycle-circle">
+                        <span class="lifecycle-badge">PHASE 01</span>
+                        <div class="lifecycle-inner">
+                            <i class="bi bi-recycle lifecycle-icon"></i>
+                            <h5>Eco-Sourcing</h5>
+                            <p class="small opacity-75">Sustainably harvested cedar and reclaimed surgical steel.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="lifecycle-circle">
+                        <span class="lifecycle-badge">PHASE 02</span>
+                        <div class="lifecycle-inner">
+                            <i class="bi bi-cpu lifecycle-icon"></i>
+                            <h5>Precision Build</h5>
+                            <p class="small opacity-75">CNC-milled tolerances for a 20-year hive lifespan.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="lifecycle-circle">
+                        <span class="lifecycle-badge">PHASE 03</span>
+                        <div class="lifecycle-inner">
+                            <i class="bi bi-flower1 lifecycle-icon"></i>
+                            <h5>Urban Impact</h5>
+                            <p class="small opacity-75">100% biodegradable components that nourish the soil.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -271,25 +874,134 @@
                         <i class="bi bi-hexagon-fill fs-3 text-primary me-2"></i>
                         <span class="brand-name text-white">URBAN HIVE</span>
                     </a>
-                    <p class="text-white-50">Providing professional tools for your sustainable city life.</p>
+                    <p class="text-white-50">Sustainable beekeeping solutions for modern city dwellers.
+                        Empowering a new
+                        generation of urban apiarists.</p>
+                    <div class="mb-4">
+                        <a href="#" class="me-3"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-twitter-x fs-5"></i></a>
+                    </div>
                 </div>
-                <div class="col-md-2 col-6 text-md-end ms-auto">
+                <div class="col-md-2 col-6">
                     <h6 class="text-white mb-4">Quick Links</h6>
                     <ul class="list-unstyled">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Shop</a></li>
                         <li><a href="pricing.html">Courses</a></li>
+                        <li><a href="blog.html">Blog</a></li>
                     </ul>
+                </div>
+                <div class="col-md-3 col-6">
+                    <h6 class="text-white mb-4">Shop Categories</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Hive Kits</a></li>
+                        <li><a href="#">Protective Gear</a></li>
+                        <li><a href="#">Tools</a></li>
+                        <li><a href="#">Starter Kits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="text-white mb-4">Newsletter</h6>
+                    <p class="text-white-50">Stay updated on city beekeeping tips.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email address">
+                        <button class="btn btn-primary" type="button"><i class="bi bi-send"></i></button>
+                    </div>
                 </div>
             </div>
             <hr class="my-5 opacity-25">
-            <p class="text-white-50 text-center small">© 2026 Urban Hive. All rights reserved.</p>
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="text-white-50 mb-0">Â© 2026 Urban Hive. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <button id="back-to-top" class="btn btn-outline-primary rounded-circle"><i
+                            class="bi bi-arrow-up"></i></button>
+                </div>
+            </div>
         </div>
     </footer>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <!-- Mosaica 3D Engine -->
+    <script>
+        class Orbit {
+            constructor(target, dumping = 10, from = { x: 0, y: 0 }, to = { x: 0, y: 0 }) {
+                this.__target = target;
+                this.dumping = dumping;
+                this.desire_rotateZ = -to.y;
+                this.desire_rotateX = -to.x;
+                this.rz = from.y;
+                this.rx = from.x;
+                this.isDragging = false;
+                this.interaction = false;
+                this.previousMousePosition = { x: 0, y: 0 };
+                this.behaviours();
+            }
+
+            behaviours() {
+                $(document).on("mousedown", this.handleDown.bind(this));
+                $(document).on("mouseup", this.handleUp.bind(this));
+                $(document).on("mousemove", this.handleMove.bind(this));
+                window.requestAnimationFrame(this.update.bind(this));
+            }
+
+            handleDown(e) {
+                this.isDragging = true;
+                this.interaction = true;
+                this.previousMousePosition = { x: e.pageX, y: e.pageY };
+            }
+
+            handleUp(e) {
+                this.isDragging = false;
+            }
+
+            handleMove(e) {
+                let deltaMove = {
+                    x: e.pageX - this.previousMousePosition.x,
+                    y: e.pageY - this.previousMousePosition.y
+                };
+
+                if (this.isDragging) {
+                    this.desire_rotateZ += deltaMove.x;
+                    this.desire_rotateX += deltaMove.y;
+                }
+
+                this.previousMousePosition = { x: e.pageX, y: e.pageY };
+            }
+
+            update() {
+                if (!this.interaction) {
+                    this.desire_rotateZ++;
+                    this.desire_rotateX = this.desire_rotateX + 0.3;
+                }
+                this.rz += (((this.desire_rotateZ * -1) - this.rz) / this.dumping);
+                this.rx += (((this.desire_rotateX * -1) - this.rx) / this.dumping);
+                this.__target.css({
+                    "transform": "translateZ(-300px) rotateX(" + this.rx + "deg) rotateZ(" + this.rz + "deg)"
+                });
+                window.requestAnimationFrame(this.update.bind(this));
+            }
+        }
+
+        // Initialize Engine
+        let orbit1 = new Orbit($("#mosaica-plane1"), 40, { x: 0, y: 0 }, { x: 20, y: 0 });
+
+        function animateMosaica() {
+            $(".mosaica-item").removeClass("animate");
+            setTimeout(function () {
+                $(".mosaica-item").addClass("animate");
+            }, 250);
+            setTimeout(animateMosaica, 8000); // 8s loop for impact
+        }
+
+        animateMosaica();
+    </script>
 </body>
 
 </html>
