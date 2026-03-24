@@ -524,8 +524,6 @@
             color: #FFFF00;
             font-weight: 900;
             margin-bottom: 1.5rem;
-            transform: translateY(50px);
-            opacity: 0;
             transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
@@ -533,14 +531,16 @@
             font-size: 1.2rem;
             color: #FFFFFF;
             max-width: 600px;
-            transform: translateY(50px);
-            opacity: 0;
             transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.1s;
         }
 
-        .reveal-card:hover .reveal-content h2,
+        .reveal-card:hover .reveal-content h2 {
+            transform: none;
+            opacity: 1;
+        }
+
         .reveal-card:hover .reveal-content p {
-            transform: translateY(0);
+            transform: none;
             opacity: 1;
         }
 
@@ -599,33 +599,13 @@
         .path-pillar:hover {
             background: #FFFF00;
             color: #000000 !important;
-            transform: translateX(30px) scale(1.02);
+            transform: translateY(-20px) scale(1.02);
             border-color: #000;
+            z-index: 10;
         }
 
         .path-pillar:hover * {
             color: #000000 !important;
-        }
-
-        .path-number {
-            font-size: clamp(4rem, 10vw, 8rem);
-            font-weight: 900;
-            color: rgba(255, 255, 0, 0.3);
-            position: absolute;
-            top: -20px;
-            right: 40px;
-            line-height: 1;
-            transition: all 0.5s;
-            z-index: -1;
-        }
-
-        [data-bs-theme="dark"] .path-number {
-            color: rgba(255, 255, 0, 0.1);
-        }
-
-        .path-pillar:hover .path-number {
-            color: rgba(0, 0, 0, 0.1);
-            transform: translateY(-20px);
         }
 
         .path-pillar i {
@@ -658,437 +638,629 @@
                 transform: scale(1) rotate(0deg);
             }
         }
+
+        /* Hero Bubble Effect Styles */
+        .hero-footer-wrap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+
+        .hero-footer {
+            z-index: 1;
+            --footer-background: #000000;
+            display: grid;
+            position: relative;
+        }
+
+        .hero-footer .bubbles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1rem;
+            background: var(--footer-background);
+            filter: url("#blob");
+        }
+
+        .hero-footer .bubble {
+            position: absolute;
+            left: var(--position, 50%);
+            background: var(--footer-background);
+            border-radius: 100%;
+            animation: bubble-size var(--time, 4s) ease-in infinite var(--delay, 0s),
+                bubble-move var(--time, 4s) ease-in infinite var(--delay, 0s);
+            transform: translate(-50%, 100%);
+        }
+
+        [data-bs-theme="dark"] .hero-footer .bubble {
+            background: var(--primary-color);
+        }
+
+        .hero-footer .content {
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-gap: 4rem;
+            padding: 2rem;
+            background: var(--footer-background);
+        }
+
+        .hero-footer .content a,
+        .hero-footer .content p {
+            color: #F5F7FA;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .hero-footer .content a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero-footer .content b {
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .hero-footer .content p {
+            margin: 0;
+            font-size: .75rem;
+            opacity: 0.8;
+        }
+
+        .hero-footer .content>div {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 2rem;
+        }
+
+        .hero-footer .content>div>div {
+            display: flex;
+            flex-direction: column;
+            margin: 0.25rem 0;
+        }
+
+        .hero-footer .content .image {
+            align-self: center;
+            width: 4rem;
+            height: 4rem;
+            margin: 0.25rem 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        @keyframes bubble-size {
+
+            0%,
+            75% {
+                width: var(--size, 4rem);
+                height: var(--size, 4rem);
+            }
+
+            100% {
+                width: 0rem;
+                height: 0rem;
+            }
+        }
+
+        @keyframes bubble-move {
+            0% {
+                bottom: -4rem;
+            }
+
+            100% {
+                bottom: var(--distance, 10rem);
+            }
+        }
+
+        @media (max-width: 991px) {
+            .hero-footer .content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-footer .content>div {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            /* Center hero content on mobile and tablet */
+            .hero-section .container {
+                text-align: center;
+            }
+
+            .hero-section .row {
+                justify-content: center;
+            }
+
+            .hero-section .d-flex {
+                justify-content: center;
+            }
+
+            /* Fix overlapping feature cards in Next Era section */
+            .feature-item-ux {
+                padding: 30px 20px;
+                margin-bottom: 20px;
+            }
+
+            .feature-item-ux i {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .feature-item-ux h3 {
+                font-size: 1.25rem;
+            }
+
+            .feature-item-ux p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+
+            /* Additional fixes for smaller mobile screens */
+            .feature-item-ux {
+                padding: 25px 15px;
+                margin-bottom: 15px;
+            }
+
+            .feature-item-ux i {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .feature-item-ux h3 {
+                font-size: 1.1rem;
+            }
+
+            .feature-item-ux p {
+                font-size: 0.9rem;
+            }
+
+            /* Fix overlapping text in exclusive service section */
+            .reveal-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .reveal-content h2 {
+                font-size: 2.5rem;
+                line-height: 1.1;
+            }
+
+            .reveal-content p {
+                font-size: 1rem;
+                max-width: 100%;
+            }
+
+            .reveal-content .badge {
+                font-size: 0.7rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            /* Additional fixes for very small mobile screens */
+            .reveal-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .reveal-content h2 {
+                font-size: 2rem;
+                line-height: 1;
+            }
+
+            .reveal-content p {
+                font-size: 0.9rem;
+            }
+
+            .reveal-content .badge {
+                font-size: 0.65rem;
+                padding: 0.4rem 0.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .reveal-content .btn {
+                font-size: 0.9rem;
+                padding: 0.75rem 1.5rem !important;
+            }
+        }
+
+        /* Footer alignment fixes for tablet view */
+        @media (max-width: 991px) and (min-width: 768px) {
+            footer .row {
+                justify-content: center;
+                text-align: center;
+            }
+
+            footer .col-lg-4,
+            footer .col-md-2,
+            footer .col-md-3,
+            footer .col-lg-3 {
+                margin-bottom: 2rem;
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            footer .input-group {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
     </style>
 </head>
-
-<body>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <i class="bi bi-hexagon-fill fs-3 text-secondary me-2"></i>
-                <span class="brand-name text-secondary">URBAN HIVE</span>
-            </a>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title brand-name text-secondary">URBAN HIVE</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-                        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="home-2.html">Impact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="services.html">Shop</a></li>
-                        <li class="nav-item"><a class="nav-link" href="pricing.html">Courses</a></li>
-                        <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
-                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link" href="login.html">Login</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link" href="register.html">Signup</a></li>
-                    </ul>
-                </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <i class="bi bi-hexagon-fill fs-3 me-2"></i>
+            <span class="brand-name">URBAN HIVE</span>
+        </a>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title brand-name">URBAN HIVE</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
             </div>
-            <div class="d-flex align-items-center order-lg-3">
-                <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
-                    <i class="bi bi-moon-fill"></i>
-                </button>
-                <a href="login.html" class="btn btn-primary d-none d-md-block">Get Started</a>
-                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <canvas id="hero-canvas"></canvas>
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-10">
-                    <div class="hero-badge animate-on-scroll text-uppercase small">Hive Kits Launching Soon
-                    </div>
-                    <h1 class="hero-title mb-4 animate-on-scroll">It's time. Save bees <br> & reclaim your
-                        nature.</h1>
-                    <p class="hero-lead mb-5 animate-on-scroll" style="max-width: 600px;">Skip the
-                        supermarket honey.
-                        Join thousands of urban beekeepers via Urban Hive. Profits you could only dream of
-                        (for nature).
-                    </p>
-                    <div class="d-flex flex-wrap gap-3 animate-on-scroll">
-                        <a href="services.html" class="btn btn-dark-hero">Shop the Hive</a>
-                        <a href="pricing.html" class="btn btn-outline-hero">Start Learning</a>
-                    </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="home-2.html">Home 2</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing.html">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                </ul>
+                <div class="mt-3 pt-3 border-top d-lg-none">
+                    <a href="login.html" class="btn btn-primary w-100">Get Started</a>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Immersive Apiary Experience: NEW SECTION FORMAT -->
-    <section class="immersive-apiary-section">
-        <!-- Animated Background Elements -->
-        <div class="geo-circle" style="width: 300px; height: 300px; top: 10%; left: -50px;"></div>
-        <div class="geo-circle"
-            style="width: 500px; height: 500px; bottom: -100px; right: -100px; animation-duration: 15s;"></div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 mb-5 mb-lg-0">
-                    <div class="sticky-top" style="top: 150px; z-index: 5;">
-                        <span class="text-secondary fw-bold text-uppercase letter-spacing-2 mb-3 d-block">The Next
-                            Era</span>
-                        <h2 class="experience-title">THE <br> APIARY <br> EXPERIENCE</h2>
-                        <div class="mt-5 d-none d-lg-block">
-                            <i class="bi bi-arrow-down-circle display-4 text-secondary opacity-50 animate-float"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <!-- Feature 1 -->
-                    <div class="feature-item-ux animate-on-scroll">
-                        <i class="bi bi-cpu-fill"></i>
-                        <h3>Quantum Monitoring</h3>
-                        <p>Our hives are equipped with proprietary IoT sensors that track acoustic patterns, brood
-                            temperature, and weight dynamics with 99.9% precision. Experience beekeeping through the
-                            lens of data.</p>
-                    </div>
-
-                    <!-- Feature 2 -->
-                    <div class="feature-item-ux animate-on-scroll" style="transition-delay: 0.1s;">
-                        <i class="bi bi-shield-check"></i>
-                        <h3>Lunar-Grade Protection</h3>
-                        <p>Engineered with aerospace-grade aerogel and triple-layer Silk-Ventâ„¢ mesh. Our gear provides
-                            total thermal equilibrium, allowing you to focus on your hive even in the height of urban
-                            summers.</p>
-                    </div>
-
-                    <!-- Feature 3 -->
-                    <div class="feature-item-ux animate-on-scroll" style="transition-delay: 0.2s;">
-                        <i class="bi bi-droplet-fill"></i>
-                        <h3>Molecular Traceability</h3>
-                        <p>Every jar of Liquid Goldâ„¢ honey features a digital footprint. Scan to see the exact
-                            metropolitan gardens your bees visited and the specific floral profile of your harvest.</p>
-                    </div>
-
-                    <!-- Feature 4 -->
-                    <div class="feature-item-ux animate-on-scroll" style="transition-delay: 0.3s;">
-                        <i class="bi bi-infinity"></i>
-                        <h3>Sustained Biodiversity</h3>
-                        <p>We don't just sell hives; we architect ecosystems. Join a global network of urban apiarists
-                            contributing to local food security and city-wide pollination recovery.</p>
-                    </div>
-
-                    <div class="text-center text-lg-start mt-5">
-                        <a href="services.html" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-bold">Enter the
-                            Boutique <i class="bi bi-arrow-right ms-2"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Urban Beekeeping -->
-    <section class="py-120 why-urban-section">
-        <div class="container">
-            <div class="row justify-content-center text-center mb-5">
-                <div class="col-lg-8">
-                    <h2 class="animate-on-scroll display-4 fw-bold text-dark">Why Urban Beekeeping?</h2>
-                    <p class="text-dark fw-bold animate-on-scroll opacity-75">Join the movement that's transforming
-                        concrete jungles into green sanctuaries.</p>
-                </div>
-            </div>
-            <div class="row g-5 text-center">
-                <div class="col-md-4 animate-on-scroll">
-                    <div class="why-card">
-                        <div class="card-icon mx-auto"><i class="bi bi-globe-americas"></i></div>
-                        <h4 class="mb-3">Save the Pollinators</h4>
-                        <p>Help combat the global bee population decline by providing safe habitats in the heart of our
-                            cities.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 animate-on-scroll">
-                    <div class="why-card">
-                        <div class="card-icon mx-auto"><i class="bi bi-flower1"></i></div>
-                        <h4 class="mb-3">Boost City Biodiversity</h4>
-                        <p>Urban bees increase local flower and vegetable yields, making our cities greener and more
-                            productive.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 animate-on-scroll">
-                    <div class="why-card">
-                        <div class="card-icon mx-auto"><i class="bi bi-heart-pulse-fill"></i></div>
-                        <h4 class="mb-3">Sustainable Living</h4>
-                        <p>Source your own organic honey and wax while connecting with nature in a meaningful way.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Your Path to Mastery -->
-    <section class="mastery-path-section">
-        <div class="container">
-            <div class="row align-items-center mb-5">
-                <div class="col-lg-12">
-                    <span class="badge bg-primary text-dark mb-4 py-2 px-4 rounded-pill animate-on-scroll">THE
-                        CURRICULUM</span>
-                    <h2 class="display-3 fw-bold animate-on-scroll">Your Path to <span class="text-primary">Apiary
-                            Mastery</span></h2>
-                    <p class="lead opacity-75 animate-on-scroll">A tiered expertise program designed for the modern
-                        metropolitan apiarist.</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6 animate-on-scroll">
-                    <div class="path-pillar">
-                        <span class="path-number">01</span>
-                        <i class="bi bi-book-half"></i>
-                        <h4>Mastering the Basics</h4>
-                        <p>Total immersion into bee biology, city-hive safety protocols, and the urban legal framework.
-                            The foundation of your sustainable journey.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 animate-on-scroll" style="transition-delay: 0.1s;">
-                    <div class="path-pillar">
-                        <span class="path-number">02</span>
-                        <i class="bi bi-tools"></i>
-                        <h4>Advanced Maintenance</h4>
-                        <p>Learn precision management—from swarm prevention to pest resilience. Harness our IoT tools to
-                            monitor your hive's health in real-time.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 animate-on-scroll" style="transition-delay: 0.2s;">
-                    <div class="path-pillar">
-                        <span class="path-number">03</span>
-                        <i class="bi bi-droplet-fill"></i>
-                        <h4>The Liquid Gold Harvest</h4>
-                        <p>Architecting the perfect harvest. Learn molecular traceability, ethical extraction, and the
-                            artisanal craft of urban honey processing.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 animate-on-scroll" style="transition-delay: 0.3s;">
-                    <div class="path-pillar">
-                        <span class="path-number">04</span>
-                        <i class="bi bi-infinity"></i>
-                        <h4>Expert Consultation</h4>
-                        <p>Scaling your impact. Become a lead consultant for corporate installations and urban
-                            reforestation programs across the global network.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- UNIQUE SECTION 1: IMPACT TICKER -->
-    <div class="stats-ticker-section">
-        <div class="ticker-wrap">
-            <div class="ticker-item"><span>1.2M</span> Bees Saved</div>
-            <div class="ticker-item"><span>450+</span> Urban Hives</div>
-            <div class="ticker-item"><span>15k</span> Lbs Honey</div>
-            <div class="ticker-item"><span>85</span> City Orchards</div>
-            <!-- Duplicated for seamless loop -->
-            <div class="ticker-item"><span>1.2M</span> Bees Saved</div>
-            <div class="ticker-item"><span>450+</span> Urban Hives</div>
-            <div class="ticker-item"><span>15k</span> Lbs Honey</div>
-            <div class="ticker-item"><span>85</span> City Orchards</div>
+        <div class="d-flex align-items-center order-lg-3">
+            <button class="rtl-toggle-btn me-2">RTL</button>
+            <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
+                <i class="bi bi-moon-fill"></i>
+            </button>
+            <a href="login.html" class="btn btn-primary d-none d-lg-block">Get Started</a>
+            <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
     </div>
+</nav>
 
-    <!-- UNIQUE SECTION 2: BESPOKE CONSULTING REVEAL -->
-    <section class="consulting-reveal-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="reveal-card">
-                        <div class="floating-hex"></div>
-                        <img src="assets/img/hero-image.png" alt="Consulting">
-                        <!-- Using existing premium image context -->
-                        <div class="reveal-content">
-                            <span class="badge bg-primary text-dark mb-4 py-2 px-4 rounded-pill">EXCLUSIVE
-                                SERVICE</span>
-                            <h2>Bespoke Urban <br> Apiary Design</h2>
-                            <p>From corporate rooftop installations to boutique residential colonies, we architect
-                                sustainable ecosystems tailored to your unique metropolitan environment. Your vision,
-                                powered by nature's precision.</p>
-                            <div class="mt-4">
-                                <a href="booking.html"
-                                    class="btn btn-light btn-lg px-5 py-3 rounded-pill fw-bold">Request Consultation</a>
-                            </div>
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-10">
+                <div class="hero-badge animate-on-scroll text-uppercase small">Hive Kits Launching Soon
+                </div>
+                <h1 class="hero-title mb-4 animate-on-scroll">It's time. Save bees <br> & reclaim your
+                    nature.</h1>
+                <p class="hero-lead mb-5 animate-on-scroll" style="max-width: 600px;">Skip the
+                    supermarket honey.
+                    Join thousands of urban beekeepers via Urban Hive. Profits you could only dream of
+                    (for nature).
+                </p>
+                <div class="d-flex flex-wrap gap-3 animate-on-scroll">
+                    <a href="services.html" class="btn btn-dark-hero">Shop the Hive</a>
+                    <a href="pricing.html" class="btn btn-outline-hero">Start Learning</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-footer-wrap">
+        <div class="hero-footer">
+            <div class="bubbles" id="hero-bubbles">
+                <!-- Bubbles injected via JS -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Immersive Apiary Experience: NEW SECTION FORMAT -->
+<section class="immersive-apiary-section">
+    <!-- Animated Background Elements -->
+    <div class="geo-circle" style="width: 300px; height: 300px; top: 10%; left: -50px;"></div>
+    <div class="geo-circle"
+        style="width: 500px; height: 500px; bottom: -100px; right: -100px; animation-duration: 15s;"></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 mb-5 mb-lg-0">
+                <div class="sticky-top" style="top: 150px; z-index: 5;">
+                    <span class="text-secondary fw-bold text-uppercase letter-spacing-2 mb-3 d-block">The Next
+                        Era</span>
+                    <h2 class="experience-title">THE <br> APIARY <br> EXPERIENCE</h2>
+                    <div class="mt-5 d-none d-lg-block">
+                        <i class="bi bi-arrow-down-circle display-4 text-secondary opacity-50 animate-float"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <!-- Feature 1 -->
+                <div class="feature-item-ux animate-on-scroll">
+                    <i class="bi bi-cpu-fill"></i>
+                    <h3>Quantum Monitoring</h3>
+                    <p>Our hives are equipped with proprietary IoT sensors that track acoustic patterns, brood
+                        temperature, and weight dynamics with 99.9% precision. Experience beekeeping through the
+                        lens of data.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-item-ux animate-on-scroll" style="transition-delay: 0.1s;">
+                    <i class="bi bi-shield-check"></i>
+                    <h3>Lunar-Grade Protection</h3>
+                    <p>Engineered with aerospace-grade aerogel and triple-layer Silk-Ventâ„¢ mesh. Our gear provides
+                        total thermal equilibrium, allowing you to focus on your hive even in the height of urban
+                        summers.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-item-ux animate-on-scroll" style="transition-delay: 0.2s;">
+                    <i class="bi bi-droplet-fill"></i>
+                    <h3>Molecular Traceability</h3>
+                    <p>Every jar of Liquid Goldâ„¢ honey features a digital footprint. Scan to see the exact
+                        metropolitan gardens your bees visited and the specific floral profile of your harvest.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-item-ux animate-on-scroll" style="transition-delay: 0.3s;">
+                    <i class="bi bi-infinity"></i>
+                    <h3>Sustained Biodiversity</h3>
+                    <p>We don't just sell hives; we architect ecosystems. Join a global network of urban apiarists
+                        contributing to local food security and city-wide pollination recovery.</p>
+                </div>
+
+                <div class="text-center text-lg-start mt-5">
+                    <a href="services.html" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-bold">Enter the
+                        Boutique <i class="bi bi-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Urban Beekeeping -->
+<section class="py-120 why-urban-section">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+                <h2 class="animate-on-scroll display-4 fw-bold text-dark">Why Urban Beekeeping?</h2>
+                <p class="text-dark fw-bold animate-on-scroll opacity-75">Join the movement that's transforming
+                    concrete jungles into green sanctuaries.</p>
+            </div>
+        </div>
+        <div class="row g-5 text-center">
+            <div class="col-md-4 animate-on-scroll">
+                <div class="why-card">
+                    <div class="card-icon mx-auto"><i class="bi bi-globe-americas"></i></div>
+                    <h4 class="mb-3">Save the Pollinators</h4>
+                    <p>Help combat the global bee population decline by providing safe habitats in the heart of our
+                        cities.</p>
+                </div>
+            </div>
+            <div class="col-md-4 animate-on-scroll">
+                <div class="why-card">
+                    <div class="card-icon mx-auto"><i class="bi bi-flower1"></i></div>
+                    <h4 class="mb-3">Boost City Biodiversity</h4>
+                    <p>Urban bees increase local flower and vegetable yields, making our cities greener and more
+                        productive.</p>
+                </div>
+            </div>
+            <div class="col-md-4 animate-on-scroll">
+                <div class="why-card">
+                    <div class="card-icon mx-auto"><i class="bi bi-heart-pulse-fill"></i></div>
+                    <h4 class="mb-3">Sustainable Living</h4>
+                    <p>Source your own organic honey and wax while connecting with nature in a meaningful way.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Your Path to Mastery -->
+<section class="mastery-path-section">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-12">
+                <span class="badge bg-primary text-dark mb-4 py-2 px-4 rounded-pill animate-on-scroll">THE
+                    CURRICULUM</span>
+                <h2 class="display-3 fw-bold animate-on-scroll">Your Path to <span class="text-primary">Apiary
+                        Mastery</span></h2>
+                <p class="lead opacity-75 animate-on-scroll">A tiered expertise program designed for the modern
+                    metropolitan apiarist.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 animate-on-scroll">
+                <div class="path-pillar">
+                    <i class="bi bi-book-half"></i>
+                    <h4>Mastering the Basics</h4>
+                    <p>Total immersion into bee biology, city-hive safety protocols, and the urban legal framework.
+                        The foundation of your sustainable journey.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 animate-on-scroll" style="transition-delay: 0.1s;">
+                <div class="path-pillar">
+                    <i class="bi bi-tools"></i>
+                    <h4>Advanced Maintenance</h4>
+                    <p>Learn precision management—from swarm prevention to pest resilience. Harness our IoT tools to
+                        monitor your hive's health in real-time.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 animate-on-scroll" style="transition-delay: 0.2s;">
+                <div class="path-pillar">
+                    <i class="bi bi-droplet-fill"></i>
+                    <h4>The Liquid Gold Harvest</h4>
+                    <p>Architecting the perfect harvest. Learn molecular traceability, ethical extraction, and the
+                        artisanal craft of urban honey processing.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 animate-on-scroll" style="transition-delay: 0.3s;">
+                <div class="path-pillar">
+                    <i class="bi bi-infinity"></i>
+                    <h4>Expert Consultation</h4>
+                    <p>Scaling your impact. Become a lead consultant for corporate installations and urban
+                        reforestation programs across the global network.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- UNIQUE SECTION 1: IMPACT TICKER -->
+<div class="stats-ticker-section">
+    <div class="ticker-wrap">
+        <div class="ticker-item"><span>1.2M</span> Bees Saved</div>
+        <div class="ticker-item"><span>450+</span> Urban Hives</div>
+        <div class="ticker-item"><span>15k</span> Lbs Honey</div>
+        <div class="ticker-item"><span>85</span> City Orchards</div>
+        <!-- Duplicated for seamless loop -->
+        <div class="ticker-item"><span>1.2M</span> Bees Saved</div>
+        <div class="ticker-item"><span>450+</span> Urban Hives</div>
+        <div class="ticker-item"><span>15k</span> Lbs Honey</div>
+        <div class="ticker-item"><span>85</span> City Orchards</div>
+    </div>
+</div>
+
+<!-- UNIQUE SECTION 2: BESPOKE CONSULTING REVEAL -->
+<section class="consulting-reveal-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="reveal-card">
+                    <div class="floating-hex"></div>
+                    <img src="https://img.freepik.com/free-photo/businessman-showing-changes-report_1098-3504.jpg?semt=ais_hybrid&w=740&q=80"
+                        alt="Consulting">
+                    <!-- Using existing premium image context -->
+                    <div class="reveal-content">
+                        <span class="badge bg-primary text-dark mb-4 py-2 px-4 rounded-pill">EXCLUSIVE
+                            SERVICE</span>
+                        <h2>Bespoke Urban <br> Apiary Design</h2>
+                        <p>From corporate rooftop installations to boutique residential colonies, we architect
+                            sustainable ecosystems tailored to your unique metropolitan environment. Your vision,
+                            powered by nature's precision.</p>
+                        <div class="mt-4">
+                            <a href="booking.html" class="btn btn-light btn-lg px-5 py-3 rounded-pill fw-bold">Request
+                                Consultation</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <a class="d-flex align-items-center mb-4 text-decoration-none" href="index.html">
-                        <i class="bi bi-hexagon-fill fs-3 text-primary me-2"></i>
-                        <span class="brand-name text-white">URBAN HIVE</span>
-                    </a>
-                    <p class="text-white-50">Sustainable beekeeping solutions for modern city dwellers.
-                        Empowering a new
-                        generation of urban apiarists.</p>
-                    <div class="mb-4">
-                        <a href="#" class="me-3"><i class="bi bi-facebook fs-5"></i></a>
-                        <a href="#" class="me-3"><i class="bi bi-instagram fs-5"></i></a>
-                        <a href="#" class="me-3"><i class="bi bi-twitter-x fs-5"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-2 col-6">
-                    <h6 class="text-white mb-4">Quick Links</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="services.html">Shop</a></li>
-                        <li><a href="pricing.html">Courses</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 col-6">
-                    <h6 class="text-white mb-4">Shop Categories</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Hive Kits</a></li>
-                        <li><a href="#">Protective Gear</a></li>
-                        <li><a href="#">Tools</a></li>
-                        <li><a href="#">Starter Kits</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3">
-                    <h6 class="text-white mb-4">Newsletter</h6>
-                    <p class="text-white-50">Stay updated on city beekeeping tips.</p>
-                    <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Email address">
-                        <button class="btn btn-primary" type="button"><i class="bi bi-send"></i></button>
-                    </div>
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <a class="d-flex align-items-center mb-4 text-decoration-none" href="index.html">
+                    <i class="bi bi-hexagon-fill fs-3 me-2"></i>
+                    <span class="brand-name">URBAN HIVE</span>
+                </a>
+                <p class="text-white-50">Sustainable beekeeping solutions for modern city dwellers.
+                    Empowering a new
+                    generation of urban apiarists.</p>
+                <div class="mb-4">
+                    <a href="#" class="me-3"><i class="bi bi-facebook fs-5"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-instagram fs-5"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-twitter-x fs-5"></i></a>
                 </div>
             </div>
-            <hr class="my-5 opacity-25">
-            <div class="row align-items-center">
-                <div class="col-md-6 mb-3 mb-md-0">
-                    <p class="text-white-50 mb-0">Â© 2026 Urban Hive. All rights reserved.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <button id="back-to-top" class="btn btn-outline-primary rounded-circle"><i
-                            class="bi bi-arrow-up"></i></button>
+            <div class="col-md-2 col-6">
+                <h6 class="text-white mb-4">Quick Links</h6>
+                <ul class="list-unstyled">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Shop</a></li>
+                    <li><a href="pricing.html">Courses</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-6">
+                <h6 class="text-white mb-4">Shop Categories</h6>
+                <ul class="list-unstyled">
+                    <li><a href="#">Hive Kits</a></li>
+                    <li><a href="#">Protective Gear</a></li>
+                    <li><a href="#">Tools</a></li>
+                    <li><a href="#">Starter Kits</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3">
+                <h6 class="text-white mb-4">Newsletter</h6>
+                <p class="text-white-50">Stay updated on city beekeeping tips.</p>
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Email address">
+                    <button class="btn btn-primary" type="button"><i class="bi bi-send"></i></button>
                 </div>
             </div>
         </div>
-    </footer>
+        <hr class="my-5 opacity-25">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-3 mb-md-0">
+                <p class="text-white-50 mb-0">Â© 2026 Urban Hive. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <button id="back-to-top" class="btn btn-outline-primary rounded-circle"><i
+                        class="bi bi-arrow-up"></i></button>
+            </div>
+        </div>
+    </div>
+</footer>
 
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="assets/js/main.js"></script>
-    <!-- Abstract Art Particle Script -->
-    <script>
-        (function () {
-            let particles = [];
-            let frequency = 120; // Slightly faster for more complexity
-            let canvasElement = document.getElementById('hero-canvas');
-            let ctx = canvasElement.getContext('2d');
-            let w, h;
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="assets/js/main.js"></script>
 
-            function resize() {
-                w = canvasElement.parentElement.offsetWidth;
-                h = canvasElement.parentElement.offsetHeight;
-                canvasElement.width = w;
-                canvasElement.height = h;
+<!-- Hero Bubbles Generation -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const bubblesContainer = document.getElementById('hero-bubbles');
+        if (bubblesContainer) {
+            for (let i = 0; i < 128; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                const size = 2 + Math.random() * 4;
+                const distance = 8 + Math.random() * 6;
+                const position = -5 + Math.random() * 110;
+                const time = 2 + Math.random() * 3;
+                const delay = -1 * (2 + Math.random() * 2);
+                bubble.style.setProperty('--size', `${size}rem`);
+                bubble.style.setProperty('--distance', `${distance}rem`);
+                bubble.style.setProperty('--position', `${position}%`);
+                bubble.style.setProperty('--time', `${time}s`);
+                bubble.style.setProperty('--delay', `${delay}s`);
+                bubblesContainer.appendChild(bubble);
             }
+        }
+    });
+</script>
 
-            window.addEventListener('resize', resize);
-            resize();
-
-            class Particle {
-                constructor(options) {
-                    let isLight = document.documentElement.getAttribute('data-bs-theme') === 'light';
-                    this.x = options.x;
-                    this.y = options.y;
-                    this.s = 0.5 + Math.random() * 1.5;
-                    this.a = Math.random() * Math.PI * 2;
-                    this.radius = options.radius || 0.5 + Math.random() * 8;
-                    // Light Mode: Black, Dark Mode: Yellow
-                    this.color = options.color || (isLight ? "#000000" : "#FFFF00");
-
-                    setTimeout(() => {
-                        if (this.radius > 0.8) {
-                            particles.push(new Particle({
-                                x: this.x,
-                                y: this.y,
-                                color: this.radius / 2 > 1.2 ? "#1F7A63" : (isLight ? "#444444" : "#FFFFFF"),
-                                radius: this.radius / 2.2
-                            }));
-                        }
-                    }, 2500);
-                }
-
-                render() {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-                    ctx.lineWidth = 2;
-                    ctx.fillStyle = this.color;
-                    ctx.fill();
-                    ctx.closePath();
-                }
-
-                swapColor() {
-                    let isLight = document.documentElement.getAttribute('data-bs-theme') === 'light';
-                    // Don't swap if it's the 'faded' white/grey color
-                    if (this.color !== "#FFFFFF" && this.color !== "#444444") {
-                        if (this.x < w / 2) {
-                            this.color = isLight ? "#000000" : "#FFFF00";
-                        } else {
-                            this.color = "#1F7A63"; // Secondary stays same
-                        }
-                    }
-                }
-
-                move() {
-                    this.swapColor();
-                    this.x += Math.cos(this.a) * this.s;
-                    this.y += Math.sin(this.a) * this.s;
-                    this.a += Math.random() * 0.8 - 0.4;
-
-                    if (this.x < -10 || this.x > w + 10 || this.y < -10 || this.y > h + 10) {
-                        return false;
-                    }
-                    this.render();
-                    return true;
-                }
-            }
-
-            function populate() {
-                particles.push(new Particle({
-                    x: w / 2,
-                    y: h / 2
-                }));
-            }
-
-            setInterval(populate, frequency);
-
-            function clear() {
-                let isLight = document.documentElement.getAttribute('data-bs-theme') === 'light';
-                ctx.globalAlpha = 0.08; // Trails opacity
-                ctx.fillStyle = isLight ? '#FFFF00' : '#000000'; // Match Hero BG
-                ctx.fillRect(0, 0, w, h);
-                ctx.globalAlpha = 1;
-            }
-
-            function update() {
-                particles = particles.filter(p => p.move());
-                clear();
-                requestAnimationFrame(update);
-            }
-
-            update();
-        })();
-    </script>
+<svg style="position:fixed; top:100vh">
+    <defs>
+        <filter id="blob">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                result="blob" />
+        </filter>
+    </defs>
+</svg>
 </body>
 
 </html>

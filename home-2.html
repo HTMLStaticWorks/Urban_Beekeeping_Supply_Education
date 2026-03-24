@@ -174,7 +174,7 @@
             color: #FFFFFF;
             position: relative;
             overflow: hidden;
-            padding: 180px 0;
+            padding: 100px 0;
         }
 
         .vision-img-frame {
@@ -275,7 +275,7 @@
 
         /* ACTIVE CITY HUBS SECTION */
         .city-hub-section {
-            padding: 15rem 0;
+            padding: 80px 0;
             background: var(--bg-color);
             position: relative;
         }
@@ -299,8 +299,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.4;
-            filter: grayscale(1);
+            opacity: 0.8;
+            filter: grayscale(0.3);
             transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
@@ -368,7 +368,7 @@
 
         /* MASTERY TIMELINE PREMIUM */
         .mastery-timeline-premium {
-            padding: 180px 0;
+            padding: 100px 0;
             background: #000000;
             color: #FFFFFF;
             position: relative;
@@ -460,7 +460,7 @@
 
         /* BIO-DYNAMIC RADAR SECTION */
         .radar-section {
-            padding: 180px 0;
+            padding: 100px 0;
             background: #080C0A;
             color: #FFFFFF;
             position: relative;
@@ -528,7 +528,7 @@
 
         /* ALCHEMY OF THE HIVE */
         .alchemy-section {
-            padding: 15rem 0;
+            padding: 80px 0;
             background: var(--bg-color);
         }
 
@@ -550,16 +550,19 @@
 
         .alchemy-card img {
             position: absolute;
-            top: -20%;
-            right: -20%;
-            width: 300px;
-            opacity: 0.05;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
             transition: all 0.8s;
+            z-index: 0;
         }
 
         .alchemy-card:hover img {
-            transform: scale(1.2) rotate(10deg);
-            opacity: 0.15;
+            transform: scale(1.1);
+            opacity: 0.4;
         }
 
         .alchemy-tag {
@@ -581,6 +584,34 @@
             margin-bottom: 1rem;
             font-weight: 800;
         }
+
+        /* Footer alignment fixes for tablet view */
+        @media (max-width: 991px) and (min-width: 768px) {
+            footer .row {
+                justify-content: center;
+                text-align: center;
+            }
+
+            footer .col-lg-4,
+            footer .col-md-2,
+            footer .col-md-3,
+            footer .col-lg-3 {
+                margin-bottom: 2rem;
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            footer .input-group {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            /* Center heading in molecular purity section on tablet view */
+            .alchemy-section .text-center h2 {
+                text-align: center !important;
+            }
+        }
     </style>
 </head>
 
@@ -590,33 +621,35 @@
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <i class="bi bi-hexagon-fill fs-3 text-secondary me-2"></i>
-                <span class="brand-name text-secondary">URBAN HIVE</span>
+                <i class="bi bi-hexagon-fill fs-3 me-2"></i>
+                <span class="brand-name">URBAN HIVE</span>
             </a>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title brand-name text-secondary">URBAN HIVE</h5>
+                    <h5 class="offcanvas-title brand-name">URBAN HIVE</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
                         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="home-2.html">Impact</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="home-2.html">Home 2</a></li>
                         <li class="nav-item"><a class="nav-link" href="services.html">Shop</a></li>
                         <li class="nav-item"><a class="nav-link" href="pricing.html">Courses</a></li>
                         <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
                         <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link" href="login.html">Login</a></li>
-                        <li class="nav-item d-lg-none"><a class="nav-link" href="register.html">Signup</a></li>
                     </ul>
+                    <div class="mt-3 pt-3 border-top d-lg-none">
+                        <a href="login.html" class="btn btn-primary w-100">Get Started</a>
+                    </div>
                 </div>
             </div>
             <div class="d-flex align-items-center order-lg-3">
+                <button class="rtl-toggle-btn me-2">RTL</button>
                 <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
                     <i class="bi bi-moon-fill"></i>
                 </button>
-                <a href="login.html" class="btn btn-primary d-none d-md-block">Get Started</a>
+                <a href="login.html" class="btn btn-primary d-none d-lg-block">Get Started</a>
                 <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasNavbar">
                     <span class="navbar-toggler-icon"></span>
@@ -783,7 +816,7 @@
                 <div class="col-lg-4 col-md-6 animate-on-scroll">
                     <div class="city-hub-card">
                         <div class="city-badge">SIN</div>
-                        <img src="https://images.unsplash.com/photo-1525625230556-8e8adca12a1e?w=600&auto=format&fit=crop"
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjc9zdV_tUqgTNcEUcHkpdmwBnUzSg8unHfA&s"
                             alt="Singapore">
                         <div class="city-hub-content">
                             <h3>Singapore</h3>
@@ -923,8 +956,8 @@
             <div class="row g-4">
                 <div class="col-lg-4">
                     <a class="d-flex align-items-center mb-4 text-decoration-none" href="index.html">
-                        <i class="bi bi-hexagon-fill fs-3 text-primary me-2"></i>
-                        <span class="brand-name text-white">URBAN HIVE</span>
+                        <i class="bi bi-hexagon-fill fs-3 me-2"></i>
+                        <span class="brand-name">URBAN HIVE</span>
                     </a>
                     <p class="text-white-50">Sustainable beekeeping solutions for modern city dwellers.
                         Empowering a new

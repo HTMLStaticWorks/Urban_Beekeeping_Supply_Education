@@ -18,57 +18,150 @@
             min-height: 100vh;
             overflow-y: auto;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
-            padding-top: 120px;
-            padding-bottom: 60px;
-            background: linear-gradient(rgba(31, 122, 99, 0.4), rgba(31, 122, 99, 0.4)), url('assets/img/hero.png');
+            background: linear-gradient(rgba(14, 26, 23, 0.85), rgba(14, 26, 23, 0.85)), url('assets/img/hero.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
 
         .login-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 40px;
             width: 100%;
             max-width: 480px;
-            padding: 64px;
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+            padding: 48px;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
             opacity: 0;
-            transform: scale(0.9);
+            transform: translateY(20px);
             animation: glassReveal 0.8s forwards cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        [data-bs-theme="dark"] .login-card {
-            background: rgba(22, 39, 35, 0.4);
-            border-color: rgba(255, 255, 255, 0.05);
         }
 
         @keyframes glassReveal {
             to {
                 opacity: 1;
-                transform: scale(1);
+                transform: translateY(0);
             }
         }
 
+        .brand-logo-icon {
+            color: var(--primary-color);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.3));
+        }
+
+        .brand-name {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: white;
+        }
+
         .form-control {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: white !important;
-            padding: 16px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(255, 255, 0, 0.15);
         }
 
         .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .btn-primary {
-            padding: 16px;
+            padding: 14px;
             font-weight: 700;
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--accent-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #e6a700;
+            border-color: #e6a700;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 255, 0, 0.2);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .forgot-password {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+        }
+
+        .forgot-password:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 24px 0;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .divider:not(:empty)::before {
+            margin-right: .5em;
+        }
+
+        .divider:not(:empty)::after {
+            margin-left: .5em;
         }
 
         .theme-toggle-fixed {
@@ -82,64 +175,49 @@
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top border-0 bg-transparent">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <i class="bi bi-hexagon-fill fs-3 text-primary me-2"></i>
-                <span class="brand-name text-white">URBAN HIVE</span>
-            </a>
-
-            <div class="d-flex align-items-center order-lg-3">
-                <button class="theme-toggle-btn text-white me-3" aria-label="Toggle Theme">
-                    <i class="bi bi-moon-fill"></i>
-                </button>
-                <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar">
-                    <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
-                </button>
-            </div>
-
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
-                <div class="offcanvas-header border-bottom">
-                    <h5 class="offcanvas-title brand-name text-secondary">URBAN HIVE</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="home-2.html">Impact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="services.html">Shop</a></li>
-                        <li class="nav-item"><a class="nav-link" href="pricing.html">Courses</a></li>
-                        <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
-                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle-btn theme-toggle-fixed">
+        <i class="bi bi-moon-fill"></i>
+    </button>
 
     <div class="container d-flex justify-content-center">
         <div class="login-card text-center text-white">
             <a href="index.html" class="d-flex align-items-center justify-content-center text-decoration-none mb-5">
-                <i class="bi bi-hexagon-fill fs-1 text-primary me-2"></i>
-                <h2 class="brand-name mb-0 text-white">URBAN HIVE</h2>
+                <i class="bi bi-hexagon-fill fs-1 me-2 brand-logo-icon"></i>
+                <h2 class="brand-name mb-0">URBAN HIVE</h2>
             </a>
-            <h3 class="mb-4 fw-bold">Welcome Back</h3>
-            <p class="opacity-75 mb-5">Access your urban apiary management.</p>
+            <h3 class="mb-2 fw-bold">Welcome Back</h3>
+            <p class="opacity-75 mb-4">Access your urban apiary management.</p>
 
             <form action="dashboard.html" onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
-                <div class="mb-4 text-start">
-                    <label class="form-label small fw-bold">EMAIL ADDRESS</label>
+                <div class="mb-3 text-start">
+                    <label class="form-label small fw-bold opacity-75">EMAIL ADDRESS</label>
                     <input type="email" class="form-control" placeholder="name@email.com" required>
                 </div>
-                <div class="mb-5 text-start">
-                    <label class="form-label small fw-bold">PASSWORD</label>
+                <div class="mb-2 text-start">
+                    <label class="form-label small fw-bold opacity-75">PASSWORD</label>
                     <input type="password" class="form-control" placeholder="••••••••" required>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 rounded-pill mb-4">Login to Dashboard</button>
-                <p class="small opacity-75">Don't have an account? <a href="register.html"
+                <div class="text-end mb-4">
+                    <a href="#" class="forgot-password small">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mb-4">Login to Dashboard</button>
+
+                <div class="divider">Or Login with</div>
+
+                <div class="social-icons">
+                    <a href="#" class="social-icon">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="bi bi-google"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="bi bi-twitter"></i>
+                    </a>
+                </div>
+
+                <p class="small opacity-75 mt-4">Don't have an account? <a href="register.html"
                         class="text-primary fw-bold text-decoration-none">Sign up</a></p>
             </form>
         </div>

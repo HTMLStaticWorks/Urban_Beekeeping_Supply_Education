@@ -31,23 +31,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navItems.forEach(item => {
         item.addEventListener('click', (e) => {
-            e.preventDefault();
             const panelId = item.getAttribute('data-panel');
+            if (panelId) {
+                e.preventDefault();
+                navItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
 
-            navItems.forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
+                contentPanels.forEach(panel => {
+                    panel.classList.remove('active');
+                    if (panel.id === panelId) {
+                        panel.classList.add('active');
+                    }
+                });
 
-            contentPanels.forEach(panel => {
-                panel.classList.remove('active');
-                if (panel.id === panelId) {
-                    panel.classList.add('active');
+                // Close sidebar on mobile after selection
+                if (window.innerWidth < 1024) {
+                    sidebar.classList.remove('active');
                 }
-            });
-
-            // Close sidebar on mobile after selection
-            if (window.innerWidth < 1024) {
-                sidebar.classList.remove('active');
             }
+            // If no data-panel, let the link proceed (e.g., Sign Out)
         });
     });
 

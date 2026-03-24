@@ -18,23 +18,29 @@
             min-height: 100vh;
             overflow-y: auto;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
-            padding-top: 120px;
-            padding-bottom: 60px;
-            background: var(--bg-color);
+            background: linear-gradient(rgba(14, 26, 23, 0.85), rgba(14, 26, 23, 0.85)), url('assets/img/hero.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .register-card {
-            background-color: var(--card-bg);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 40px;
             width: 100%;
             max-width: 540px;
-            padding: 64px;
-            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.1);
-            transform: translateY(100%);
+            padding: 48px;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
             opacity: 0;
-            animation: slideUpIn 1s forwards cubic-bezier(0.19, 1, 0.22, 1);
+            transform: translateY(20px);
+            animation: slideUpIn 0.8s forwards cubic-bezier(0.165, 0.84, 0.44, 1);
+            text-align: center;
+            color: white;
         }
 
         @keyframes slideUpIn {
@@ -44,89 +50,219 @@
             }
         }
 
-        .brand-logo-fixed {
+        .brand-logo-icon {
+            color: var(--primary-color);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.3));
+        }
+
+        .brand-name {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: white;
+        }
+
+        .theme-toggle-fixed {
             position: fixed;
             top: 40px;
-            left: 40px;
+            right: 40px;
             z-index: 1000;
         }
 
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+            color: var(--primary-color);
+        }
+
         .form-control {
-            padding: 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white !important;
+            padding: 14px 20px;
             border-radius: 12px;
-            background-color: rgba(31, 122, 99, 0.05);
-            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(255, 255, 0, 0.15);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-label {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .btn-secondary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--accent-color);
+            padding: 14px;
+            font-weight: 700;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e6a700;
+            border-color: #e6a700;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 255, 0, 0.2);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .terms-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .terms-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .terms-checkbox label {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .terms-checkbox a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .terms-checkbox a:hover {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 24px 0;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .divider:not(:empty)::before {
+            margin-right: .5em;
+        }
+
+        .divider:not(:empty)::after {
+            margin-left: .5em;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <i class="bi bi-hexagon-fill fs-3 text-secondary me-2"></i>
-                <span class="brand-name text-secondary">URBAN HIVE</span>
-            </a>
-
-            <div class="d-flex align-items-center order-lg-3">
-                <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
-                    <i class="bi bi-moon-fill"></i>
-                </button>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
-                <div class="offcanvas-header border-bottom">
-                    <h5 class="offcanvas-title brand-name text-secondary">URBAN HIVE</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="home-2.html">Impact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="services.html">Shop</a></li>
-                        <li class="nav-item"><a class="nav-link" href="pricing.html">Courses</a></li>
-                        <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
-                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle-btn theme-toggle-fixed" id="themeToggle">
+        <i class="bi bi-moon-fill"></i>
+    </button>
 
     <div class="container d-flex justify-content-center">
         <div class="register-card">
-            <h2 class="mb-4 fw-bold">Join the Urban Movement</h2>
+            <a href="index.html" class="d-flex align-items-center justify-content-center text-decoration-none mb-5">
+                <i class="bi bi-hexagon-fill fs-1 me-2 brand-logo-icon"></i>
+                <h2 class="brand-name mb-0">URBAN HIVE</h2>
+            </a>
+            <h3 class="mb-4 fw-bold">Join the Urban Movement</h3>
             <p class="text-muted mb-5">Start your journey to sustainable city beekeeping.</p>
 
+            <div class="social-icons mb-4">
+                <a href="#" class="social-icon">
+                    <i class="bi bi-facebook fs-5"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="bi bi-google fs-5"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="bi bi-twitter fs-5"></i>
+                </a>
+            </div>
+
+            <div class="divider">Or Sign up with</div>
+
             <form action="dashboard.html" onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
-                <div class="row g-3">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label small fw-bold">FIRST NAME</label>
-                        <input type="text" class="form-control" placeholder="Jane" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label small fw-bold">LAST NAME</label>
-                        <input type="text" class="form-control" placeholder="Smith" required>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label small fw-bold">EMAIL ADDRESS</label>
+                <div class="mb-3 text-start">
+                    <label class="form-label small fw-bold opacity-75">EMAIL ADDRESS</label>
                     <input type="email" class="form-control" placeholder="jane@example.com" required>
                 </div>
-                <div class="mb-5">
-                    <label class="form-label small fw-bold">PASSWORD</label>
+                <div class="mb-3 text-start">
+                    <label class="form-label small fw-bold opacity-75">PASSWORD</label>
                     <input type="password" class="form-control" placeholder="••••••••" required>
                 </div>
-                <button type="submit" class="btn btn-secondary w-100 rounded-pill mb-4 py-3 fw-bold">Create
+
+                <div class="terms-checkbox">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">
+                        I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-secondary w-100 mb-4 py-3">Create
                     Account</button>
-                <p class="text-center small text-muted">Already have an account? <a href="login.html"
+
+                <p class="text-center small opacity-75 mt-4">Already have an account? <a href="login.html"
                         class="text-primary fw-bold text-decoration-none">Login</a></p>
             </form>
         </div>

@@ -27,6 +27,11 @@
             transform: translateX(0);
         }
 
+        .brand-name {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
         /* Sidebar Custom Styles */
         #sidebar {
             background-color: var(--card-bg);
@@ -41,7 +46,13 @@
             left: 0;
             top: 0;
             overflow-y: auto;
-            z-index: 1000;
+            z-index: 100;
+        }
+
+        #sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: var(--sp-8);
         }
 
         .dashboard-nav-item {
@@ -54,16 +65,21 @@
             text-decoration: none;
             font-weight: 500;
             transition: all 0.2s;
+            position: relative;
+            white-space: nowrap;
+            overflow: hidden;
         }
 
         .dashboard-nav-item i {
             font-size: 1.25rem;
+            flex-shrink: 0;
         }
 
         .dashboard-nav-item:hover,
         .dashboard-nav-item.active {
             background-color: var(--secondary-color);
             color: white;
+            transform: translateX(0);
         }
 
         .main-content {
@@ -87,7 +103,7 @@
             border-radius: 20px;
             overflow: hidden;
             aspect-ratio: 16/9;
-            background-image: url('assets/img/education.png');
+            background-image: url('https://images.unsplash.com/photo-1587334206572-1a9004169381?q=80&w=800&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
         }
@@ -147,6 +163,44 @@
                 left: 0;
             }
         }
+
+        /* Tablet view alignment fixes */
+        @media (max-width: 991px) and (min-width: 768px) {
+            .stat-card-small {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .card {
+                height: 100%;
+            }
+
+            .video-thumbnail {
+                height: 200px;
+            }
+        }
+
+        /* Dark mode contrast for badges */
+        [data-bs-theme="dark"] .badge.bg-light {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            color: #fff !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+        }
+
+        [data-bs-theme="dark"] .badge.bg-secondary {
+            background-color: var(--secondary-color) !important;
+            color: #fff !important;
+        }
+
+        /* Mobile view badge fixes */
+        @media (max-width: 767px) {
+            .badge {
+                font-size: 0.75em;
+                padding: 0.25em 0.5em;
+            }
+        }
     </style>
 </head>
 
@@ -156,10 +210,10 @@
     <aside id="sidebar">
         <div class="mb-5 d-flex align-items-center justify-content-between">
             <a href="index.html" class="d-flex align-items-center text-decoration-none">
-                <i class="bi bi-hexagon-fill fs-3 text-secondary me-2"></i>
-                <span class="brand-name text-secondary">URBAN HIVE</span>
+                <i class="bi bi-hexagon-fill fs-3 me-2"></i>
+                <span class="brand-name">URBAN HIVE</span>
             </a>
-            <button class="btn btn-link text-secondary d-lg-none p-0 border-0" id="sidebarClose"><i
+            <button class="btn btn-link text-secondary d-xl-none p-0 border-0" id="sidebarClose"><i
                     class="bi bi-x fs-2"></i></button>
         </div>
 
@@ -185,14 +239,14 @@
                 <span class="badge rounded-pill bg-primary text-dark ms-auto">2</span>
             </a>
             <hr class="my-4 opacity-10">
-            <a href="login.html" class="dashboard-nav-item text-danger">
+            <a href="index.html" class="dashboard-nav-item text-danger">
                 <i class="bi bi-box-arrow-right"></i> Sign Out
             </a>
         </nav>
 
         <div class="mt-auto">
             <button class="theme-toggle-btn w-100 justify-content-start gap-3">
-                <i class="bi bi-moon-fill"></i> Toggle Theme
+                <i class="bi bi-moon-fill"></i>
             </button>
         </div>
     </aside>
@@ -205,9 +259,10 @@
                 <h2 class="mb-0 fw-bold">Dashboard</h2>
             </div>
             <div class="d-flex align-items-center gap-3">
-                <button class="btn btn-outline-secondary d-lg-none" id="sidebarToggle"><i
+                <button class="btn btn-outline-secondary d-xl-none" id="sidebarToggle"><i
                         class="bi bi-list"></i></button>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQanlasPgQjfGGU6anray6qKVVH-ZlTqmuTHw&s" width="45" height="45" class="rounded-circle border" alt="User Avatar">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQanlasPgQjfGGU6anray6qKVVH-ZlTqmuTHw&s"
+                    width="45" height="45" class="rounded-circle border" alt="User Avatar">
             </div>
         </header>
 
@@ -333,7 +388,8 @@
             <div class="row g-4">
                 <div class="col-md-6">
                     <div class="card overflow-hidden">
-                        <img src="assets/img/education.png" class="card-img-top" alt="Course 1">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS69ptZ6EwoV6c-PfbGWR4y9LJ3mccOhFDy7Q&s"
+                            class="card-img-top" alt="Course 1">
                         <div class="card-body">
                             <h5>Urban Beekeeping Fundamentals</h5>
                             <p class="small text-muted">Complete Level 1 certification guides.</p>
@@ -345,12 +401,138 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card overflow-hidden">
-                        <div style="aspect-ratio: 16/9; background: #eee;"></div>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS69ptZ6EwoV6c-PfbGWR4y9LJ3mccOhFDy7Q&s"
+                            class="card-img-top" alt="Course 2">
                         <div class="card-body">
                             <h5>Intermediate Hive Management</h5>
                             <p class="small text-muted">Managing multiple hives in high-density areas.</p>
                             <div class="progress mt-3">
                                 <div class="progress-bar" style="width: 25%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Downloads Panel -->
+        <div id="downloads-panel" class="dashboard-panel">
+            <h5 class="mb-4">My Downloads</h5>
+            <div class="card p-4">
+                <div class="list-group">
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="mb-1">Urban Beekeeping Guide PDF</h6>
+                            <small class="text-muted">Complete beginner's guide • 2.4 MB</small>
+                        </div>
+                        <button class="btn btn-primary btn-sm">Download</button>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="mb-1">Hive Inspection Checklist</h6>
+                            <small class="text-muted">Monthly maintenance template • 156 KB</small>
+                        </div>
+                        <button class="btn btn-primary btn-sm">Download</button>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="mb-1">Honey Harvesting Video</h6>
+                            <small class="text-muted">Step-by-step tutorial • 45 MB</small>
+                        </div>
+                        <button class="btn btn-primary btn-sm">Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Panel -->
+        <div id="profile-panel" class="dashboard-panel">
+            <h5 class="mb-4">My Profile</h5>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card p-4 text-center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQanlasPgQjfGGU6anray6qKVVH-ZlTqmuTHw&s"
+                            class="rounded-circle mb-3" width="120" height="120" alt="Profile">
+                        <h5>John Beekeeper</h5>
+                        <p class="text-muted">Urban Apiarist</p>
+                        <button class="btn btn-outline-primary btn-sm">Change Photo</button>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card p-4">
+                        <h6 class="mb-4">Account Information</h6>
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" value="John Beekeeper">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" value="john@urbanhive.com">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Location</label>
+                                <input type="text" class="form-control" value="New York, NY">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Experience Level</label>
+                                <select class="form-control">
+                                    <option>Beginner</option>
+                                    <option selected>Intermediate</option>
+                                    <option>Advanced</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages Panel -->
+        <div id="messages-panel" class="dashboard-panel">
+            <h5 class="mb-4">Messages <span class="badge bg-primary text-dark">2</span></h5>
+            <div class="card p-4">
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="d-flex">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
+                                    class="rounded-circle me-3" width="40" height="40" alt="Expert">
+                                <div>
+                                    <h6 class="mb-1">Dr. Sarah Chen</h6>
+                                    <p class="mb-1 small">Your hive inspection results look great! The colony is healthy
+                                        and ready for the spring flow.</p>
+                                    <small class="text-muted">2 hours ago</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-primary text-dark">New</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="d-flex">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
+                                    class="rounded-circle me-3" width="40" height="40" alt="Support">
+                                <div>
+                                    <h6 class="mb-1">Urban Hive Support</h6>
+                                    <p class="mb-1 small">Your order #UH-82910 has shipped and will arrive by Thursday.
+                                        Tracking number: 1Z999AA1234567847</p>
+                                    <small class="text-muted">Yesterday</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-primary text-dark">New</span>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="d-flex">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=face"
+                                class="rounded-circle me-3" width="40" height="40" alt="Instructor">
+                            <div>
+                                <h6 class="mb-1">Mike Johnson</h6>
+                                <p class="mb-1 small">Great questions in yesterday's webinar! Here are the resources we
+                                    discussed.</p>
+                                <small class="text-muted">3 days ago</small>
                             </div>
                         </div>
                     </div>
