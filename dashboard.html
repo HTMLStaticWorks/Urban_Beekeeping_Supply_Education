@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Urban Hive Member Dashboard: Tracks orders, courses, and progress.">
     <title>Dashboard | Urban Hive</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FFFF00'><path d='M8.5.134a1 1 0 0 0-1 0l-6 3.464a1 1 0 0 0-.5.866V11.54a1 1 0 0 0 .5.866l6 3.464a1 1 0 0 0 1 0l6-3.464a1 1 0 0 0 .5-.866V4.464a1 1 0 0 0-.5-.866L8.5.134z'/></svg>">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -103,7 +105,7 @@
             border-radius: 20px;
             overflow: hidden;
             aspect-ratio: 16/9;
-            background-image: url('https://images.unsplash.com/photo-1587334206572-1a9004169381?q=80&w=800&auto=format&fit=crop');
+            background-image: url('https://images.unsplash.com/photo-1581592633090-e54e4ae67876?q=80&w=800&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
         }
@@ -244,8 +246,8 @@
             </a>
         </nav>
 
-        <div class="mt-auto">
-            <button class="theme-toggle-btn w-100 justify-content-start gap-3">
+        <div class="mt-auto d-flex">
+            <button class="theme-toggle-btn flex-grow-1 justify-content-center">
                 <i class="bi bi-moon-fill"></i>
             </button>
         </div>
@@ -305,9 +307,8 @@
                 <div class="col-lg-8">
                     <div class="card p-4">
                         <h5 class="mb-4">Recent Course Activity</h5>
-                        <div class="video-thumbnail mb-4 shadow-lg">
-                            <div class="play-btn"><i class="bi bi-play-fill"></i></div>
-                        </div>
+                        <img src="https://img.freepik.com/free-photo/beekeeper-inspecting-honeycomb-frame-apiary_107420-94943.jpg?w=800&q=80"
+                            class="img-fluid rounded-4 mb-4 shadow-sm" alt="Recent Lesson">
                         <h5 class="mb-1">Lesson 4: Managing Summer Varroa Mites</h5>
                         <p class="text-muted">12:45 mins • Level 2 Certification Path</p>
                     </div>
@@ -316,7 +317,7 @@
                     <div class="card p-4 h-100">
                         <h5 class="mb-4">Active Shipments</h5>
                         <div class="p-3 border rounded-3 mb-3" style="background: rgba(244,180,0,0.05);">
-                            <div class="d-flex justify-content-between mb-2">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
                                 <span class="fw-bold"><span class="tracking-dot"></span>Artisan Cedar Hive</span>
                                 <span class="badge bg-secondary">In Transit</span>
                             </div>
@@ -327,7 +328,7 @@
                             <small class="fw-bold">Arriving Thursday</small>
                         </div>
                         <div class="p-3 border rounded-3">
-                            <div class="d-flex justify-content-between mb-2">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
                                 <span class="fw-bold text-muted"><span
                                         class="tracking-dot bg-secondary shadow-none"></span>Hive Tool Set</span>
                                 <span class="badge bg-light text-muted border">Delivered</span>
@@ -401,7 +402,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card overflow-hidden">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS69ptZ6EwoV6c-PfbGWR4y9LJ3mccOhFDy7Q&s"
+                        <img src="https://img.freepik.com/free-photo/beekeeping-woman-checking-hives-out-doors_23-2148810232.jpg?w=740&q=80"
                             class="card-img-top" alt="Course 2">
                         <div class="card-body">
                             <h5>Intermediate Hive Management</h5>
@@ -452,7 +453,7 @@
                 <div class="col-md-4">
                     <div class="card p-4 text-center">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQanlasPgQjfGGU6anray6qKVVH-ZlTqmuTHw&s"
-                            class="rounded-circle mb-3" width="120" height="120" alt="Profile">
+                            class="rounded-circle mx-auto d-block mb-3" width="120" height="120" alt="Profile">
                         <h5>John Beekeeper</h5>
                         <p class="text-muted">Urban Apiarist</p>
                         <button class="btn btn-outline-primary btn-sm">Change Photo</button>
@@ -460,7 +461,7 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card p-4">
-                        <h6 class="mb-4">Account Information</h6>
+                        <h6 class="mb-4 text-center">Account Information</h6>
                         <form>
                             <div class="mb-3">
                                 <label class="form-label">Full Name</label>
@@ -482,7 +483,9 @@
                                     <option>Advanced</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -495,7 +498,7 @@
             <div class="card p-4">
                 <div class="list-group">
                     <div class="list-group-item">
-                        <div class="d-flex justify-content-between align-items-start">
+                        <div class="d-flex flex-wrap justify-content-between align-items-start gap-2">
                             <div class="d-flex">
                                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
                                     class="rounded-circle me-3" width="40" height="40" alt="Expert">
@@ -510,7 +513,7 @@
                         </div>
                     </div>
                     <div class="list-group-item">
-                        <div class="d-flex justify-content-between align-items-start">
+                        <div class="d-flex flex-wrap justify-content-between align-items-start gap-2">
                             <div class="d-flex">
                                 <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
                                     class="rounded-circle me-3" width="40" height="40" alt="Support">

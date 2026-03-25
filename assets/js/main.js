@@ -1,28 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
     /* --- Theme Toggle System --- */
-    const themeToggleBtn = document.querySelector('.theme-toggle-btn');
-    if (themeToggleBtn) {
+    const themeToggleBtns = document.querySelectorAll('.theme-toggle-btn');
+    if (themeToggleBtns.length > 0) {
         const storedTheme = localStorage.getItem('theme');
 
         // Function to apply theme
         const applyTheme = (theme) => {
             document.documentElement.setAttribute('data-bs-theme', theme);
             localStorage.setItem('theme', theme);
-            updateThemeIcon(theme);
+            updateThemeIcons(theme);
         }
 
         // Function to update icon
-        const updateThemeIcon = (theme) => {
-            const icon = themeToggleBtn.querySelector('i');
-            if (icon) {
-                if (theme === 'dark') {
-                    icon.classList.remove('bi-moon-fill');
-                    icon.classList.add('bi-sun-fill');
-                } else {
-                    icon.classList.remove('bi-sun-fill');
-                    icon.classList.add('bi-moon-fill');
+        const updateThemeIcons = (theme) => {
+            themeToggleBtns.forEach(btn => {
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    if (theme === 'dark') {
+                        icon.classList.remove('bi-moon-fill');
+                        icon.classList.add('bi-sun-fill');
+                    } else {
+                        icon.classList.remove('bi-sun-fill');
+                        icon.classList.add('bi-moon-fill');
+                    }
                 }
-            }
+            });
         }
 
         // Sync with OS preferences if nothing in localStorage
@@ -33,32 +35,36 @@ document.addEventListener('DOMContentLoaded', () => {
             applyTheme(storedTheme);
         }
 
-        themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-bs-theme');
-            const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            applyTheme(nextTheme);
+        themeToggleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+                const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                applyTheme(nextTheme);
+            });
         });
     }
 
     /* --- RTL Toggle System --- */
-    const rtlToggleBtn = document.querySelector('.rtl-toggle-btn');
-    if (rtlToggleBtn) {
-        const storedDir = localStorage.getItem('dir') || 'ltr';
+    const rtlToggleBtns = document.querySelectorAll('.rtl-toggle-btn');
+    const storedDir = localStorage.getItem('dir') || 'ltr';
 
-        const applyDir = (direction) => {
-            document.documentElement.setAttribute('dir', direction);
-            localStorage.setItem('dir', direction);
-            rtlToggleBtn.textContent = direction === 'rtl' ? 'LTR' : 'RTL';
-        }
+    const applyDir = (direction) => {
+        document.documentElement.setAttribute('dir', direction);
+        localStorage.setItem('dir', direction);
+        rtlToggleBtns.forEach(btn => {
+            btn.textContent = direction === 'rtl' ? 'LTR' : 'RTL';
+        });
+    }
 
-        applyDir(storedDir);
+    applyDir(storedDir);
 
-        rtlToggleBtn.addEventListener('click', () => {
+    rtlToggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
             const currentDir = document.documentElement.getAttribute('dir');
             const nextDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
             applyDir(nextDir);
         });
-    }
+    });
 
     /* --- Intersection Observer for Animations --- */
     const observerOptions = {

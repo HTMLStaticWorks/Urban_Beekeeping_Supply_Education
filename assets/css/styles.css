@@ -57,7 +57,7 @@ h6 {
 
 /* Navbar Styling */
 .navbar {
-    height: 80px;
+    min-height: 80px;
     background-color: var(--card-bg);
     border-bottom: 1px solid var(--border-color);
     transition: background-color var(--transition-speed);
@@ -97,23 +97,13 @@ footer .brand-name {
     font-size: 1.25rem;
 }
 
-/* Light Mode Brand Colors */
-[data-bs-theme="light"] .navbar-brand .brand-name,
-[data-bs-theme="light"] .offcanvas-header .brand-name,
-[data-bs-theme="light"] #sidebar .brand-name,
-[data-bs-theme="light"] .login-card .brand-name,
-[data-bs-theme="light"] .register-card .brand-name {
-    color: var(--secondary-color) !important;
-}
-
-/* Dark Mode & Always Dark Sections (Footer) */
-[data-bs-theme="dark"] .navbar-brand .brand-name,
-[data-bs-theme="dark"] .offcanvas-header .brand-name,
-[data-bs-theme="dark"] #sidebar .brand-name,
-[data-bs-theme="dark"] .login-card .brand-name,
-[data-bs-theme="dark"] .register-card .brand-name,
+.navbar-brand .brand-name,
+.offcanvas-header .brand-name,
+#sidebar .brand-name,
+.login-card .brand-name,
+.register-card .brand-name,
 footer .brand-name {
-    color: #FFFFFF !important;
+    color: var(--secondary-color) !important;
 }
 
 .navbar-brand img {
@@ -383,6 +373,12 @@ footer a:hover {
     padding: 8px;
     display: flex;
     align-items: center;
+    transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
 }
 
 .rtl-toggle-btn {
@@ -437,7 +433,7 @@ footer a:hover {
 /* Responsive Overrides */
 @media (max-width: 640px) {
     .navbar {
-        height: 70px;
+        min-height: 70px;
     }
 
     h1 {
@@ -474,5 +470,123 @@ footer a:hover {
 
     #sidebar.active {
         left: 0;
+    }
+}
+
+/* RTL Support */
+[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] body {
+    direction: rtl;
+    text-align: right;
+}
+
+[dir="rtl"] .ms-auto {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
+[dir="rtl"] .me-auto {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+}
+
+[dir="rtl"] .text-end {
+    text-align: left !important;
+}
+
+[dir="rtl"] .text-start {
+    text-align: right !important;
+}
+
+/* Dashboard RTL Overrides */
+[dir="rtl"] #sidebar {
+    left: auto !important;
+    right: 0 !important;
+    border-right: none !important;
+    border-left: 1px solid var(--border-color) !important;
+}
+
+[dir="rtl"] .main-content {
+    margin-left: 0 !important;
+    margin-right: 300px !important;
+}
+
+[dir="rtl"] .dashboard-nav-item i {
+    margin-left: 12px;
+    margin-right: 0;
+}
+
+[dir="rtl"] .dashboard-nav-item .badge {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+[dir="rtl"] .tracking-dot {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+[dir="rtl"] .video-thumbnail .play-btn {
+    left: auto;
+    right: 50%;
+    transform: translate(50%, -50%);
+}
+
+[dir="rtl"] .video-thumbnail:hover .play-btn {
+    transform: translate(50%, -50%) scale(1.1);
+}
+
+@media (max-width: 1024px) {
+    [dir="rtl"] #sidebar {
+        left: auto !important;
+        right: -300px !important;
+    }
+
+    [dir="rtl"] #sidebar.active {
+        right: 0 !important;
+    }
+
+    [dir="rtl"] .main-content {
+        margin-right: 0 !important;
+    }
+}
+
+/* Auth Pages RTL */
+[dir="rtl"] .login-card,
+[dir="rtl"] .register-card {
+    text-align: right;
+}
+
+[dir="rtl"] .login-card .brand-logo-icon,
+[dir="rtl"] .register-card .brand-logo-icon {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+[dir="rtl"] .theme-toggle-fixed {
+    right: auto;
+    left: 40px;
+}
+
+[dir="rtl"] .rtl-toggle-fixed {
+    position: fixed;
+    top: 40px;
+    left: 100px;
+    z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    [dir="rtl"] .theme-toggle-fixed {
+        top: 20px;
+        left: 20px;
+    }
+
+    [dir="rtl"] .rtl-toggle-fixed {
+        top: 20px;
+        left: 70px;
     }
 }

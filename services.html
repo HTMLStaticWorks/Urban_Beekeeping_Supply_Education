@@ -7,6 +7,8 @@
     <meta name="description"
         content="Shop the best Urban Beekeeping supplies, hive kits, and protective gear at Urban Hive.">
     <title>Shop Supplies | Urban Hive</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FFFF00'><path d='M8.5.134a1 1 0 0 0-1 0l-6 3.464a1 1 0 0 0-.5.866V11.54a1 1 0 0 0 .5.866l6 3.464a1 1 0 0 0 1 0l6-3.464a1 1 0 0 0 .5-.866V4.464a1 1 0 0 0-.5-.866L8.5.134z'/></svg>">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -217,9 +219,12 @@
             border-bottom: none !important;
         }
 
-        [data-bs-theme="light"] .nav-link,
-        [data-bs-theme="light"] .brand-name {
+        [data-bs-theme="light"] .nav-link:not(.active) {
             color: #000000 !important;
+        }
+
+        [data-bs-theme="light"] .nav-link.active {
+            color: var(--secondary-color) !important;
         }
 
         /* PRECISION GEAR SECTION (SYMMETRICAL) */
@@ -456,7 +461,7 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg sticky-top">
+    <nav class="navbar navbar-expand-xl sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
                 <i class="bi bi-hexagon-fill fs-3 me-2"></i>
@@ -477,17 +482,21 @@
                         <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
                     </ul>
-                    <div class="mt-3 pt-3 border-top d-lg-none">
+                    <div class="mt-3 pt-3 border-top d-xl-none">
+                        <div class="d-flex align-items-center mb-3">
+                            <button class="rtl-toggle-btn me-3">RTL</button>
+                            <span class="text-secondary small">Switch Layout</span>
+                        </div>
                         <a href="login.html" class="btn btn-primary w-100">Get Started</a>
                     </div>
                 </div>
             </div>
-            <div class="d-flex align-items-center order-lg-3">
-                <button class="rtl-toggle-btn me-2">RTL</button>
+            <div class="d-flex align-items-center order-xl-3 ms-auto">
+                <button class="rtl-toggle-btn me-2 d-none d-xl-inline-block">RTL</button>
                 <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
                     <i class="bi bi-moon-fill"></i>
                 </button>
-                <a href="login.html" class="btn btn-primary d-none d-lg-block">Get Started</a>
+                <a href="login.html" class="btn btn-primary d-none d-xl-block">Get Started</a>
                 <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasNavbar">
                     <span class="navbar-toggler-icon"></span>
