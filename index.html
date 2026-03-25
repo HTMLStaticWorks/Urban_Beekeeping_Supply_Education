@@ -810,85 +810,85 @@
                 font-size: 1.25rem;
             }
 
-            .feature-item-ux p {
-                font-size: 1rem;
-            }
-        }
+            @media (max-width: 991px) {
+                .hero-footer .content {
+                    grid-template-columns: 1fr;
+                    text-align: center;
+                }
 
-        @media (max-width: 767px) {
+                .hero-footer .content>div {
+                    flex-direction: column;
+                    gap: 1.5rem;
+                }
 
-            /* Additional fixes for smaller mobile screens */
-            .feature-item-ux {
-                padding: 25px 15px;
-                margin-bottom: 15px;
-            }
+                /* Center hero content on mobile and tablet */
+                .hero-section .container {
+                    text-align: center;
+                }
 
-            .feature-item-ux i {
-                font-size: 2rem;
-                margin-bottom: 1rem;
-            }
+                .hero-section .row {
+                    justify-content: center;
+                }
 
-            .feature-item-ux h3 {
-                font-size: 1.1rem;
-            }
+                .hero-section .d-flex {
+                    justify-content: center;
+                }
 
-            .feature-item-ux p {
-                font-size: 0.9rem;
-            }
+                /* Fix overlapping feature cards in Next Era section */
+                .feature-item-ux {
+                    padding: 30px 20px;
+                    margin-bottom: 20px;
+                }
 
-            /* Fix overlapping text in exclusive service section */
-            .reveal-content {
-                padding: 2rem 1.5rem;
-            }
+                .feature-item-ux i {
+                    font-size: 2.5rem;
+                    margin-bottom: 1.5rem;
+                }
 
-            .reveal-content h2 {
-                font-size: 2.5rem;
-                line-height: 1.1;
-            }
+                .feature-item-ux h3 {
+                    font-size: 1.25rem;
+                }
 
-            .reveal-content p {
-                font-size: 1rem;
-                max-width: 100%;
-            }
+                .feature-item-ux p {
+                    font-size: 1rem;
+                }
 
-            .reveal-content .badge {
-                font-size: 0.7rem;
-                padding: 0.5rem 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-
-            /* Additional fixes for very small mobile screens */
-            .reveal-content {
-                padding: 1.5rem 1rem;
+                /* Fix hover transform for tablet view */
+                .feature-item-ux:hover {
+                    transform: translateX(10px) scale(1.02);
+                    border-left-width: 15px;
+                }
             }
 
-            .reveal-content h2 {
-                font-size: 2rem;
-                line-height: 1;
-            }
+            @media (max-width: 767px) {
 
-            .reveal-content p {
-                font-size: 0.9rem;
-            }
+                /* Additional fixes for smaller mobile screens */
+                .feature-item-ux {
+                    padding: 25px 15px;
+                    margin-bottom: 15px;
+                }
 
-            .reveal-content .badge {
-                font-size: 0.65rem;
-                padding: 0.4rem 0.8rem;
-                margin-bottom: 1rem;
-            }
+                .feature-item-ux i {
+                    font-size: 2rem;
+                    margin-bottom: 1rem;
+                }
 
-            .reveal-content .btn {
-                font-size: 0.9rem;
-                padding: 0.75rem 1.5rem !important;
-            }
-        }
+                .feature-item-ux h3 {
+                    font-size: 1.1rem;
+                }
 
-        /* Footer alignment fixes for tablet view */
-        @media (max-width: 991px) and (min-width: 768px) {
-            footer .row {
-                justify-content: center;
+                .feature-item-ux p {
+                    font-size: 0.9rem;
+                }
+
+                /* Fix hover transform for mobile view */
+                .feature-item-ux:hover {
+                    transform: translateX(5px) scale(1.01);
+                    border-left-width: 12px;
+                }
+
+                /* Fix overlapping text in exclusive service section */
+
                 text-align: center;
             }
 
