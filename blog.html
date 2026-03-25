@@ -94,7 +94,7 @@
 
         .blog-card .d-flex {
             margin-top: auto;
-            justify-content: space-between !important;
+            justify-content: center !important;
             align-items: center !important;
         }
 
@@ -342,6 +342,13 @@
             box-shadow: 0 10px 20px rgba(255, 255, 0, 0.2);
         }
 
+        /* Blog card alignment fixes for web and tablet */
+        .blog-card .d-flex {
+            margin-top: auto;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+
         /* Footer alignment fixes for tablet view */
         @media (max-width: 991px) and (min-width: 768px) {
             footer .row {
@@ -350,18 +357,20 @@
             }
 
             /* Blog card alignment fixes */
-            .blog-item .p-4 {
-                padding: 1.25rem !important;
-            }
-
-            .blog-item .d-flex {
+            .blog-card .d-flex {
+                justify-content: center !important;
+                align-items: center !important;
                 flex-wrap: nowrap !important;
+                width: 100% !important;
+                text-align: center !important;
             }
 
-            .blog-item .d-flex small,
-            .blog-item .d-flex a {
-                font-size: 0.85rem;
-                white-space: nowrap;
+            /* Fix first blog card alignment */
+            .blog-item:first-child .d-flex {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                width: 100% !important;
             }
 
             footer .col-lg-4,
@@ -500,10 +509,8 @@
                         <div class="p-4">
                             <small class="text-primary fw-bold text-uppercase">Environment</small>
                             <h4 class="mt-2 h5">How urban bees are saving city parks</h4>
-                            <p class="text-muted small">Exploring the data between local hive density and wildflower
-                                biodiversity growth.</p>
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <small class="text-muted">Mar 15, 2026</small>
+                            <p class="text-muted small">Higher local hive density can increase pollination efficiency, potentially boosting wildflower reproduction  </p>
+                            <div class="d-flex justify-content-center align-items-center mt-4">
                                 <a href="#" class="text-secondary fw-bold text-decoration-none">Read More</a>
                             </div>
                         </div>
@@ -518,9 +525,8 @@
                             <small class="text-primary fw-bold text-uppercase">Tutorial</small>
                             <h4 class="mt-2 h5">Choosing your first rooftop location</h4>
                             <p class="text-muted small">Finding the perfect balance of sun exposure, wind protection,
-                                and water accessibility.</p>
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <small class="text-muted">Mar 12, 2026</small>
+                                and water accessibility. you can increase pollination</p>
+                            <div class="d-flex justify-content-center align-items-center mt-4">
                                 <a href="#" class="text-secondary fw-bold text-decoration-none">Read More</a>
                             </div>
                         </div>
@@ -535,9 +541,8 @@
                             <small class="text-primary fw-bold text-uppercase">Equipment</small>
                             <h4 class="mt-2 h5">Top 5 Smart sensors for hive health</h4>
                             <p class="text-muted small">IoT solutions for real-time monitoring of temperature, humidity,
-                                and colony activity.</p>
-                            <div class="d-flex justify-content-between align-items-center mt-4">
-                                <small class="text-muted">Mar 08, 2026</small>
+                                and colony activity.you can increase pollination</p>
+                            <div class="d-flex justify-content-center align-items-center mt-4">
                                 <a href="#" class="text-secondary fw-bold text-decoration-none">Read More</a>
                             </div>
                         </div>
@@ -641,7 +646,7 @@
             <hr class="my-5 opacity-25">
             <div class="row align-items-center">
                 <div class="col-md-6 mb-3 mb-md-0">
-                    <p class="text-white-50 mb-0">Â© 2026 Urban Hive. All rights reserved.</p>
+                    <p class="text-white-50 mb-0">© 2026 Urban Hive. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
                     <button id="back-to-top" class="btn btn-outline-primary rounded-circle"><i

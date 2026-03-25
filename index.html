@@ -69,6 +69,7 @@
             letter-spacing: -2px;
             color: #FFFFFF;
             text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+            text-align: center;
         }
 
         [data-bs-theme="light"] .hero-title {
@@ -496,6 +497,16 @@
             position: relative;
         }
 
+        /* Center content for web view */
+        .reveal-content {
+            text-align: center;
+        }
+
+        .reveal-content .btn {
+            margin: 0 auto;
+            display: inline-block;
+        }
+
         .reveal-card {
             position: relative;
             border-radius: 50px;
@@ -771,6 +782,54 @@
             }
         }
 
+        /* ── Tablet Only: Why Urban Beekeeping – Horizontal Card Layout ── */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .why-urban-section .row.g-5 {
+                flex-direction: column;
+                gap: 1.25rem !important;
+            }
+
+            .why-urban-section .col-md-4 {
+                width: 100% !important;
+                max-width: 100%;
+                flex: 0 0 100%;
+            }
+
+            .why-card {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                text-align: left;
+                padding: 28px 32px;
+                gap: 28px;
+                border-radius: 20px;
+                height: auto;
+            }
+
+            .why-card .card-icon {
+                flex-shrink: 0;
+                width: 72px;
+                height: 72px;
+                font-size: 2.25rem;
+                margin-bottom: 0;
+            }
+
+            .why-card-body {
+                flex: 1;
+            }
+
+            .why-card h4 {
+                font-size: 1.15rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .why-card p {
+                font-size: 0.92rem;
+                margin-bottom: 0;
+                line-height: 1.55;
+            }
+        }
+
         @media (max-width: 991px) {
             .hero-footer .content {
                 grid-template-columns: 1fr;
@@ -785,6 +844,7 @@
             /* Center hero content on mobile and tablet */
             .hero-section .container {
                 text-align: center;
+                padding: 0 20px;
             }
 
             .hero-section .row {
@@ -793,6 +853,28 @@
 
             .hero-section .d-flex {
                 justify-content: center;
+            }
+
+            /* Enhanced tablet design */
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 3.5rem);
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-lead {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-badge {
+                margin-bottom: 1.5rem;
+                font-size: 0.8rem;
+            }
+
+            .btn-dark-hero,
+            .btn-outline-hero {
+                padding: 14px 28px;
+                font-size: 0.9rem;
             }
 
             /* Fix overlapping feature cards in Next Era section */
@@ -810,55 +892,7 @@
                 font-size: 1.25rem;
             }
 
-            @media (max-width: 991px) {
-                .hero-footer .content {
-                    grid-template-columns: 1fr;
-                    text-align: center;
-                }
 
-                .hero-footer .content>div {
-                    flex-direction: column;
-                    gap: 1.5rem;
-                }
-
-                /* Center hero content on mobile and tablet */
-                .hero-section .container {
-                    text-align: center;
-                }
-
-                .hero-section .row {
-                    justify-content: center;
-                }
-
-                .hero-section .d-flex {
-                    justify-content: center;
-                }
-
-                /* Fix overlapping feature cards in Next Era section */
-                .feature-item-ux {
-                    padding: 30px 20px;
-                    margin-bottom: 20px;
-                }
-
-                .feature-item-ux i {
-                    font-size: 2.5rem;
-                    margin-bottom: 1.5rem;
-                }
-
-                .feature-item-ux h3 {
-                    font-size: 1.25rem;
-                }
-
-                .feature-item-ux p {
-                    font-size: 1rem;
-                }
-
-                /* Fix hover transform for tablet view */
-                .feature-item-ux:hover {
-                    transform: translateX(10px) scale(1.02);
-                    border-left-width: 15px;
-                }
-            }
 
             @media (max-width: 767px) {
 
@@ -889,9 +923,12 @@
 
                 /* Fix overlapping text in exclusive service section */
 
-                text-align: center;
+                .consulting-reveal-section .badge {
+                    text-align: center;
+                }
             }
 
+            /* Footer adjustments for tablet and below */
             footer .col-lg-4,
             footer .col-md-2,
             footer .col-md-3,
@@ -957,18 +994,18 @@
 <!-- Hero Section -->
 <section class="hero-section">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-10">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-10 text-center">
                 <div class="hero-badge animate-on-scroll text-uppercase small">Hive Kits Launching Soon
                 </div>
                 <h1 class="hero-title mb-4 animate-on-scroll">It's time. Save bees <br> & reclaim your
                     nature.</h1>
-                <p class="hero-lead mb-5 animate-on-scroll" style="max-width: 600px;">Skip the
+                <p class="hero-lead mb-5 animate-on-scroll mx-auto" style="max-width: 600px;">Skip the
                     supermarket honey.
                     Join thousands of urban beekeepers via Urban Hive. Profits you could only dream of
                     (for nature).
                 </p>
-                <div class="d-flex flex-wrap gap-3 animate-on-scroll">
+                <div class="d-flex flex-wrap gap-3 animate-on-scroll justify-content-center">
                     <a href="services.html" class="btn btn-dark-hero">Shop the Hive</a>
                     <a href="pricing.html" class="btn btn-outline-hero">Start Learning</a>
                 </div>
@@ -1073,24 +1110,30 @@
             <div class="col-md-4 animate-on-scroll">
                 <div class="why-card">
                     <div class="card-icon mx-auto"><i class="bi bi-globe-americas"></i></div>
-                    <h4 class="mb-3">Save the Pollinators</h4>
-                    <p>Help combat the global bee population decline by providing safe habitats in the heart of our
-                        cities.</p>
+                    <div class="why-card-body">
+                        <h4 class="mb-3">Save the Pollinators</h4>
+                        <p>Help combat the global bee population decline by providing safe habitats in the heart of our
+                            cities.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4 animate-on-scroll">
                 <div class="why-card">
                     <div class="card-icon mx-auto"><i class="bi bi-flower1"></i></div>
-                    <h4 class="mb-3">Boost City Biodiversity</h4>
-                    <p>Urban bees increase local flower and vegetable yields, making our cities greener and more
-                        productive.</p>
+                    <div class="why-card-body">
+                        <h4 class="mb-3">Boost City Biodiversity</h4>
+                        <p>Urban bees increase local flower and vegetable yields, making our cities greener and more
+                            productive.</p>
+                    </div>
                 </div>
             </div>
             <div class="col-md-4 animate-on-scroll">
                 <div class="why-card">
                     <div class="card-icon mx-auto"><i class="bi bi-heart-pulse-fill"></i></div>
-                    <h4 class="mb-3">Sustainable Living</h4>
-                    <p>Source your own organic honey and wax while connecting with nature in a meaningful way.</p>
+                    <div class="why-card-body">
+                        <h4 class="mb-3">Sustainable Living</h4>
+                        <p>Source your own organic honey and wax while connecting with nature in a meaningful way.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1239,7 +1282,7 @@
         <hr class="my-5 opacity-25">
         <div class="row align-items-center">
             <div class="col-md-6 mb-3 mb-md-0">
-                <p class="text-white-50 mb-0">Â© 2026 Urban Hive. All rights reserved.</p>
+                <p class="text-white-50 mb-0">© 2026 Urban Hive. All rights reserved.</p>
             </div>
             <div class="col-md-6 text-md-end">
                 <button id="back-to-top" class="btn btn-outline-primary rounded-circle"><i
