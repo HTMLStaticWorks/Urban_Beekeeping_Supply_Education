@@ -94,6 +94,8 @@
 
         .blog-card .d-flex {
             margin-top: auto;
+            justify-content: space-between !important;
+            align-items: center !important;
         }
 
         .page-link {
@@ -346,11 +348,20 @@
                 justify-content: center;
                 text-align: center;
             }
-            
-            /* Blog card alignment fixes for tablet view */
-            .blog-card .d-flex {
-                justify-content: space-between !important;
-                align-items: center !important;
+
+            /* Blog card alignment fixes */
+            .blog-item .p-4 {
+                padding: 1.25rem !important;
+            }
+
+            .blog-item .d-flex {
+                flex-wrap: nowrap !important;
+            }
+
+            .blog-item .d-flex small,
+            .blog-item .d-flex a {
+                font-size: 0.85rem;
+                white-space: nowrap;
             }
 
             footer .col-lg-4,
@@ -482,7 +493,7 @@
 
             <div class="row g-4 mb-5">
                 <!-- Blog 1 -->
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-4">
                     <div class="blog-card blog-item">
                         <img src="https://media.istockphoto.com/id/1317323736/photo/a-view-up-into-the-trees-direction-sky.jpg?s=612x612&w=0&k=20&c=i4HYO7xhao7CkGy7Zc_8XSNX_iqG0vAwNsrH1ERmw2Q="
                             alt="Blog 1">
@@ -499,7 +510,7 @@
                     </div>
                 </div>
                 <!-- Blog 2 -->
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-4">
                     <div class="blog-card blog-item">
                         <img src="https://media.istockphoto.com/id/1500285927/photo/young-woman-a-university-student-studying-online.jpg?s=612x612&w=0&k=20&c=yvFDnYMNEJ6WEDYrAaOOLXv-Jhtv6ViBRXSzJhL9S_k="
                             alt="Blog 2">
@@ -516,7 +527,7 @@
                     </div>
                 </div>
                 <!-- Blog 3 -->
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-4">
                     <div class="blog-card blog-item">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdiT8UnxFfRXEr1P6NMZDk4l__2_OtK8FdgA&s"
                             alt="Blog 3">

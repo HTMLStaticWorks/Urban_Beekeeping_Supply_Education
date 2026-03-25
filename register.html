@@ -200,12 +200,12 @@
             transition: all 0.3s ease;
         }
 
-        .register-card > a:hover {
+        .register-card>a:hover {
             transform: scale(1.05);
             transition: all 0.3s ease;
         }
 
-        .register-card > a:hover .brand-name {
+        .register-card>a:hover .brand-name {
             color: var(--primary-color) !important;
         }
 
@@ -263,7 +263,10 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        [data-bs-theme="light"] .brand-name,
+        [data-bs-theme="light"] .brand-name {
+            color: var(--secondary-color) !important;
+        }
+
         [data-bs-theme="light"] .register-card h3,
         [data-bs-theme="light"] .register-card p,
         [data-bs-theme="light"] .form-label,
@@ -307,14 +310,14 @@
                 padding: 20px 0 !important;
                 align-items: flex-start !important;
             }
-            
+
             .register-card {
                 margin: 20px;
                 padding: 32px 24px;
                 max-width: calc(100% - 40px);
                 min-height: auto;
             }
-            
+
             .theme-toggle-fixed {
                 top: 20px;
                 right: 20px;
