@@ -8,7 +8,7 @@
         content="Shop the best Urban Beekeeping supplies, hive kits, and protective gear at Urban Hive.">
     <title>Shop Supplies | Urban Hive</title>
     <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FFFF00'><path d='M8.5.134a1 1 0 0 0-1 0l-6 3.464a1 1 0 0 0-.5.866V11.54a1 1 0 0 0 .5.866l6 3.464a1 1 0 0 0 1 0l6-3.464a1 1 0 0 0 .5-.866V4.464a1 1 0 0 0-.5-.866L8.5.134z'/></svg>">
+        href="assets/img/urban-hive-mark.svg">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -53,9 +53,10 @@
 
         .category-filter {
             display: flex;
+            flex-wrap: wrap;
             gap: 12px;
-            overflow-x: auto;
-            padding-bottom: 20px;
+            overflow-x: visible;
+            padding-bottom: 0;
         }
 
         .filter-btn {
@@ -71,9 +72,9 @@
 
         .filter-btn.active,
         .filter-btn:hover {
-            background: #FFFF00;
-            color: #0E1A17;
-            border-color: #FFFF00;
+            background: #D58A28;
+            color: #17120E;
+            border-color: #D58A28;
         }
 
         .product-img {
@@ -100,7 +101,7 @@
         }
 
         [data-bs-theme="light"] .shop-hero {
-            background-color: #FFFF00 !important;
+            background-color: #D58A28 !important;
             color: #000000;
         }
 
@@ -126,20 +127,20 @@
         }
 
         [data-bs-theme="light"] .mosaica-title h1 {
-            color: #1F7A63;
+            color: #6B4B2A;
         }
 
         .mosaica-title h3 {
             font-weight: 200;
             font-size: 1.2rem;
-            color: #FFFF00;
+            color: #D58A28;
             letter-spacing: 12px;
             text-transform: uppercase;
             margin-bottom: 20px;
         }
 
         [data-bs-theme="light"] .mosaica-title h3 {
-            color: #1F7A63;
+            color: #6B4B2A;
             font-weight: 800;
         }
 
@@ -186,7 +187,7 @@
         }
 
         .mosaica-item {
-            background-color: #FFFF00;
+            background-color: #D58A28;
             position: absolute;
             overflow: hidden;
             border: 1px solid rgba(0, 0, 0, 0.1);
@@ -224,7 +225,7 @@
         }
 
         [data-bs-theme="light"] .nav-link.active {
-            color: #FFFF00 !important;
+            color: #D58A28 !important;
         }
 
         /* PRECISION GEAR SECTION (SYMMETRICAL) */
@@ -275,7 +276,7 @@
 
         .precision-panel:hover {
             transform: translateY(-15px);
-            border-color: #FFFF00;
+            border-color: #D58A28;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
@@ -298,7 +299,7 @@
             font-size: 1.3rem;
             font-weight: 800;
             margin-bottom: 0.25rem;
-            color: #FFFF00;
+            color: #D58A28;
         }
 
         .precision-overlay p {
@@ -331,7 +332,7 @@
             position: relative;
             border-radius: 40px;
             overflow: hidden;
-            border: 2px solid rgba(255, 255, 0, 0.2);
+            border: 2px solid rgba(213, 138, 40, 0.2);
             height: 500px;
         }
 
@@ -341,8 +342,8 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: #FFFF00;
-            box-shadow: 0 0 20px #FFFF00;
+            background: #D58A28;
+            box-shadow: 0 0 20px #D58A28;
             z-index: 10;
             animation: scanning 4s infinite linear;
         }
@@ -364,11 +365,11 @@
         .lab-data-tag {
             position: absolute;
             background: rgba(0, 0, 0, 0.7);
-            border-left: 3px solid #FFFF00;
+            border-left: 3px solid #D58A28;
             padding: 10px 15px;
             font-family: monospace;
             font-size: 0.8rem;
-            color: #FFFF00;
+            color: #D58A28;
             pointer-events: none;
             backdrop-filter: blur(5px);
         }
@@ -383,7 +384,7 @@
             width: 280px;
             height: 280px;
             border-radius: 50%;
-            border: 2px dashed #1F7A63;
+            border: 2px dashed #6B4B2A;
             margin: 0 auto;
             display: flex;
             align-items: center;
@@ -396,7 +397,7 @@
         .lifecycle-circle:hover {
             transform: rotate(45deg) scale(1.1);
             border-style: solid;
-            background: rgba(31, 122, 99, 0.05);
+            background: rgba(107, 75, 42, 0.05);
         }
 
         .lifecycle-inner {
@@ -412,7 +413,7 @@
 
         .lifecycle-icon {
             font-size: 3rem;
-            color: #1F7A63;
+            color: #6B4B2A;
             margin-bottom: 15px;
         }
 
@@ -420,7 +421,7 @@
             position: absolute;
             top: -15px;
             right: 0;
-            background: #FFFF00;
+            background: #D58A28;
             color: #000000;
             padding: 5px 15px;
             border-radius: 20px;
@@ -430,7 +431,7 @@
         }
 
         [data-bs-theme="light"] .precision-gear-section h2 span {
-            color: #1F7A63;
+            color: #6B4B2A;
         }
 
         /* Footer alignment fixes for tablet view */
@@ -464,7 +465,7 @@
     <nav class="navbar navbar-expand-xl sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <i class="bi bi-hexagon-fill fs-3 me-2"></i>
+                <span class="brand-mark me-2" aria-hidden="true"></span>
                 <span class="brand-name">URBAN HIVE</span>
             </a>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
@@ -480,12 +481,15 @@
                         <li class="nav-item"><a class="nav-link" href="pricing.html">Courses</a></li>
                         <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
                         <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                         <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
                     </ul>
                     <div class="mt-3 pt-3 border-top d-xl-none">
                         <div class="d-flex align-items-center mb-3">
                             <button class="rtl-toggle-btn me-3">RTL</button>
-                            <span class="text-secondary small">Switch Layout</span>
+                            <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
+                                <i class="bi bi-moon-fill"></i>
+                            </button>
                         </div>
                         <a href="login.html" class="btn btn-primary w-100">Get Started</a>
                     </div>
@@ -493,7 +497,7 @@
             </div>
             <div class="d-flex align-items-center order-xl-3 ms-auto">
                 <button class="rtl-toggle-btn me-2 d-none d-xl-inline-block">RTL</button>
-                <button class="theme-toggle-btn me-3" aria-label="Toggle Theme">
+                <button class="theme-toggle-btn me-3 d-none d-xl-inline-block" aria-label="Toggle Theme">
                     <i class="bi bi-moon-fill"></i>
                 </button>
                 <a href="login.html" class="btn btn-primary d-none d-xl-block">Get Started</a>
@@ -675,7 +679,7 @@
                     <img src="https://img.freepik.com/free-photo/hex-textured-background-networking_23-2150080739.jpg?semt=ais_rp_50_assets&w=740&q=80"
                         alt="High Tech Hive">
                     <div class="precision-overlay">
-                        <h4>CityHive™ Architecture</h4>
+                        <h4>CityHive&trade; Architecture</h4>
                         <p>Modular cedar-wood systems designed for rooftop efficiency.</p>
                     </div>
                 </div>
@@ -904,7 +908,7 @@
             <div class="row g-4">
                 <div class="col-lg-4">
                     <a class="d-flex align-items-center mb-4 text-decoration-none" href="index.html">
-                        <i class="bi bi-hexagon-fill fs-3 me-2"></i>
+                        <span class="brand-mark me-2" aria-hidden="true"></span>
                         <span class="brand-name">URBAN HIVE</span>
                     </a>
                     <p class="text-white-50">Sustainable beekeeping solutions for modern city dwellers.
@@ -923,6 +927,7 @@
                         <li><a href="services.html">Shop</a></li>
                         <li><a href="pricing.html">Courses</a></li>
                         <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-6">
@@ -946,7 +951,7 @@
             <hr class="my-5 opacity-25">
             <div class="row align-items-center">
                 <div class="col-md-6 mb-3 mb-md-0">
-                    <p class="text-white-50 mb-0">© 2026 Urban Hive. All rights reserved.</p>
+                    <p class="text-white-50 mb-0">&copy; 2026 Urban Hive. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
                     <button id="back-to-top" class="btn btn-outline-primary rounded-circle"><i
@@ -1038,3 +1043,4 @@
 </body>
 
 </html>
+

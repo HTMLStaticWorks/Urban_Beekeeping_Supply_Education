@@ -2,15 +2,15 @@
 
 :root {
     /* Brand Colors */
-    --primary-color: #FFFF00;
-    --secondary-color: #1F7A63;
-    --accent-color: #1A1A1A;
+    --primary-color: #D58A28;
+    --secondary-color: #6B4B2A;
+    --accent-color: #1B1611;
 
     /* Light Mode */
-    --bg-color: #F9FBF8;
+    --bg-color: #FCF7F0;
     --card-bg: #FFFFFF;
-    --text-color: #2A2A2A;
-    --border-color: rgba(31, 122, 99, 0.1);
+    --text-color: #2B241C;
+    --border-color: rgba(107, 75, 42, 0.12);
 
     /* Spacing */
     --sp-8: 8px;
@@ -26,10 +26,10 @@
 }
 
 [data-bs-theme="dark"] {
-    --bg-color: #0E1A17;
-    --card-bg: #162723;
-    --text-color: #E8F5F2;
-    --border-color: rgba(255, 255, 0, 0.1);
+    --bg-color: #17120E;
+    --card-bg: #241B14;
+    --text-color: #F5EBDD;
+    --border-color: rgba(213, 138, 40, 0.18);
 }
 
 body {
@@ -65,21 +65,26 @@ h6 {
 }
 
 /* Standardized Brand Identity */
-.navbar-brand i.bi-hexagon-fill,
-footer i.bi-hexagon-fill,
-.offcanvas-header i.bi-hexagon-fill,
-#sidebar .bi-hexagon-fill,
-.brand-logo-icon {
-    color: var(--primary-color) !important;
-    filter: drop-shadow(0 0 8px rgba(255, 255, 0, 0.4));
-    font-size: 1.75rem;
-    /* Standard Logo Size */
+.brand-mark {
+    width: 1.75rem;
+    height: 1.75rem;
+    display: inline-block;
+    flex-shrink: 0;
+    background: center / contain no-repeat url("../img/urban-hive-mark.svg");
+    filter: drop-shadow(0 0 10px rgba(213, 138, 40, 0.28));
 }
 
-.login-card .brand-logo-icon,
-.register-card .brand-logo-icon {
-    font-size: 2.5rem;
-    /* Slightly larger for auth cards but still standardized */
+.navbar-brand .brand-mark,
+footer .brand-mark,
+#sidebar .brand-mark {
+    width: 1.85rem;
+    height: 1.85rem;
+}
+
+.login-card .brand-mark,
+.register-card .brand-mark {
+    width: 1.85rem;
+    height: 1.85rem;
 }
 
 .brand-name {
@@ -94,6 +99,11 @@ footer i.bi-hexagon-fill,
 .offcanvas-header .brand-name,
 #sidebar .brand-name,
 footer .brand-name {
+    font-size: 1.25rem;
+}
+
+.login-card .brand-name,
+.register-card .brand-name {
     font-size: 1.25rem;
 }
 
@@ -134,8 +144,8 @@ footer .brand-name {
 }
 
 .btn-primary:hover {
-    background-color: #e6a700;
-    border-color: #e6a700;
+    background-color: #B97117;
+    border-color: #B97117;
     color: var(--accent-color);
 }
 
@@ -149,8 +159,8 @@ footer .brand-name {
 }
 
 .btn-secondary:hover {
-    background-color: #17614e;
-    border-color: #17614e;
+    background-color: #53361B;
+    border-color: #53361B;
 }
 
 /* Card System */
@@ -175,7 +185,7 @@ footer .brand-name {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 0, 0.1);
+    background-color: rgba(213, 138, 40, 0.12);
     color: var(--primary-color);
     border-radius: 12px;
     margin-bottom: var(--sp-24);
@@ -241,11 +251,11 @@ footer .brand-name {
     position: relative;
     width: 24px;
     height: 16px;
-    background: #FFD700;
+    background: #D58A28;
     border-radius: 12px;
-    background-image: linear-gradient(to right, #FFD700 0%, #FFD700 25%, #222 25%, #222 45%, #FFD700 45%, #FFD700 70%, #222 70%, #222 100%);
+    background-image: linear-gradient(to right, #D58A28 0%, #D58A28 25%, #2A211A 25%, #2A211A 45%, #D58A28 45%, #D58A28 70%, #2A211A 70%, #2A211A 100%);
     animation: buzzingBee 4s ease-in-out infinite;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    box-shadow: 0 0 10px rgba(213, 138, 40, 0.35);
 }
 
 .buzzing-bee::before,
@@ -304,7 +314,7 @@ footer .brand-name {
 
 /* Text Enhancements */
 .bg-primary-subtle {
-    background-color: rgba(255, 255, 0, 0.1) !important;
+    background-color: rgba(213, 138, 40, 0.12) !important;
 }
 
 .badge {
@@ -317,12 +327,12 @@ footer .brand-name {
 @keyframes badgePulse {
     from {
         transform: scale(1);
-        box-shadow: 0 0 0 rgba(255, 255, 0, 0);
+        box-shadow: 0 0 0 rgba(213, 138, 40, 0);
     }
 
     to {
         transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(255, 255, 0, 0.2);
+        box-shadow: 0 4px 12px rgba(213, 138, 40, 0.22);
     }
 }
 
@@ -341,9 +351,51 @@ footer .brand-name {
 
 /* Organic Wave (Home-2) */
 .organic-wave {
-    background-image: url("data:image/svg+xml,%3Csvg width='1440' height='320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z' fill='%231F7A63' fill-opacity='0.1'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='1440' height='320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z' fill='%236B4B2A' fill-opacity='0.1'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: bottom;
+}
+
+.text-primary,
+.link-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-success {
+    color: var(--secondary-color) !important;
+}
+
+.bg-primary,
+.badge.bg-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.bg-success,
+.badge.bg-success {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+    color: #FFFFFF !important;
+}
+
+.bg-success-subtle {
+    background-color: rgba(213, 138, 40, 0.14) !important;
+}
+
+.border-primary {
+    border-color: var(--primary-color) !important;
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--accent-color);
 }
 
 /* Footer */
@@ -427,7 +479,7 @@ footer a:hover {
     background-color: var(--primary-color);
     color: var(--accent-color);
     transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 10px 20px rgba(255, 255, 0, 0.3);
+    box-shadow: 0 10px 20px rgba(213, 138, 40, 0.32);
 }
 
 /* Responsive Overrides */
@@ -590,3 +642,4 @@ footer a:hover {
         left: 70px;
     }
 }
+

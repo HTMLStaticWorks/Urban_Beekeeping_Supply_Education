@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="urbanHiveAmber" x1="14" y1="10" x2="50" y2="54" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E3A03C"/>
+      <stop offset="1" stop-color="#C9781C"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 4L52 16V48L32 60L12 48V16L32 4Z" fill="url(#urbanHiveAmber)"/>
+  <path d="M32 10L46.5 18.5V45.5L32 54L17.5 45.5V18.5L32 10Z" fill="#2B1F16" fill-opacity=".18"/>
+  <path d="M23 21H28V43H23V21ZM36 21H41V43H36V21ZM28 29.5H36V34.5H28V29.5Z" fill="#211710"/>
+</svg>
