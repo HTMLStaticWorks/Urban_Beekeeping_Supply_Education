@@ -88,6 +88,10 @@
             border: 1px solid var(--border-color);
         }
 
+        .map-section {
+            margin-bottom: 32px;
+        }
+
         .bee-badge {
             background: rgba(213, 138, 40, 0.1);
             color: var(--primary-color);
@@ -145,6 +149,35 @@
             }
             .pb-120 {
                 padding-bottom: 60px !important;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .contact-form-wrapper {
+                margin-top: 24px;
+            }
+
+            .contact-form-wrapper h2 {
+                text-align: center;
+            }
+        }
+
+        @media (min-width: 992px) and (max-width: 1024px) {
+            .contact-form-wrapper .col-lg-5 .contact-card {
+                padding: 24px;
+            }
+
+            .contact-form-wrapper .col-lg-5 .contact-card .d-flex {
+                align-items: flex-start !important;
+                gap: 12px;
+            }
+
+            .contact-form-wrapper .col-lg-5 .contact-card .contact-icon {
+                margin: 0 !important;
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+                flex-shrink: 0;
             }
         }
 
@@ -242,7 +275,7 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label fw-bold small">EMAIL ADDRESS</label>
-                                                <input type="email" class="form-control" placeholder="john@example.com" required>
+                                                <input type="email" class="form-control" placeholder="" required>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -325,7 +358,7 @@
     </section>
 
     <!-- Map Section -->
-    <section class="pb-120 bg-light-subtle">
+    <section class="map-section pb-120 bg-light-subtle">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12">

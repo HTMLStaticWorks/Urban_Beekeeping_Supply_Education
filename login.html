@@ -57,6 +57,8 @@
 
         .login-card .brand-mark {
             color: #D58A28;
+            width: 2rem;
+            height: 2rem;
         }
 
         .brand-name {
@@ -64,6 +66,10 @@
             font-weight: 800;
             letter-spacing: 1px;
             color: white;
+        }
+
+        .login-card .brand-name {
+            font-size: 1.35rem;
         }
 
         .form-control {
@@ -272,9 +278,12 @@
 <body>
 
     <!-- Theme & Layout Toggles -->
-    <button class="theme-toggle-btn theme-toggle-fixed">
-        <i class="bi bi-moon-fill"></i>
-    </button>
+    <div class="theme-toggle-fixed d-flex align-items-center gap-2">
+        <button class="rtl-toggle-btn" type="button">RTL</button>
+        <button class="theme-toggle-btn" type="button" aria-label="Toggle Theme">
+            <i class="bi bi-moon-fill"></i>
+        </button>
+    </div>
 
     <div class="container d-flex justify-content-center">
         <div class="login-card text-center text-white">
@@ -295,7 +304,7 @@
                     <input type="password" class="form-control" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" required>
                     <a href="#" class="forgot-password small d-block text-end mt-2">Forgot Password?</a>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 mb-4">Login to Dashboard</button>
+                <button type="submit" class="btn btn-primary w-100 mb-4">Login</button>
 
                 <div class="divider">Or Login with</div>
 

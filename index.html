@@ -101,6 +101,10 @@
             color: #000000;
         }
 
+        .hero-actions {
+            margin-top: 24px;
+        }
+
         .hero-badge {
             background-color: #D58A28;
             color: #000000;
@@ -579,6 +583,45 @@
             transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.1s;
         }
 
+        /* Mobile alignment fix: Exclusive Service card */
+        @media (max-width: 767px) {
+            .consulting-reveal-section .col-lg-10 {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .consulting-reveal-section .reveal-card {
+                border-radius: 26px;
+                height: 690px;
+            }
+
+            .consulting-reveal-section .reveal-content {
+                padding: 2rem 1.25rem;
+                text-align: center;
+                align-items: center;
+            }
+
+            .consulting-reveal-section .reveal-content h2 {
+                font-size: clamp(2.1rem, 11vw, 2.9rem);
+                line-height: 1.05;
+                margin-bottom: 1rem;
+            }
+
+            .consulting-reveal-section .reveal-content p {
+                font-size: 0.95rem;
+                line-height: 1.55;
+                max-width: 92%;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .consulting-reveal-section .reveal-content .btn {
+                display: inline-flex;
+                justify-content: center;
+                text-align: center;
+            }
+        }
+
         .reveal-card:hover .reveal-content h2 {
             transform: none;
             opacity: 1;
@@ -1029,7 +1072,7 @@
                         (for nature).
                     </p>
                 </div>
-                <div class="d-flex flex-wrap gap-3 animate-on-scroll justify-content-center">
+                <div class="hero-actions d-flex flex-wrap gap-3 animate-on-scroll justify-content-center">
                     <a href="services.html" class="btn btn-dark-hero">Shop the Hive</a>
                     <a href="pricing.html" class="btn btn-outline-hero">Start Learning</a>
                 </div>

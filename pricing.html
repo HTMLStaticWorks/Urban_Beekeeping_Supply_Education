@@ -60,6 +60,44 @@
             font-size: 3rem;
         }
 
+        /* Membership Plans: card and button alignment only */
+        .membership-plans-section .row.g-4>[class*="col-"] {
+            display: flex;
+        }
+
+        .membership-plans-section .pricing-card {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .membership-plans-section .pricing-card ul {
+            flex-grow: 1;
+        }
+
+        .membership-plans-section .pricing-card .btn {
+            min-height: 52px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) and (min-width: 992px) {
+            .membership-plans-section .pricing-card {
+                padding: var(--sp-32);
+            }
+
+            .membership-plans-section .pricing-card.featured {
+                transform: none;
+            }
+
+            .membership-plans-section .pricing-card.featured:hover {
+                transform: translateY(-20px);
+            }
+        }
+
         .faq-item {
             background-color: var(--card-bg);
             border-radius: 16px;
@@ -552,7 +590,7 @@
     </section>
 
     <!-- Membership Plans -->
-    <section class="py-64 blur-reveal">
+    <section class="py-64 blur-reveal membership-plans-section">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="animate-on-scroll">Membership Plans</h2>
@@ -584,7 +622,7 @@
                 </div>
                 <div class="col-lg-4 animate-on-scroll">
                     <div class="pricing-card featured text-center">
-                        <span class="badge bg-primary text-dark position-absolute top-0 end-0 m-4">POPULAR</span>
+                        <span class="badge bg-primary text-dark position-absolute top-0 start-50 translate-middle">POPULAR</span>
                         <h5>Urban Professional</h5>
                         <p class="text-muted">Complete master educational path.</p>
                         <h2 class="mb-4">$45 <span class="fs-6 text-muted fw-normal">/mo</span></h2>

@@ -39,6 +39,7 @@
             background-color: var(--card-bg);
             border-right: 1px solid var(--border-color);
             padding: var(--sp-24);
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
             gap: var(--sp-8);
@@ -47,7 +48,7 @@
             position: fixed;
             left: 0;
             top: 0;
-            overflow-y: auto;
+            overflow-y: hidden;
             z-index: 100;
         }
 
@@ -151,6 +152,60 @@
             background-color: var(--secondary-color);
         }
 
+        .dashboard-header {
+            gap: var(--sp-16);
+            flex-wrap: nowrap;
+            min-width: 0;
+        }
+
+        .dashboard-header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .dashboard-header .theme-toggle-btn {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            justify-content: center;
+            background-color: var(--card-bg);
+            flex-shrink: 0;
+        }
+
+        .dashboard-header .rtl-toggle-btn {
+            margin-left: 0;
+            padding: 4px 10px;
+            min-height: 32px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            letter-spacing: 0.3px;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .dashboard-header #sidebarToggle {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .dashboard-header .header-avatar {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+        }
+
         /* Responsive Dashboard Adjustments */
         @media (max-width: 1024px) {
             #sidebar {
@@ -182,6 +237,22 @@
             .video-thumbnail {
                 height: 200px;
             }
+
+            .dashboard-header h2 {
+                font-size: 2rem;
+            }
+
+            .dashboard-header .theme-toggle-btn,
+            .dashboard-header #sidebarToggle {
+                width: 34px;
+                height: 34px;
+            }
+
+            .dashboard-header .rtl-toggle-btn {
+                padding: 4px 9px;
+                font-size: 0.68rem;
+                min-height: 30px;
+            }
         }
 
         /* Dark mode contrast for badges */
@@ -201,6 +272,41 @@
             .badge {
                 font-size: 0.75em;
                 padding: 0.25em 0.5em;
+            }
+
+            .main-content {
+                padding: 20px 14px;
+            }
+
+            .dashboard-header {
+                gap: 10px;
+                margin-bottom: 28px !important;
+            }
+
+            .dashboard-header h2 {
+                font-size: 1.9rem;
+            }
+
+            .dashboard-header-controls {
+                gap: 6px;
+            }
+
+            .dashboard-header .theme-toggle-btn,
+            .dashboard-header #sidebarToggle {
+                width: 30px;
+                height: 30px;
+                border-radius: 8px;
+            }
+
+            .dashboard-header .rtl-toggle-btn {
+                padding: 3px 8px;
+                min-height: 28px;
+                font-size: 0.64rem;
+            }
+
+            .dashboard-header .header-avatar {
+                width: 34px;
+                height: 34px;
             }
         }
 
@@ -256,25 +362,24 @@
             </a>
         </nav>
 
-        <div class="mt-auto d-flex">
-            <button class="theme-toggle-btn flex-grow-1 justify-content-center">
-                <i class="bi bi-moon-fill"></i>
-            </button>
-        </div>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
         <!-- Top Nav -->
-        <header class="d-flex justify-content-between align-items-center mb-5">
-            <div>
-                <h2 class="mb-0 fw-bold">Dashboard</h2>
-            </div>
-            <div class="d-flex align-items-center gap-3">
+        <header class="dashboard-header d-flex justify-content-between align-items-center mb-5">
+            <div class="dashboard-header-title d-flex align-items-center gap-2">
                 <button class="btn btn-outline-secondary d-xl-none" id="sidebarToggle"><i
                         class="bi bi-list"></i></button>
+                <h2 class="mb-0 fw-bold">Dashboard</h2>
+            </div>
+            <div class="dashboard-header-controls">
+                <button class="theme-toggle-btn" type="button" aria-label="Toggle theme">
+                    <i class="bi bi-moon-fill"></i>
+                </button>
+                <button class="rtl-toggle-btn" type="button" aria-label="Toggle text direction">RTL</button>
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQanlasPgQjfGGU6anray6qKVVH-ZlTqmuTHw&s"
-                    width="45" height="45" class="rounded-circle border" alt="User Avatar">
+                    width="45" height="45" class="header-avatar rounded-circle border" alt="User Avatar">
             </div>
         </header>
 

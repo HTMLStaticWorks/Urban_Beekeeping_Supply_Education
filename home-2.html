@@ -593,6 +593,23 @@
 
         /* Footer alignment fixes for tablet view */
         @media (max-width: 991px) and (min-width: 768px) {
+            /* Center image in OUR STRATEGY section on tablet view */
+            .vision-section-premium .col-lg-5 {
+                display: flex;
+                justify-content: center;
+            }
+
+            .vision-section-premium .vision-img-frame {
+                margin: 0 auto;
+                width: 100%;
+                max-width: 560px;
+                transform: none;
+            }
+
+            .vision-section-premium .vision-img-frame:hover {
+                transform: none;
+            }
+
             footer .row {
                 justify-content: center;
                 text-align: center;

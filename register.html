@@ -59,6 +59,8 @@
 
         .register-card .brand-mark {
             color: #D58A28;
+            width: 2rem;
+            height: 2rem;
         }
 
         .brand-name {
@@ -66,6 +68,10 @@
             font-weight: 800;
             letter-spacing: 1px;
             color: white;
+        }
+
+        .register-card .brand-name {
+            font-size: 1.35rem;
         }
 
         .theme-toggle-fixed {
@@ -328,9 +334,12 @@
 
 <body>
 
-    <button class="theme-toggle-btn theme-toggle-fixed" id="themeToggle">
-        <i class="bi bi-moon-fill"></i>
-    </button>
+    <div class="theme-toggle-fixed d-flex align-items-center gap-2">
+        <button class="rtl-toggle-btn" type="button">RTL</button>
+        <button class="theme-toggle-btn" id="themeToggle" type="button" aria-label="Toggle Theme">
+            <i class="bi bi-moon-fill"></i>
+        </button>
+    </div>
 
     <div class="container d-flex justify-content-center">
         <div class="register-card">
@@ -345,11 +354,19 @@
 
             <form action="dashboard.html" onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
                 <div class="mb-3 text-start">
+                    <label class="form-label small fw-bold opacity-75">NAME</label>
+                    <input type="text" class="form-control" placeholder="Jane Doe" required>
+                </div>
+                <div class="mb-3 text-start">
                     <label class="form-label small fw-bold opacity-75">EMAIL ADDRESS</label>
                     <input type="email" class="form-control" placeholder="jane@example.com" required>
                 </div>
                 <div class="mb-3 text-start">
                     <label class="form-label small fw-bold opacity-75">PASSWORD</label>
+                    <input type="password" class="form-control" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" required>
+                </div>
+                <div class="mb-3 text-start">
+                    <label class="form-label small fw-bold opacity-75">CONFIRM PASSWORD</label>
                     <input type="password" class="form-control" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" required>
                 </div>
 
