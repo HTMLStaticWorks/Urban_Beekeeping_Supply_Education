@@ -119,7 +119,7 @@
 
         /* COURSE CUBE HERO (SHOWBOX STYLE) */
         .course-hero-cube-section {
-            background: #000000;
+            background: #f5bb1c;
             min-height: 80vh;
             display: flex;
             align-items: center;
@@ -339,7 +339,7 @@
 
         /* LIGHT MODE OVERRIDES FOR HERO */
         [data-bs-theme="light"] .course-hero-cube-section {
-            background: #D58A28 !important;
+            background: #f5bb1c !important;
         }
 
         [data-bs-theme="light"] .course-hero-cube-section .main-heading {
@@ -365,6 +365,28 @@
 
         [data-bs-theme="light"] .course-hero-cube-section .cube__face {
             border-color: rgba(23, 18, 14, 0.2) !important;
+        }
+
+        /* DARK MODE HERO TEXT VISIBILITY FIX */
+        [data-bs-theme="dark"] .course-hero-cube-section .main-heading {
+            color: #17120E !important;
+        }
+
+        [data-bs-theme="dark"] .course-hero-cube-section .body-text {
+            color: rgba(23, 18, 14, 0.88) !important;
+        }
+
+        [data-bs-theme="dark"] .course-hero-cube-section .signup-button {
+            border-color: #17120E !important;
+            color: #17120E !important;
+        }
+
+        [data-bs-theme="dark"] .course-hero-cube-section .signup-button:hover {
+            color: #f5bb1c !important;
+        }
+
+        [data-bs-theme="dark"] .course-hero-cube-section .signup-button::before {
+            background: #17120E !important;
         }
 
         /* THE NEURAL APIARY SECTION */

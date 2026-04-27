@@ -22,7 +22,7 @@
             position: relative;
             width: 100%;
             height: 80vh;
-            background: #D58A28;
+            background: #f5bb1c;
             /* Primary Yellow for Light Mode */
             overflow: hidden;
             display: flex;
@@ -31,7 +31,7 @@
         }
 
         [data-bs-theme="dark"] #p5-hero-container {
-            background: #000;
+            background: #f5bb1c;
         }
 
         #p5-canvas-wrapper {
@@ -1067,7 +1067,7 @@
             let canvas = createCanvas(windowWidth, windowHeight * 0.8);
             canvas.parent('p5-canvas-wrapper');
             ps = new ParticleSystem();
-            background(213, 138, 40);
+            background(245, 187, 28);
             offset = createVector(random(1000), random(1000));
             origin = createVector(width / 2, height / 2);
         }
@@ -1076,11 +1076,11 @@
             let isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
 
             if (bg % 2 == 0) {
-                if (isDark) background(23, 18, 14); // Dark theme BG
-                else background(213, 138, 40); // Primary Yellow BG
+                if (isDark) background(245, 187, 28);
+                else background(245, 187, 28);
             } else {
-                if (isDark) background(0, 0, 0, 40);
-                else background(213, 138, 40, 40); // Yellow trail BG
+                if (isDark) background(245, 187, 28, 40);
+                else background(245, 187, 28, 40);
             }
 
             if (mouseX == pmouseX && mouseY == pmouseY && millis() - ptime > 800) {

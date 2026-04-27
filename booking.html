@@ -103,7 +103,7 @@
 
         /* Custom Animated Hero CSS */
         #custom-hero {
-            background-color: #000000;
+            background-color: #f5bb1c;
             overflow: hidden;
             position: relative;
             min-height: 500px;
@@ -185,7 +185,7 @@
 
         /* Light Mode Hero Overrides */
         [data-bs-theme="light"] #custom-hero {
-            background-color: #D58A28;
+            background-color: #f5bb1c;
         }
 
         [data-bs-theme="light"] #content h1 {
@@ -795,8 +795,7 @@
         }
 
         function animate() {
-            var isLight = document.documentElement.getAttribute('data-bs-theme') === 'light';
-            canvas.fillStyle = isLight ? "#D58A28" : "#17120E";
+            canvas.fillStyle = "#f5bb1c";
             canvas.fillRect(0, 0, ww, wh);
             particles = particles.filter(function (p) {
                 p.move();

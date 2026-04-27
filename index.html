@@ -21,7 +21,7 @@
         /* ABSTRACT ART PARTICLE HERO */
         .hero-section {
             position: relative;
-            background-color: #000000;
+            background-color: #f5bb1c;
             /* Dark Mode Background */
             min-height: 100vh;
             display: flex;
@@ -33,7 +33,7 @@
         }
 
         [data-bs-theme="light"] .hero-section {
-            background-color: #D58A28 !important;
+            background-color: #f5bb1c !important;
             /* Primary Yellow for Light Mode */
             color: #000000;
         }
@@ -179,7 +179,9 @@
         }
 
         .why-card {
-            background: #FFFFFF;
+            background-color: #FFFFFF;
+            background-size: cover;
+            background-position: center;
             border: 4px solid #000000;
             border-radius: 24px;
             padding: 40px;
@@ -187,11 +189,25 @@
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             z-index: 1;
+            overflow: hidden;
+        }
+
+        .why-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: -1;
+            transition: all 0.3s ease;
         }
 
         .why-card:hover {
             transform: translateY(-15px) scale(1.02);
             box-shadow: 15px 15px 0px #000000;
+        }
+
+        .why-card:hover::after {
+            background: rgba(255, 255, 255, 0.8);
         }
 
         .why-card .card-icon {
@@ -1172,7 +1188,7 @@
         </div>
         <div class="row g-5 text-center">
             <div class="col-md-4 animate-on-scroll">
-                <div class="why-card">
+                <div class="why-card" style="background-image: url('https://images.unsplash.com/photo-1555035306-239d2ca48867?q=80&w=1470&auto=format&fit=crop');">
                     <div class="card-icon mx-auto"><i class="bi bi-globe-americas"></i></div>
                     <div class="why-card-body">
                         <h4 class="mb-3">Save the Pollinators</h4>
@@ -1182,7 +1198,7 @@
                 </div>
             </div>
             <div class="col-md-4 animate-on-scroll">
-                <div class="why-card">
+                <div class="why-card" style="background-image: url('https://images.unsplash.com/photo-1473976335759-444737f35363?q=80&w=1471&auto=format&fit=crop');">
                     <div class="card-icon mx-auto"><i class="bi bi-flower1"></i></div>
                     <div class="why-card-body">
                         <h4 class="mb-3">Boost City Biodiversity</h4>
@@ -1192,7 +1208,7 @@
                 </div>
             </div>
             <div class="col-md-4 animate-on-scroll">
-                <div class="why-card">
+                <div class="why-card" style="background-image: url('https://images.unsplash.com/photo-1589634749140-344445300dd3?q=80&w=1470&auto=format&fit=crop');">
                     <div class="card-icon mx-auto"><i class="bi bi-heart-pulse-fill"></i></div>
                     <div class="why-card-body">
                         <h4 class="mb-3">Sustainable Living</h4>
@@ -1277,8 +1293,8 @@
             <div class="col-lg-10">
                 <div class="reveal-card">
                     <div class="floating-hex"></div>
-                    <img src="https://img.freepik.com/free-photo/businessman-showing-changes-report_1098-3504.jpg?semt=ais_hybrid&w=740&q=80"
-                        alt="Consulting">
+                    <img src="https://images.unsplash.com/photo-1590334280249-a8f0c9f46a1b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJlZXN8ZW58MHx8MHx8fDA%3D"
+                        alt="Urban Rooftop Apiary Design">
                     <!-- Using existing premium image context -->
                     <div class="reveal-content">
                         <span class="badge bg-primary text-dark mb-4 py-2 px-4 rounded-pill">EXCLUSIVE
@@ -1398,5 +1414,3 @@
 </body>
 
 </html>
-
-
